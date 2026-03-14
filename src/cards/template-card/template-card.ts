@@ -622,6 +622,9 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
 
       ha-tile-icon {
         --tile-icon-color: var(--tile-color);
+        --tile-icon-size: var(--adj-tile-size, 50px);
+        --tile-icon-width: var(--tile-icon-size);
+        --tile-icon-height: var(--tile-icon-size);
         width: var(--tile-icon-width) !important;
         height: var(--tile-icon-height) !important;       
         position: relative;
