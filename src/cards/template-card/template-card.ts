@@ -216,7 +216,12 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
       this._tryDisconnectKey(key);
     });
   }
-
+  
+  private _getAdjVar(name: string, fallback: string): string {
+    const value = getComputedStyle(this).getPropertyValue(name).trim();
+    return value || fallback;
+  }
+  
   private async _tryDisconnectKey(key: TemplateKey): Promise<void> {
     const unsubRenderTemplate = this._unsubRenderTemplates.get(key);
     if (!unsubRenderTemplate) {
@@ -380,6 +385,18 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
       return nothing;
     }
 
+    const adjTileSize = this._getAdjVar("--adj-tile-size", "50px");
+    const adjIconSize = this._getAdjVar("--adj-icon-size", "33px");
+    const adjBadgeSize = this._getAdjVar("--adj-badge-size", "20px");
+    const adjBadgeIconSize = this._getAdjVar("--adj-badge-icon-size", "15px");
+    const dynamicVars = {
+      "--tile-icon-size": adjTileSize,
+      "--tile-icon-width": adjTileSize,
+      "--tile-icon-height": adjTileSize,
+      "--mdc-icon-size": adjIconSize,
+      "--badge-size": adjBadgeSize,
+      "--badge-icon-size": adjBadgeIconSize,
+    };
     const icon = this.getValue("icon");
     const color = this.getValue("color");
     const cssColor = color ? computeCssColor(color) : undefined;
@@ -426,8 +443,8 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
     };
 
     return html`
-      <ha-card style=${styleMap(style)}>
-        <div
+    <ha-card style=${styleMap({ ...style, ...dynamicVars })}>        
+       <div
           class="background"
           @action=${this._handleAction}
           .actionHandler=${actionHandler({
@@ -605,12 +622,8 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
 
       ha-tile-icon {
         --tile-icon-color: var(--tile-color);
-        --tile-icon-size: var(--adj-tile-size, 50px);
-        --tile-icon-width: var(--adj-tile-size, 50px);
-        --tile-icon-height: var(--adj-tile-size, 50px);
         width: var(--tile-icon-width) !important;
         height: var(--tile-icon-height) !important;       
-        --mdc-icon-size: var(--adj-icon-size, round(calc(var(--tile-icon-size) * 0.66), 1px));
         position: relative;
         flex-shrink: 0;
       }
@@ -631,11 +644,8 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
         inset-inline-end: 3px;
         inset-inline-start: initial;
         --tile-badge-background-color: var(--badge-color, var(--secondary-text-color));
-        --tile-icon-size: var(--adj-tile-size, 50px);
-        --badge-size: var(--adj-badge-size, round(calc(var(--tile-icon-size) / 2.5), 1px));
         width: var(--badge-size) !important;
         height: var(--badge-size) !important;
-        --mdc-icon-size: var(--adj-badge-icon-size, round(calc(var(--badge-size) / 1.3), 1px));
       }
       ha-tile-badge span {
         font-size: 0.8rem;
