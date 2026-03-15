@@ -627,7 +627,7 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
         --tile-icon-height: var(--tile-icon-size);
         width: var(--tile-icon-width) !important;
         height: var(--tile-icon-height) !important; 
-        --tile-mdc-icon-size: var(--adj-icon-size, calc(var(--adj-tile-size, 50px) * 0.66));
+        --tile-mdc-icon-size: var(--adj-icon-size, 33px);
         --mdc-icon-size: var(--tile-mdc-icon-size);
         position: relative;
         flex-shrink: 0;
@@ -651,8 +651,8 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
         inset-inline-end: 3px;
         inset-inline-start: initial;
         --tile-badge-background-color: var(--badge-color, var(--secondary-text-color));
-        --badge-size: var(--adj-badge-size, calc(var(--adj-tile-size, 50px)/2.5));
-        --badge-mdc-icon-size: var(--adj-badge-icon-size, calc(var(--badge-size) / 1.3));
+        --badge-size: var(--adj-badge-size, 20px);
+        --badge-mdc-icon-size: var(--adj-badge-icon-size, 15px);
         --mdc-icon-size: var(--badge-mdc-icon-size);
         width: var(--badge-size) !important;
         height: var(--badge-size) !important;
