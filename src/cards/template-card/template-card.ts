@@ -634,7 +634,7 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
         --mdc-icon-size: var(--mdc-icon-size);
         position: relative;
         margin: 0;
-        padding: 0;
+        padding: 10;
       }
 
       ha-tile-icon.weather svg {
