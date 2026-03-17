@@ -472,59 +472,53 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
             ? html`<div class="content ${contentClasses}">
                 ${icon || picture
                   ? html`
-                      <ha-tile-icon
-                        style=${styleMap({
-                          "--tile-icon-size": finalTileSize,
-                          "--mdc-icon-size": finalIconSize,
-                        })}
-                        role=${ifDefined(
-                          this._hasIconAction ? "button" : undefined
-                        )}
-                        tabindex=${ifDefined(
-                          this._hasIconAction ? "0" : undefined
-                        )}
-                        @action=${this._handleIconAction}
-                        .actionHandlerOptions=${supportTileIconHandlerOptions
-                          ? iconActionHandlerOptions
-                          : undefined}
-                        .actionHandler=${!supportTileIconHandlerOptions
-                          ? actionHandler(iconActionHandlerOptions)
-                          : undefined}
-                        .interactive=${this._hasIconAction}
-                        .imageUrl=${picture
-                          ? this.hass.hassUrl(picture)
-                          : undefined}
-                        class=${weatherSvg ? "weather" : ""}
-                      >
-                        ${picture
-                          ? nothing
-                          : weatherSvg
-                            ? html`<div slot="icon">${weatherSvg}</div>`
-                            : html`<ha-state-icon
-                                slot="icon"
-                                .icon=${icon}
-                                .hass=${this.hass}
-                              ></ha-state-icon>`}
-                        ${badgeIcon || badgeText
-                          ? html`
-                              <ha-tile-badge
-                                style=${styleMap({
-                                  "--badge-color": badgeCssColor,
-                                })}
-                              >
-                                ${badgeText
-                                  ? html`<span>${badgeText}</span>`
-                                  : html`<ha-icon .icon=${badgeIcon}>
-                                    </ha-icon>`}
-                              </ha-tile-badge>
-                            `
-                          : nothing}
-                      </ha-tile-icon>
+                    <mushroom-tile-icon
+                      style=${styleMap({
+                        "--tile-size": finalTileSize,
+                        "--icon-size": finalIconSize,
+                      })}
+                      role=${ifDefined(this._hasIconAction ? "button" : undefined)}
+                      tabindex=${ifDefined(this._hasIconAction ? "0" : undefined)}
+                      @action=${this._handleIconAction}
+                      .actionHandlerOptions=${supportTileIconHandlerOptions
+                        ? iconActionHandlerOptions
+                        : undefined}
+                      .actionHandler=${!supportTileIconHandlerOptions
+                        ? actionHandler(iconActionHandlerOptions)
+                        : undefined}
+                      .interactive=${this._hasIconAction}
+                      .imageUrl=${picture ? this.hass.hassUrl(picture) : undefined}
+                      class=${weatherSvg ? "weather" : ""}
+                    >
+                      ${picture
+                        ? nothing
+                        : weatherSvg
+                          ? html`<div slot="icon">${weatherSvg}</div>`
+                          : html`<ha-state-icon
+                              slot="icon"
+                              .icon=${icon}
+                              .hass=${this.hass}
+                            ></ha-state-icon>`}
+                    
+                      ${badgeIcon || badgeText ? html`
+                        <mushroom-tile-badge
+                          style=${styleMap({
+                            "--badge-color": badgeCssColor,
+                            "--tile-badge-size": finalBadgeSize,
+                            "--tile-badge-icon-size": finalBadgeIconSize,
+                          })}
+                        >
+                          ${badgeText
+                            ? html`<span>${badgeText}</span>`
+                            : html`<ha-icon .icon=${badgeIcon}></ha-icon>`}
+                        </mushroom-tile-badge>
+                      ` : nothing}
+                    </mushroom-tile-icon>
                     `
                   : nothing}
                 ${primary || secondary
                   ? html`
-                      <ha-tile-info id="info">
+                      <mushroom-tile-info id="info">
                         <span slot="primary">${primary}</span>
                         <span
                           slot="secondary"
@@ -533,7 +527,7 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
                           })}
                           >${secondary}</span
                         >
-                      </ha-tile-info>
+                      </mushroom-tile-info>
                     `
                   : nothing}
               </div> `
@@ -624,7 +618,7 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
         text-align: center;
         justify-content: center;
       }
-      .vertical ha-tile-info {
+      .vertical mushroom-tile-info {
         width: 100%;
         flex: none;
       }
@@ -633,7 +627,7 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
         white-space: pre-wrap;
       }
 
-      ha-tile-icon {
+      mushroom-tile-icon {
         --tile-icon-color: var(--tile-color);
         width: var(--tile-icon-size);
         height: var(--tile-icon-size);
@@ -643,17 +637,17 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
         padding: 0;
       }
 
-      ha-tile-icon.weather svg {
+      mushroom-tile-icon.weather svg {
         width: var(--tile-icon-size);
         height: var(--tile-icon-size);
         display: flex;
       }
-      ha-tile-icon.weather {
+      mushroom-tile-icon.weather {
         --tile-icon-opacity: 0;
         --tile-icon-hover-opacity: 0;
         --tile-icon-border-radius: 0;
       }
-      ha-tile-badge {
+      mushroom-tile-badge {
         position: absolute;
         top: 3px;
         right: 3px;
@@ -664,18 +658,18 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
           var(--secondary-text-color)
         );
       }
-      ha-tile-badge {
+      mushroom-tile-badge {
         width: var(--tile-badge-size);
         height: var(--tile-badge-size);
         --mdc-icon-size: var(--tile-badge-icon-size);
       }     
-      ha-tile-badge span {
+      mushroom-tile-badge span {
         font-size: 0.8rem;
         font-weight: bold;
         height: var(--tile-badge-size);
         line-height: var(--tile-badge-size);
       }
-      ha-tile-info {
+      mushroom-tile-info {
         position: relative;
         min-width: 0;
         transition: background-color 180ms ease-in-out;
@@ -703,14 +697,14 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
       .container.feature-only.horizontal hui-card-features {
         padding: 0 12px;
       }
-      .container.horizontal .content:not(:has(ha-tile-info)) {
+      .container.horizontal .content:not(:has(mushroom-tile-info)) {
         flex: none;
       }
-      .container.horizontal:not(:has(ha-tile-info)) hui-card-features {
+      .container.horizontal:not(:has(mushroom-tile-info)) hui-card-features {
         width: auto;
         flex: 1;
       }
-      .container.horizontal:not(:has(ha-tile-info)) .content {
+      .container.horizontal:not(:has(mushroom-tile-info)) .content {
         flex: none;
       }
     `,
