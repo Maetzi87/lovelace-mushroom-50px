@@ -396,7 +396,19 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
     const badgeCssColor = badgeColor ? computeCssColor(badgeColor) : undefined;
 
     const weatherSvg = getWeatherSvgIcon(icon);
-
+    
+    // --- Resize variables (template-capable) ---
+    const tileSize = this.getValue("tile_size");
+    const iconSize = this.getValue("icon_size");
+    const badgeSize = this.getValue("badge_size");
+    const badgeIconSize = this.getValue("badge_icon_size");
+    
+    // --- Automatic fallback scaling ---
+    const finalTileSize = tileSize || "50px";
+    const finalIconSize = iconSize || `calc(${finalTileSize} * 0.66)`;
+    const finalBadgeSize = badgeSize || `calc(${finalTileSize} * 0.36)`;
+    const finalBadgeIconSize = badgeIconSize || `calc(${finalBadgeSize} * 0.77)`;
+    
     const style = {
       "--tile-color": cssColor,
     };
@@ -430,7 +442,17 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
     };
 
     return html`
-      <ha-card style=${styleMap(style)}>
+      <ha-card
+          style=${styleMap({
+            ...style,
+            "--tile-icon-size": finalTileSize,
+            "--tile-icon-width": finalTileSize,
+            "--tile-icon-height": finalTileSize,
+            "--mdc-icon-size": finalIconSize,
+            "--badge-size": finalBadgeSize,
+            "--badge-icon-size": finalBadgeIconSize,
+          })}
+        >
         <div
           class="background"
           @action=${this._handleAction}
@@ -609,13 +631,17 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
 
       ha-tile-icon {
         --tile-icon-color: var(--tile-color);
+        width: var(--tile-icon-size);
+        height: var(--tile-icon-size);
+        --mdc-icon-size: var(--mdc-icon-size);
         position: relative;
-        padding: 6px;
-        margin: -6px;
+        margin: 0;
+        padding: 0;
       }
+
       ha-tile-icon.weather svg {
-        width: 36px;
-        height: 36px;
+        width: var(--tile-icon-size);
+        height: var(--tile-icon-size);
         display: flex;
       }
       ha-tile-icon.weather {
@@ -634,11 +660,16 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
           var(--secondary-text-color)
         );
       }
+      ha-tile-badge {
+        width: var(--badge-size);
+        height: var(--badge-size);
+        --mdc-icon-size: var(--badge-icon-size);
+      }     
       ha-tile-badge span {
         font-size: 0.8rem;
         font-weight: bold;
-        height: 16px;
-        line-height: 16px;
+        height: var(--badge-size);
+        line-height: var(--badge-size);
       }
       ha-tile-info {
         position: relative;
