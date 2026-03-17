@@ -442,7 +442,7 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
     };
 
     return html`
-      <ha-card>
+      <ha-card style=${styleMap(style)}>
         <div
           class="background"
           @action=${this._handleAction}
@@ -463,12 +463,10 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
                 ${icon || picture
                   ? html`
                     <ha-tile-icon
-                        style=${styleMap({
-                          ...style,
+                      style=${styleMap({
                           "--tile-icon-size": finalTileSize,
                           "--tile-mdc-icon-size": finalIconSize,
-                        })}
-                      >
+                      })}
                       role=${ifDefined(this._hasIconAction ? "button" : undefined)}
                       tabindex=${ifDefined(this._hasIconAction ? "0" : undefined)}
                       @action=${this._handleIconAction}
@@ -495,7 +493,7 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
                       ${badgeIcon || badgeText ? html`
                         <ha-tile-badge
                             style=${styleMap({
-                              ...style,
+                              "--badge-color": badgeCssColor,
                               "--tile-badge-size": finalBadgeSize,
                               "--tile-badge-icon-size": finalBadgeIconSize,
                             })}
