@@ -472,7 +472,7 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
             ? html`<div class="content ${contentClasses}">
                 ${icon || picture
                   ? html`
-                    <mushroom-tile-icon
+                    <ha-tile-icon
                       style=${styleMap({
                         "--tile-size": finalTileSize,
                         "--icon-size": finalIconSize,
@@ -501,7 +501,7 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
                             ></ha-state-icon>`}
                     
                       ${badgeIcon || badgeText ? html`
-                        <mushroom-tile-badge
+                        <ha-tile-badge
                           style=${styleMap({
                             "--badge-color": badgeCssColor,
                             "--tile-badge-size": finalBadgeSize,
@@ -511,14 +511,14 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
                           ${badgeText
                             ? html`<span>${badgeText}</span>`
                             : html`<ha-icon .icon=${badgeIcon}></ha-icon>`}
-                        </mushroom-tile-badge>
+                        </ha-tile-badge>
                       ` : nothing}
-                    </mushroom-tile-icon>
+                    </ha-tile-icon>
                     `
                   : nothing}
                 ${primary || secondary
                   ? html`
-                      <mushroom-tile-info id="info">
+                      <ha-tile-info id="info">
                         <span slot="primary">${primary}</span>
                         <span
                           slot="secondary"
@@ -527,7 +527,7 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
                           })}
                           >${secondary}</span
                         >
-                      </mushroom-tile-info>
+                      </ha-tile-info>
                     `
                   : nothing}
               </div> `
@@ -618,7 +618,7 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
         text-align: center;
         justify-content: center;
       }
-      .vertical mushroom-tile-info {
+      .vertical ha-tile-info {
         width: 100%;
         flex: none;
       }
@@ -627,7 +627,7 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
         white-space: pre-wrap;
       }
 
-      mushroom-tile-icon {
+      ha-tile-icon {
         --tile-icon-color: var(--tile-color);
         width: var(--tile-icon-size);
         height: var(--tile-icon-size);
@@ -637,17 +637,17 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
         padding: 0;
       }
 
-      mushroom-tile-icon.weather svg {
+      ha-tile-icon.weather svg {
         width: var(--tile-icon-size);
         height: var(--tile-icon-size);
         display: flex;
       }
-      mushroom-tile-icon.weather {
+      ha-tile-icon.weather {
         --tile-icon-opacity: 0;
         --tile-icon-hover-opacity: 0;
         --tile-icon-border-radius: 0;
       }
-      mushroom-tile-badge {
+      ha-tile-badge {
         position: absolute;
         top: 3px;
         right: 3px;
@@ -658,18 +658,18 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
           var(--secondary-text-color)
         );
       }
-      mushroom-tile-badge {
+      ha-tile-badge {
         width: var(--tile-badge-size);
         height: var(--tile-badge-size);
         --mdc-icon-size: var(--tile-badge-icon-size);
       }     
-      mushroom-tile-badge span {
+      ha-tile-badge span {
         font-size: 0.8rem;
         font-weight: bold;
         height: var(--tile-badge-size);
         line-height: var(--tile-badge-size);
       }
-      mushroom-tile-info {
+      ha-tile-info {
         position: relative;
         min-width: 0;
         transition: background-color 180ms ease-in-out;
@@ -697,14 +697,14 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
       .container.feature-only.horizontal hui-card-features {
         padding: 0 12px;
       }
-      .container.horizontal .content:not(:has(mushroom-tile-info)) {
+      .container.horizontal .content:not(:has(ha-tile-info)) {
         flex: none;
       }
-      .container.horizontal:not(:has(mushroom-tile-info)) hui-card-features {
+      .container.horizontal:not(:has(ha-tile-info)) hui-card-features {
         width: auto;
         flex: 1;
       }
-      .container.horizontal:not(:has(mushroom-tile-info)) .content {
+      .container.horizontal:not(:has(ha-tile-info)) .content {
         flex: none;
       }
     `,
