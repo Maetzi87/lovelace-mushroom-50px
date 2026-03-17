@@ -622,7 +622,7 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
         position: relative;
         margin: -6px;
         padding: 6px;
-        background: rgba(0,0,0,0.5);
+        background: rgba(255,255,255,0.5);
         --mdc-icon-size: var(--tile-mdc-icon-size);
       }
       ha-tile-icon .container {
@@ -648,7 +648,7 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
         --tile-badge-background-color: var(--badge-color, var(--secondary-text-color));
         --mdc-icon-size: var(--tile-badge-icon-size);
       }
-      ha-tile-badge .badge {
+      ha-tile-badge.badge {
         width: var(--tile-badge-size) !important;
         height: var(--tile-badge-size) !important;
       }     
