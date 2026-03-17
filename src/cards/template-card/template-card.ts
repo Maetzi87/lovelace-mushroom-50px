@@ -620,14 +620,14 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
       ha-tile-icon {
         --tile-icon-color: var(--tile-color);
         position: relative;
-        background: blue;
-        margin: -6;
-        padding: 6;
+        background: red;
+        margin: -6px;
+        padding: 6px;
+        --mdc-icon-size: var(--tile-mdc-icon-size);
       }
       ha-tile-icon .container {
         width: var(--tile-icon-size);
         height: var(--tile-icon-size);
-        --mdc-icon-size: var(--tile-mdc-icon-size);
       }
       ha-tile-icon.weather svg {
         width: var(--tile-icon-size) !important;
@@ -646,11 +646,11 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
         inset-inline-end: 3px;
         inset-inline-start: initial;
         --tile-badge-background-color: var(--badge-color, var(--secondary-text-color));
+        --mdc-icon-size: var(--tile-badge-icon-size);
       }
       ha-tile-badge .badge {
         width: var(--tile-badge-size);
         height: var(--tile-badge-size);
-        --mdc-icon-size: var(--tile-badge-icon-size);
       }     
       ha-tile-badge span {
         font-size: 0.8rem;
