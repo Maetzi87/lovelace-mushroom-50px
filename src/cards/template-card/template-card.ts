@@ -407,7 +407,7 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
     const finalTileSize = tileSize || "50px";
     const finalIconSize = iconSize || `calc(${finalTileSize} * 0.66)`;
     const finalBadgeSize = badgeSize || `calc(${finalTileSize} * 0.36)`;
-    const finalBadgeIconSize = badgeIconSize || `calc(${finalTileSize} * 0.28)`;
+    const finalBadgeIconSize = badgeIconSize || `calc(${finalBadgeSize} * 0.77)`;
     
     const style = {
       "--tile-color": cssColor,
@@ -622,7 +622,6 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
         position: relative;
         margin: -6px;
         padding: 6px;
-        background: rgba(255,255,255,0.5);
         --mdc-icon-size: var(--tile-mdc-icon-size);
       }
       ha-tile-icon .container {
