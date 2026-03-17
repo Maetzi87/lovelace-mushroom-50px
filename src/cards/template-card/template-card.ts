@@ -657,6 +657,9 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
       .mush-badge ha-icon {
         --mdc-icon-size: var(--tile-badge-icon-size);
         color: var(--badge-icon-color, white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .mush-badge span {
         font-size: calc(var(--tile-badge-size) * 0.5);
