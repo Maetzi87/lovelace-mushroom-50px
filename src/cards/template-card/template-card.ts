@@ -705,60 +705,6 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
       .container.horizontal:not(:has(ha-tile-info)) .content {
         flex: none;
       }
-      
-// Keyframes for Animations
-      @keyframes blink {
-        100% { opacity: 0; }
-      }
-      @keyframes blink-ping {
-        0%   { box-shadow: 0 0 0 0 rgba(from var(--color) r g b / 0.7); }
-        100% { box-shadow: 0 0 5px 7px transparent; }
-      }
-      @keyframes charge {
-        0%  { clip-path: polygon(0% 0%, 0% 100%, 37% 100%, 37% 28%, 65% 28%, 65% 80%, 37% 80%, 37% 100%, 100% 100%, 100% 0%); }
-        20% { clip-path: polygon(0% 0%, 0% 100%, 37% 100%, 37% 28%, 65% 28%, 65% 65%, 37% 64%, 37% 100%, 100% 100%, 100% 0%); }
-        40% { clip-path: polygon(0% 0%, 0% 100%, 37% 100%, 37% 28%, 65% 28%, 65% 45%, 37% 45%, 37% 100%, 100% 100%, 100% 0%); }
-        60% { clip-path: polygon(0% 0%, 0% 100%, 37% 100%, 37% 28%, 65% 28%, 65% 28%, 37% 28%, 37% 100%, 100% 100%, 100% 0%); }
-      }
-      @keyframes open {
-        0%, 66% { transform: rotateY(0deg); }
-        33%     { transform: rotateY(-120deg); }
-      }
-      @keyframes send {
-        0%   { clip-path: circle(13.0% at 50% 50%); }
-        100% { clip-path: circle(50.0% at 50% 50%); }
-      }
-      @keyframes vacuum {
-        0%          { transform: translate(0, 0) rotate(0); }
-        5%, 7%      { transform: rotate(-40deg); }
-        12%, 14%    { transform: rotate(40deg); }
-        17%, 20%    { transform: translate(0%, 0%) rotate(-0deg); }
-        30%, 39.99% { transform: translate(0%, -125%); }
-        40%         { transform: translate(0%, -125%) rotate(180deg); }
-        50%         { transform: translate(0%, 0%) rotate(180deg); }
-        55%, 57%    { transform: rotate(140deg); }
-        62%, 64%    { transform: rotate(220deg); }
-        67%, 70%    { transform: rotate(180deg); }
-        80%, 89.99% { transform: translate(0%, 125%) rotate(180deg); }
-        90%         { transform: translate(0%, 125%) rotate(0); }
-        100%        { transform: translate(0%, 0%) rotate(0); }
-      }
-      @keyframes wind-forward {
-        0%   { clip-path: polygon(0% 60%, 50% 73%, 100% 60%, 100% 0%, 0% 0%); }
-        50%  { clip-path: inset(0 0% 30% 0); }
-        95%, 100% { clip-path: inset(0 0 0 0); }
-      }
-      @keyframes wind-reverse {
-        0%, 5%   { clip-path: inset(0% 0% 0% 0%); }
-        50%     { clip-path: inset(0 0% 30% 0); }
-        100%    { clip-path: polygon(0% 60%, 50% 73%, 100% 60%, 100% 0%, 0% 0%); }
-      }
-      @keyframes wind-rotation {
-        0%  { transform: rotateY(0deg); }
-        25% { transform: rotateY(-90deg); }
-        50% { transform: rotateY(-180deg); }
-        75% { transform: rotateY(-90deg); }
-      }
     `,
   ];
 }
