@@ -449,8 +449,8 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
             "--tile-icon-width": finalTileSize,
             "--tile-icon-height": finalTileSize,
             "--mdc-icon-size": finalIconSize,
-            "--badge-size": finalBadgeSize,
-            "--badge-icon-size": finalBadgeIconSize,
+            "--tile-badge-size": finalBadgeSize,
+            "--tile-badge-icon-size": finalBadgeIconSize,
           })}
         >
         <div
@@ -473,6 +473,10 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
                 ${icon || picture
                   ? html`
                       <ha-tile-icon
+                        style=${styleMap({
+                          "--tile-icon-size": finalTileSize,
+                          "--mdc-icon-size": finalIconSize,
+                        })}
                         role=${ifDefined(
                           this._hasIconAction ? "button" : undefined
                         )}
@@ -661,15 +665,15 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
         );
       }
       ha-tile-badge {
-        width: var(--badge-size);
-        height: var(--badge-size);
-        --mdc-icon-size: var(--badge-icon-size);
+        width: var(--tile-badge-size);
+        height: var(--tile-badge-size);
+        --mdc-icon-size: var(--tile-badge-icon-size);
       }     
       ha-tile-badge span {
         font-size: 0.8rem;
         font-weight: bold;
-        height: var(--badge-size);
-        line-height: var(--badge-size);
+        height: var(--tile-badge-size);
+        line-height: var(--tile-badge-size);
       }
       ha-tile-info {
         position: relative;
