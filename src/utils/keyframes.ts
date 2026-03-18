@@ -6,7 +6,7 @@ export const mushroomKeyframes = css`
     100% { opacity: 0; }
   }
   @keyframes ping {
-    0%   { box-shadow: 0 0 0 0 rgba(from var(--color) r g b / 0.7); }
+    0%   { box-shadow: 0 0 0 0 rgba(from var(--tile-color) r g b / 0.7); }
     100% { box-shadow: 0 0 5px 7px transparent; }
   }
 
@@ -47,27 +47,27 @@ export const mushroomKeyframes = css`
   
   /* RED GLOW FROM INSIDE OUT - radialflow = red glow from center to border - glow = overflow of radialflow
   @keyframes radialflow {
-    0%   { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)   0%, rgba(from var(--color) r g b / 0)  10% ); }
-    5%   { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)   0%, rgba(from var(--color) r g b / 0)  20% ); }
-    10%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)   0%, rgba(from var(--color) r g b / 0)  30% ); }
-    15%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  10%, rgba(from var(--color) r g b / 0)  40% ); }
-    20%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  20%, rgba(from var(--color) r g b / 0)  50% ); }
-    25%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  25%, rgba(from var(--color) r g b / 0)  55% ); }
-    30%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  30%, rgba(from var(--color) r g b / 0)  60% ); }
-    35%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  35%, rgba(from var(--color) r g b / 0)  65% ); }
-    40%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  40%, rgba(from var(--color) r g b / 0)  70% ); }
-    45%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  45%, rgba(from var(--color) r g b / 0)  75% ); }
-    50%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  50%, rgba(from var(--color) r g b / 0)  80% ); }
-    55%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  55%, rgba(from var(--color) r g b / 0)  85% ); }
-    60%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  60%, rgba(from var(--color) r g b / 0)  90% ); }
-    65%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  65%, rgba(from var(--color) r g b / 0)  95% ); }
-    70%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  70%, rgba(from var(--color) r g b / 0) 100% ); }                
-    75%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  75%, rgba(from var(--color) r g b / 0) 100% ); }
-    80%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  80%, rgba(from var(--color) r g b / 0) 100% ); }
-    85%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  85%, rgba(from var(--color) r g b / 0) 100% ); }
-    90%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  90%, rgba(from var(--color) r g b / 0) 100% ); }
-    95%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  95%, rgba(from var(--color) r g b / 0) 100% ); }                 
-    100% { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  99%, rgba(from var(--color) r g b / 0) 100% ); }
+    0%   { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)   0%, var(--tile-color-rgba0)  10% ); }
+    5%   { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)   0%, var(--tile-color-rgba0)  20% ); }
+    10%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)   0%, var(--tile-color-rgba0)  30% ); }
+    15%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  10%, var(--tile-color-rgba0)  40% ); }
+    20%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  20%, var(--tile-color-rgba0)  50% ); }
+    25%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  25%, var(--tile-color-rgba0)  55% ); }
+    30%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  30%, var(--tile-color-rgba0)  60% ); }
+    35%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  35%, var(--tile-color-rgba0)  65% ); }
+    40%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  40%, var(--tile-color-rgba0)  70% ); }
+    45%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  45%, var(--tile-color-rgba0)  75% ); }
+    50%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  50%, var(--tile-color-rgba0)  80% ); }
+    55%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  55%, var(--tile-color-rgba0)  85% ); }
+    60%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  60%, var(--tile-color-rgba0)  90% ); }
+    65%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  65%, var(--tile-color-rgba0)  95% ); }
+    70%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  70%, var(--tile-color-rgba0) 100% ); }                
+    75%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  75%, var(--tile-color-rgba0) 100% ); }
+    80%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  80%, var(--tile-color-rgba0) 100% ); }
+    85%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  85%, var(--tile-color-rgba0) 100% ); }
+    90%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  90%, var(--tile-color-rgba0) 100% ); }
+    95%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  95%, var(--tile-color-rgba0) 100% ); }                 
+    100% { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  99%, var(--tile-color-rgba0) 100% ); }
   }
   @keyframes glow {
     0%, 60%   { box-shadow: 0 0 0px 0px transparent; }
