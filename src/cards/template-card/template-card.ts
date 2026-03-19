@@ -551,6 +551,7 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
       :host {
         --tile-color: var(--state-inactive-color);
         -webkit-tap-highlight-color: transparent;
+        --tile-animation: none;
       }
       ha-card:has(.background:focus-visible) {
         --shadow-default: var(--ha-card-box-shadow, 0 0 0 0 transparent);
@@ -631,10 +632,10 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
         padding: 6px;
         --mdc-icon-size: var(--tile-mdc-icon-size);
       }
-      ha-tile-icon .container {
+      ha-tile-icon::part(container) {
+        animation: var(--tile-animation);
         width: var(--tile-icon-size);
         height: var(--tile-icon-size);
-        animation: var(--tile-animation);
       }
       ha-tile-icon.weather svg {
         width: var(--tile-icon-size) !important;
@@ -645,9 +646,6 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
         --tile-icon-opacity: 0;
         --tile-icon-hover-opacity: 0;
         --tile-icon-border-radius: 0;
-      }
-      ha-tile-icon::part(container) {
-        animation: var(--tile-animation);
       }
       .mush-badge {
         position: absolute;
