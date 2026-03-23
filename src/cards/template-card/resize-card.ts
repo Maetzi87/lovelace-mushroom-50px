@@ -26,10 +26,7 @@ import { computeCssColor } from "../../ha/common/color/compute-color";
 import { isTemplate } from "../../ha/common/string/has-template";
 import { CacheManager } from "../../utils/cache-manager";
 import { registerCustomCard } from "../../utils/custom-cards";
-import {
-  migrateResizeCardConfig,
-  ResizeCardConfig,
-} from "./resize-card-config";
+import { ResizeCardConfig } from "./resize-card-config";
 import { getWeatherSvgIcon } from "../../utils/icons/weather-icon";
 import { weatherSVGStyles } from "../../utils/weather";
 import { mushroomKeyframes } from "../../utils/keyframes";
@@ -260,7 +257,7 @@ export class MushroomResizeCard extends LitElement implements LovelaceCard {
   }
 
   public setConfig(config: ResizeCardConfig): void {
-    this._config = migrateResizeCardConfig(config);
+    this._config = config;
 
     if (this._config.entity) {
       if (!this._config.tap_action) {
