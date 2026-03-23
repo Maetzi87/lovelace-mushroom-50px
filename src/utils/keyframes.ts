@@ -1,13 +1,9 @@
 import { css } from "lit";
 
 export const mushroomKeyframes = css`
-  /* ALERT – blink makes any icon blink, ping makes its schadow blink */
+  /* ALERT – makes any icon blink */
   @keyframes blink {
     100% { opacity: 0; }
-  }
-  @keyframes ping {
-    0%   { box-shadow: 0 0 0 0 var(--tile-color-rgba07); }
-    100% { box-shadow: 0 0 5px 7px transparent; }
   }
 
   /* BATTERY CHARGING ANIMATION – use with mdi:battery-high */
@@ -44,39 +40,6 @@ export const mushroomKeyframes = css`
     0%   { clip-path: circle(13% at 50% 50%); }
     100% { clip-path: circle(50% at 50% 50%); }
   }
-  
-  /* RED GLOW FROM INSIDE OUT - radialflow = red glow from center to border - glow = overflow of radialflow */
-  @keyframes radialflow {
-    0%   { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)   0%, var(--tile-color-rgba0)  10% ); }
-    5%   { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)   0%, var(--tile-color-rgba0)  20% ); }
-    10%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)   0%, var(--tile-color-rgba0)  30% ); }
-    15%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  10%, var(--tile-color-rgba0)  40% ); }
-    20%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  20%, var(--tile-color-rgba0)  50% ); }
-    25%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  25%, var(--tile-color-rgba0)  55% ); }
-    30%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  30%, var(--tile-color-rgba0)  60% ); }
-    35%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  35%, var(--tile-color-rgba0)  65% ); }
-    40%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  40%, var(--tile-color-rgba0)  70% ); }
-    45%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  45%, var(--tile-color-rgba0)  75% ); }
-    50%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  50%, var(--tile-color-rgba0)  80% ); }
-    55%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  55%, var(--tile-color-rgba0)  85% ); }
-    60%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  60%, var(--tile-color-rgba0)  90% ); }
-    65%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  65%, var(--tile-color-rgba0)  95% ); }
-    70%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  70%, var(--tile-color-rgba0) 100% ); }                
-    75%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  75%, var(--tile-color-rgba0) 100% ); }
-    80%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  80%, var(--tile-color-rgba0) 100% ); }
-    85%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  85%, var(--tile-color-rgba0) 100% ); }
-    90%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  90%, var(--tile-color-rgba0) 100% ); }
-    95%  { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  95%, var(--tile-color-rgba0) 100% ); }                 
-    100% { background: radial-gradient(circle, rgba(255, 33, 33, 0.2)  99%, var(--tile-color-rgba0) 100% ); }
-  }
-  @keyframes glow {
-    0%, 60%   { box-shadow: 0 0 0px 0px transparent; }
-    70%       { box-shadow: 0 0 0px 0px rgba(255, 33, 33, 0.0); }
-    75%       { box-shadow: 0 0 1px 1px rgba(255, 33, 33, 0.1); }
-    80%       { box-shadow: 0 0 2px 2px rgba(255, 33, 33, 0.2); }
-    85%       { box-shadow: 0 0 3px 3px rgba(255, 33, 33, 0.3); }
-    90%, 100% { box-shadow: 0 0 4px 4px rgba(255, 33, 33, 0.4); }
-  } 
   
   /* RINGING BELL – use with mdi:bell-ring */
   @keyframes ring {
@@ -123,7 +86,7 @@ export const mushroomKeyframes = css`
     100%        { transform: translate(0%, 0%) rotate(0); }
   }
 
-  /* ANIMATED CEILING FAN – WIND */
+  /* ANIMATED CEILING FAN 1 – WIND - use with local:center-and-wind */
   @keyframes wind-forward {
     0%        { clip-path: polygon(0% 60%, 50% 73%, 100% 60%, 100% 0%, 0% 0%); }
     50%       { clip-path: inset(0 0% 30% 0); }
@@ -135,11 +98,65 @@ export const mushroomKeyframes = css`
     100%    { clip-path: polygon(0% 60%, 50% 73%, 100% 60%, 100% 0%, 0% 0%); }
   }
 
-  /* ANIMATED CEILING FAN – ROTATION */
+  /* ANIMATED CEILING FAN 2 – ROTATION - use with local:blades */
   @keyframes blade-rotation {
-    0%  { transform: rotateY(0deg); }
-    25% { transform: rotateY(-90deg); }
-    50% { transform: rotateY(-180deg); }
-    75% { transform: rotateY(-90deg); }
+    0%, 100%  { transform: rotateY(0deg); }
+    25%       { transform: rotateY(-90deg); }
+    50%       { transform: rotateY(-180deg); }
+    75%       { transform: rotateY(-90deg); }
   }
+  
+  /* ANIMATED WASHING MACHINE 1 - SHAKE and BUBBLE - use with mdi:washing-machine and local:wash */
+  @keyframes shake {
+    0%, 100% { transform: translate(0, 0) rotate(0); }
+    20%  { transform: translate(0.4px, -0.4px) rotate(-4deg); }
+    40%  { transform: translate(-0.4px, 0.4px) rotate(4deg); }
+    60%  { transform: translate(0.4px, 0.4px) rotate(-4deg); }
+    80%  { transform: translate(-0.4px, -0.4px) rotate(4deg); }
+  }
+  @keyframes bubble {
+    0%, 100%  {clip-path: polygon(0% 0%, 0% 100%, 35% 100%, 34% 74%, 28% 63%, 31% 47%, 43% 37%, 65% 40%, 73% 61%, 63% 77%, 47% 81%, 34% 74%, 35% 100%, 100% 100%, 100% 0%);}
+    12.5%     {clip-path: polygon(0% 0%, 0% 100%, 35% 100%, 34% 74%, 27% 60%, 33% 46%, 40% 50%, 48% 61%, 58% 56%, 51% 42%, 64% 40%, 74% 61%, 63% 77%, 47% 81%, 34% 74%, 35% 100%, 100% 100%, 100% 0%);}
+    25%       {clip-path: polygon(0% 0%, 0% 100%, 35% 100%, 34% 74%, 27% 60%, 33% 46%, 40% 50%, 48% 61%, 58% 56%, 60% 51%, 69% 47%, 74% 61%, 63% 77%, 47% 81%, 34% 74%, 35% 100%, 100% 100%, 100% 0%);}
+    37.5%     {clip-path: polygon(0% 0%, 0% 100%, 35% 100%, 34% 74%, 27% 60%, 33% 46%, 40% 50%, 48% 61%, 58% 56%, 64% 59%, 71% 56%, 72% 66%, 63% 77%, 47% 81%, 34% 74%, 35% 100%, 100% 100%, 100% 0%);}
+    50%       {clip-path: polygon(0% 0%, 0% 100%, 35% 100%, 34% 74%, 27% 60%, 34% 60%, 43% 57%, 48% 61%, 58% 56%, 64% 59%, 71% 56%, 72% 66%, 63% 77%, 47% 81%, 34% 74%, 35% 100%, 100% 100%, 100% 0%);}
+    62.5%     {clip-path: polygon(0% 0%, 0% 100%, 35% 100%, 34% 74%, 27% 60%, 34% 60%, 43% 57%, 46% 46%, 52% 47%, 63% 58%, 71% 56%, 72% 66%, 63% 77%, 47% 81%, 34% 74%, 35% 100%, 100% 100%, 100% 0%);}
+    75%       {clip-path: polygon(0% 0%, 0% 100%, 35% 100%, 34% 74%, 27% 60%, 34% 60%, 43% 57%, 46% 46%, 52% 47%, 58% 53%, 67% 46%, 73% 62%, 63% 77%, 47% 81%, 34% 74%, 35% 100%, 100% 100%, 100% 0%);}
+    87.5%     {clip-path: polygon(0% 0%, 0% 100%, 35% 100%, 34% 74%, 27% 60%, 33% 46%, 45% 40%, 57% 52%, 67% 47%, 74% 61%, 63% 77%, 47% 81%, 34% 74%, 35% 100%, 100% 100%, 100% 0%);}
+  }
+  /* ANIMATED WASHING MACHINE 2 - WASH and RINSE-DRY - use with local:waves and mdi:dishwasher or mdi:tumble-dryer */
+  @keyframes wash {
+    0%, 100% { transform: translateX(20%); clip-path: circle(21.7% at 30% 58%); }
+    30% { transform: translateX(-15%); clip-path: circle(21.7% at 65% 58%); }
+    45% { transform: translateX(10%); clip-path: circle(21.7% at 40% 58%); }
+    75% { transform: translateX(-25%); clip-path: circle(21.7% at 75% 58%);}
+  }
+  @keyframes rinse-dry {
+    50%  { clip-path:  inset(100% 0 0 0); }
+  }
+  
+  /* ANIMATED DISHWASHER - use with mdi:dishwasher */
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0); } 
+    40% { transform: translateY(-1.2px) rotate(5deg); } 
+    60% { transform: translateY(-1.1px) rotate(-4deg); } 
+  } 
+  @keyframes dishwash {
+    50%  { clip-path: polygon(0 0, 0 100%, 35% 100%, 36% 74%, 31% 43%, 61% 40%, 71% 69%, 62% 78%, 36% 73%, 35% 100%, 100% 100%, 100% 0); }
+ }
+
+ /* COURIOUS DOG - use with local:frenchie (or any other face-like icon) */
+ @keyframes huh {
+    0%, 10%, 75%, 100% { transform: rotate(0deg); }
+    15% { transform: rotate(-25deg); }
+    30%, 35% { transform: rotate(-35deg); }
+    50% { transform: rotate(12deg); }
+    65% { transform: rotate(-8deg); }
+ }
+
+ /* AIR-ANIMATION - use with local:air-freshener */
+ @keyframes air {
+    100% { clip-path: inset(0% 0 0 0); }
+    50%  { clip-path: inset(35% 0 0 0); }
+ }
 `;
