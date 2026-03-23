@@ -77,7 +77,6 @@ const TEMPLATE_KEYS = [
   "primary_font_weight",
   "primary_font_color",
   "primary_line_height",
-  "primary_font_variant",
   "primary_letter_spacing",
 
   // Secondary text
@@ -433,18 +432,17 @@ export class MushroomTemplateCard extends LitElement implements LovelaceCard {
     const style = {
       "--tile-color": cssColor,
     
-      "--tile-info-primary-font-size": this.getValue("primary_font_size"),
-      "--tile-info-primary-font-weight": this.getValue("primary_font_weight"),
-      "--tile-info-primary-color": this.getValue("primary_font_color"),
-      "--tile-info-primary-line-height": this.getValue("primary_line_height"),
-      "--tile-info-primary-letter-spacing": this.getValue("primary_letter_spacing"),
-      "--tile-info-primary-font-variant": this.getValue("primary_font_variant"),
-    
-      "--tile-info-secondary-font-size": this.getValue("secondary_font_size"),
-      "--tile-info-secondary-font-weight": this.getValue("secondary_font_weight"),
-      "--tile-info-secondary-color": this.getValue("secondary_font_color"),
-      "--tile-info-secondary-line-height": this.getValue("secondary_line_height"),
-      "--tile-info-secondary-letter-spacing": this.getValue("secondary_letter_spacing"),
+      "--ha-tile-info-primary-font-size": this.getValue("primary_font_size"),
+      "--ha-tile-info-primary-font-weight": this.getValue("primary_font_weight"),
+      "--ha-tile-info-primary-color": this.getValue("primary_font_color"),
+      "--ha-tile-info-primary-line-height": this.getValue("primary_line_height"),
+      "--ha-tile-info-primary-letter-spacing": this.getValue("primary_letter_spacing"),
+
+      "--ha-tile-info-secondary-font-size": this.getValue("secondary_font_size"),
+      "--ha-tile-info-secondary-font-weight": this.getValue("secondary_font_weight"),
+      "--ha-tile-info-secondary-color": this.getValue("secondary_font_color"),
+      "--ha-tile-info-secondary-line-height": this.getValue("secondary_line_height"),
+      "--ha-tile-info-secondary-letter-spacing": this.getValue("secondary_letter_spacing"),
     };
 
     const featurePosition = this._featurePosition(this._config);
