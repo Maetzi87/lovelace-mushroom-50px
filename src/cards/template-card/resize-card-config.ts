@@ -12,7 +12,6 @@ import {
 import { ActionConfig, actionConfigStruct, LovelaceCardConfig } from "../../ha";
 import { LovelaceCardFeatureConfig } from "../../ha/panels/lovelace/card-features/types";
 import { lovelaceCardConfigStruct } from "../../shared/config/lovelace-card-config";
-import { layoutStruct } from "../../utils/layout";
 
 export type ResizeCardConfig = LovelaceCardConfig & {
   entity?: string;
@@ -59,19 +58,6 @@ export type ResizeCardConfig = LovelaceCardConfig & {
   features_position?: "bottom" | "inline";
   // Entity IDs for template
   entity_id?: string | string[];
-  // Backwards compatibility from legacy template card
-  /**
-   * @deprecated Use color instead
-   */
-  icon_color?: string;
-  /**
-   * @deprecated Use vertical instead
-   */
-  layout?: string;
-  /**
-   * @deprecated Use grid_options instead
-   */
-  fill_container?: boolean;
 };
 
 export const resizeCardConfigStruct = assign(
@@ -122,35 +108,5 @@ export const resizeCardConfigStruct = assign(
     features_position: optional(enums(["bottom", "inline"])),
     // Entity IDs for template
     entity_id: optional(union([string(), array(string())])),
-    // Backwards compatibility from legacy template card
-    icon_color: optional(string()),
-    layout: optional(string()),
-    fill_container: optional(boolean()),
   })
 );
-
-export const migrateResizeCardConfig = (
-  config: ResizeCardConfig
-): ResizeCardConfig => {
-  const newConfig = { ...config };
-  if (newConfig.icon_color) {
-    delete newConfig.icon_color;
-    if (newConfig.color == null) {
-      newConfig.color = config.icon_color;
-    }
-  }
-  if (newConfig.layout) {
-    delete newConfig.layout;
-    if (newConfig.vertical == null) {
-      newConfig.vertical = config.layout === "vertical";
-    }
-  }
-  delete newConfig.fill_container;
-  return newConfig;
-};
-
-export const resizeCardNeedsMigration = (
-  config: ResizeCardConfig
-): boolean => {
-  return Boolean(config.icon_color || config.layout || config.fill_container);
-};
