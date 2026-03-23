@@ -159,4 +159,21 @@ export const mushroomKeyframes = css`
     100% { clip-path: inset(0% 0 0 0);  }
     50%  { clip-path: inset(35% 0 0 0); }
  }
+ 
+ /* SIGNAL-ANIMATION - use with mdi:wifi */
+ @keyframes good_signal {
+    0%  { clip-path: circle(0% at 50% 85%);  }
+    20% { clip-path: circle(30% at 50% 85%); }
+    40% { clip-path: circle(55% at 50% 85%); }
+    60% { clip-path: circle(80% at 50% 85%); }
+ }
+ @keyframes ok_signal {
+    0%  { clip-path: circle(0% at 50% 85%);  }
+    20% { clip-path: circle(30% at 50% 85%); }
+    40% { clip-path: circle(55% at 50% 85%); }
+ }
+ @keyframes low_signal {
+    0%  { clip-path: circle(0% at 50% 85%);  }
+    20% { clip-path: circle(30% at 50% 85%); }
+ }
 `;
