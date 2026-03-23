@@ -64,18 +64,30 @@ const TEMPLATE_KEYS = [
   "badge_icon",
   "badge_color",
   "badge_text",
+  
+  // Sizes
   "tile_size",
   "icon_size",
   "badge_size",
   "badge_icon_size",
   "badge_icon_color",
+
+  // Primary text
   "primary_font_size",
   "primary_font_weight",
   "primary_font_color",
+  "primary_line_height",
+  "primary_font_variant",
+  "primary_letter_spacing",
+
+  // Secondary text
   "secondary_font_size",
   "secondary_font_weight",
   "secondary_font_color",
+  "secondary_line_height",
+  "secondary_letter_spacing",
 ] as const;
+
 
 type TemplateKey = (typeof TEMPLATE_KEYS)[number];
 
