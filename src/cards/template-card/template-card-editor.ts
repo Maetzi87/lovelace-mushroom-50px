@@ -24,15 +24,13 @@ import {
   EditDetailElementEvent,
   EditSubElementEvent,
 } from "../../utils/lovelace/editor/types";
-import { getEntityDefaultTileIconAction } from "./template-card";
+import { getEntityDefaultTileIconAction } from "./resize-card";
 import {
-  migrateTemplateCardConfig,
-  TemplateCardConfig,
-  templateCardConfigStruct,
-  templateCardNeedsMigration,
-} from "./template-card-config";
+  ResizeCardConfig,
+  resizeCardConfigStruct,
+} from "./resize-card-config";
 
-export const TEMPLATE_CARD_LABELS = [
+export const RESIZE_CARD_LABELS = [
   "area",
   "badge_color",
   "badge_icon",
@@ -51,42 +49,34 @@ export const TILE_LABELS = [
   "icon_double_tap_action",
 ];
 
-export const TEMPLATE_CARD_HELPERS = [
+export const RESIZE_CARD_HELPERS = [
   "area",
   "entity",
   "badge_text",
   "multiline_secondary",
 ];
 
-@customElement("mushroom-template-card-editor")
-export class MushroomTemplateCardEditor
+@customElement("mushroom-resize-card-editor")
+export class MushroomResizeCardEditor
   extends LitElement
   implements LovelaceCardEditor
 {
   @property({ attribute: false }) public hass!: HomeAssistant;
 
-  @state() private _config?: TemplateCardConfig;
-
-  @state() private _legacyConfig?: TemplateCardConfig;
+  @state() private _config?: ResizeCardConfig;
 
   connectedCallback() {
     super.connectedCallback();
     void loadHaComponents();
   }
 
-  public setConfig(config: TemplateCardConfig): void {
-    assert(config, templateCardConfigStruct);
-    if (templateCardNeedsMigration(config)) {
-      this._legacyConfig = { ...config };
-      this._legacyConfig.type = "custom:mushroom-legacy-template-card";
-    } else {
-      delete this._legacyConfig;
-    }
-    this._config = migrateTemplateCardConfig(config);
+  public setConfig(config: ResizeCardConfig): void {
+    assert(config, resizeCardConfigStruct);
+    this._config = config;
   }
 
   private _featureContext = memoizeOne(
-    (config: TemplateCardConfig): LovelaceCardFeatureContext => {
+    (config: ResizeCardConfig): LovelaceCardFeatureContext => {
       return {
         entity_id: config.entity,
         area_id: config.area,
@@ -265,7 +255,7 @@ export class MushroomTemplateCardEditor
     if (GENERIC_LABELS.includes(schema.name)) {
       return customLocalize(`editor.card.generic.${schema.name}`);
     }
-    if (TEMPLATE_CARD_LABELS.includes(schema.name)) {
+    if (RESIZE_CARD_LABELS.includes(schema.name)) {
       return customLocalize(`editor.card.template.${schema.name}`);
     }
     if (TILE_LABELS.includes(schema.name)) {
@@ -286,21 +276,10 @@ export class MushroomTemplateCardEditor
     if (GENERIC_HELPERS.includes(schema.name)) {
       return customLocalize(`editor.card.generic.${schema.name}_helper`);
     }
-    if (TEMPLATE_CARD_HELPERS.includes(schema.name)) {
+    if (RESIZE_CARD_HELPERS.includes(schema.name)) {
       return customLocalize(`editor.card.template.${schema.name}_helper`);
     }
     return undefined;
-  };
-
-  private _done = () => {
-    this._legacyConfig = undefined;
-  };
-
-  private _revertToLegacy = () => {
-    if (!this._legacyConfig) {
-      return;
-    }
-    fireEvent(this, "config-changed", { config: this._legacyConfig });
   };
 
   protected render() {
@@ -329,39 +308,6 @@ export class MushroomTemplateCardEditor
     const featureContext = this._featureContext(this._config);
 
     return html`
-      ${this._legacyConfig
-        ? html`
-            <ha-alert
-              alert-type="info"
-              .title=${customLocalize("migration.title")}
-            >
-              <div>
-                ${customLocalize("migration.description", {
-                  link: html`
-                    <a
-                      href="https://github.com/piitaya/lovelace-mushroom/issues/1771"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      >${customLocalize("migration.post")}</a
-                    >
-                  `,
-                })}
-              </div>
-              <div class="actions">
-                <ha-button
-                  appearance="plain"
-                  size="small"
-                  @click=${this._revertToLegacy}
-                >
-                  ${customLocalize("migration.revert")}
-                </ha-button>
-                <ha-button size="small" @click=${this._done}>
-                  ${customLocalize("migration.ok")}
-                </ha-button>
-              </div>
-            </ha-alert>
-          `
-        : nothing}
       <ha-form
         .hass=${this.hass}
         .data=${data}
@@ -406,7 +352,7 @@ export class MushroomTemplateCardEditor
     }
 
     const features = ev.detail.features as LovelaceCardFeatureConfig[];
-    const config: TemplateCardConfig = {
+    const config: ResizeCardConfig = {
       ...this._config,
       features,
     };
@@ -450,9 +396,9 @@ export class MushroomTemplateCardEditor
       return;
     }
 
-    const newConfig = ev.detail.value as TemplateCardConfig;
+    const newConfig = ev.detail.value as ResizeCardConfig;
 
-    const config: TemplateCardConfig = {
+    const config: ResizeCardConfig = {
       features: this._config.features,
       ...newConfig,
     };
@@ -521,6 +467,6 @@ export class MushroomTemplateCardEditor
 
 declare global {
   interface HTMLElementTagNameMap {
-    "mushroom-template-card-editor": MushroomTemplateCardEditor;
+    "mushroom-resize-card-editor": MushroomResizeCardEditor;
   }
 }
