@@ -56,8 +56,8 @@ export const RESIZE_CARD_HELPERS = [
   "multiline_secondary",
 ];
 
-@customElement("mushroom-resize-card-editor")
-export class MushroomResizeCardEditor
+@customElement("mushroomic-resize-card-editor")
+export class MushroomicResizeCardEditor
   extends LitElement
   implements LovelaceCardEditor
 {
@@ -467,6 +467,6 @@ export class MushroomResizeCardEditor
 
 declare global {
   interface HTMLElementTagNameMap {
-    "mushroom-resize-card-editor": MushroomResizeCardEditor;
+    "mushroomic-resize-card-editor": MushroomicResizeCardEditor;
   }
 }
