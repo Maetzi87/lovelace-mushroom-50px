@@ -26,7 +26,7 @@ import { computeCssColor } from "../../ha/common/color/compute-color";
 import { isTemplate } from "../../ha/common/string/has-template";
 import { CacheManager } from "../../utils/cache-manager";
 import { registerCustomCard } from "../../utils/custom-cards";
-import { TemplateCardConfig } from "./template-card-config";
+import { TemplateCardConfig } from "./mushroomic-template-card-config";
 import { getWeatherSvgIcon } from "../../utils/icons/weather-icon";
 import { weatherSVGStyles } from "../../utils/weather";
 import { mushroomKeyframes } from "../../utils/keyframes";
@@ -42,8 +42,8 @@ export const getEntityDefaultTileIconAction = (entityId: string) => {
 
 registerCustomCard({
   type: "mushroomic-template-card",
-  name: "Mushroomic Template",
-  description: "Build your own Mushroom card with templates, including size and styling options",
+  name: "Mushroomic Template Card",
+  description: "Mushroom with maximum customization",
 });
 
 const templateCache = new CacheManager<TemplateResults>(1000);
@@ -98,7 +98,7 @@ export interface LovelaceCardFeatureContext {
 @customElement("mushroomic-template-card")
 export class MushroomicTemplateCard extends LitElement implements LovelaceCard {
   public static async getConfigElement(): Promise<LovelaceCardEditor> {
-    await import("./template-card-editor");
+    await import("./mushroomic-template-card-editor");
     return document.createElement(
       "mushroomic-template-card-editor"
     ) as LovelaceCardEditor;
