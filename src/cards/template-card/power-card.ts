@@ -26,7 +26,7 @@ import { computeCssColor } from "../../ha/common/color/compute-color";
 import { isTemplate } from "../../ha/common/string/has-template";
 import { CacheManager } from "../../utils/cache-manager";
 import { registerCustomCard } from "../../utils/custom-cards";
-import { TemplateCardConfig } from "./mushroomic-template-card-config";
+import { TemplateCardConfig } from "./power-card-config";
 import { getWeatherSvgIcon } from "../../utils/icons/weather-icon";
 import { weatherSVGStyles } from "../../utils/weather";
 import { mushroomicKeyframes } from "../../utils/keyframes";
@@ -41,8 +41,8 @@ export const getEntityDefaultTileIconAction = (entityId: string) => {
 };
 
 registerCustomCard({
-  type: "mushroomic-template-card",
-  name: "Mushroomic Template Card",
+  type: "mushroomic-power-card",
+  name: "Mushroomic Power Card",
   description: "Mushroom with maximum customization",
 });
 
@@ -95,18 +95,18 @@ export interface LovelaceCardFeatureContext {
   area_id?: string;
 }
 
-@customElement("mushroomic-template-card")
-export class MushroomicTemplateCard extends LitElement implements LovelaceCard {
+@customElement("mushroomic-power-card")
+export class MushroomicPowerCard extends LitElement implements LovelaceCard {
   public static async getConfigElement(): Promise<LovelaceCardEditor> {
-    await import("./mushroomic-template-card-editor");
+    await import("./power-card-editor");
     return document.createElement(
-      "mushroomic-template-card-editor"
+      "mushroomic-power-card-editor"
     ) as LovelaceCardEditor;
   }
 
   public static getStubConfig(): TemplateCardConfig {
     return {
-      type: `custom:mushroomic-template-card`,
+      type: `custom:mushroomic-power-card`,
       primary: "Hello, {{user}}",
       secondary: "How are you?",
       icon: "mdi:mushroom",
@@ -745,6 +745,6 @@ export class MushroomicTemplateCard extends LitElement implements LovelaceCard {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "mushroomic-template-card": MushroomicTemplateCard;
+    "mushroomic-power-card": MushroomicPowerCard;
   }
 }
