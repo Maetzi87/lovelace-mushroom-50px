@@ -433,8 +433,6 @@ export class MushroomicTemplateCard extends LitElement implements LovelaceCard {
     
     const style = {
       "--tile-color": cssColor,
-      
-      "--tile-icon-size": finalShapeSize,
       "--card-height": finalCardHeight,
     
       "--ha-tile-info-primary-font-size": this.getValue("primary_text_size"),
