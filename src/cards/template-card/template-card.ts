@@ -588,7 +588,7 @@ export class MushroomicTemplateCard extends LitElement implements LovelaceCard {
         border-color: var(--tile-color);
         box-shadow: var(--shadow-default), var(--shadow-focus);
       }
-      ha-card {
+      :host > ha-card {
         --ha-ripple-color: var(--tile-color);
         --ha-ripple-hover-opacity: 0.04;
         --ha-ripple-pressed-opacity: 0.12;
