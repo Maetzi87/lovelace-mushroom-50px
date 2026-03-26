@@ -1,6 +1,6 @@
 import { version } from "../package.json";
 
-import "./cards/resize-card/resize-card";
+import "./cards/template-card/template-card";
 
 import "./badges/template/template-badge";
 
