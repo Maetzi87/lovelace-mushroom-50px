@@ -1,6 +1,6 @@
 import { css } from "lit";
 
-export const mushroomKeyframes = css`
+export const mushroomicKeyframes = css`
   /* ALERT – makes any icon blink */
   @keyframes blink {
     100% { opacity: 0; }
