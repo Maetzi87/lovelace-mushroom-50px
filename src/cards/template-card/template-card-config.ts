@@ -51,7 +51,6 @@ export type TemplateCardConfig = LovelaceCardConfig & {
   
   // Style
   vertical?: boolean;
-  multiline_secondary?: boolean;
   
   // Interactions
   tap_action?: ActionConfig;
@@ -110,7 +109,6 @@ export const templateCardConfigStruct = assign(
     
     // Style
     vertical: optional(boolean()),
-    multiline_secondary: optional(boolean()),
     
     // Interactions
     tap_action: optional(actionConfigStruct),
