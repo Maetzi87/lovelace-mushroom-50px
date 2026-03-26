@@ -164,6 +164,7 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
     }
 
     this._tryConnect();
+    this.dispatchEvent(new Event("iron-resize", { bubbles: true, composed: true }));
   }
 
   private _getTemplateKeyValue(key: TemplateKey): string {
@@ -287,17 +288,14 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
       ? this._templateResults?.[key]?.result?.toString()
       : value;
   }
-
-  public getCardSize(): number {
-    const featuresPosition = this._featurePosition(this._config!);
-    const featuresCount = this._config?.features?.length || 0;
-
-    const baseRows = this._config?.vertical ? 2 : 1;
-
-    const featureRows =
-      featuresPosition === "inline" ? 0 : featuresCount;
   
-    return baseRows + featureRows;
+  public getCardSize(): number {
+    const card = this.shadowRoot?.querySelector("ha-card");
+    if (!card) return 3;
+  
+    const height = card.getBoundingClientRect().height;
+  
+    return Math.ceil(height / 56);
   }
 
   public getGridOptions(): LovelaceGridOptions {
