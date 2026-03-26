@@ -37,7 +37,6 @@ export const RESIZE_CARD_LABELS = [
   "badge_text",
   "primary",
   "secondary",
-  "multiline_secondary",
 ];
 
 export const TILE_LABELS = [
@@ -53,7 +52,6 @@ export const RESIZE_CARD_HELPERS = [
   "area",
   "entity",
   "badge_text",
-  "multiline_secondary",
 ];
 
 @customElement("mushroomic-template-card-editor")
@@ -160,10 +158,6 @@ export class MushroomicTemplateCardEditor
                   })),
                 },
               },
-            },
-            {
-              name: "multiline_secondary",
-              selector: { boolean: {} },
             },
           ],
         },
