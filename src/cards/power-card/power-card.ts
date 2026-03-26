@@ -298,28 +298,37 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
     return Math.ceil(height / 56);
   }
 
-  public getGridOptions(): LovelaceGridOptions {
-    let columns: number | undefined = 6;
-    let rows: number | undefined = 0;
+public getGridOptions(): LovelaceGridOptions {
+  const card = this.shadowRoot?.querySelector("ha-card");
+  let measuredRows: number | undefined;
 
-    const hasContent = Boolean(
-      this._config?.icon ||
-        this._config?.picture ||
-        this._config?.primary ||
-        this._config?.secondary
-    );
+  if (card) {
+    const height = card.getBoundingClientRect().height;
+    measuredRows = Math.max(1, Math.ceil(height / 56)); // 56px = Tile-Row
+  }
 
+  let columns: number | undefined = 6;
+  let rows: number | undefined = measuredRows;
+
+  const hasContent = Boolean(
+    this._config?.icon ||
+      this._config?.picture ||
+      this._config?.primary ||
+      this._config?.secondary
+  );
+
+  const featurePosition = this._config && this._featurePosition(this._config);
+  const featuresCount = this._config?.features?.length || 0;
+
+  if (featuresCount && featurePosition === "inline") {
+    columns = 12;
+  }
+
+  if (!rows) {
     rows = hasContent ? 1 : 0;
 
-    const featurePosition = this._config && this._featurePosition(this._config);
-    const featuresCount = this._config?.features?.length || 0;
-    if (featuresCount) {
-      if (featurePosition === "inline") {
-        columns = 12;
-        rows = 1;
-      } else {
-        rows += featuresCount;
-      }
+    if (featuresCount && featurePosition !== "inline") {
+      rows += featuresCount;
     }
 
     if (this._config?.vertical) {
@@ -330,11 +339,11 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
         rows++;
       }
     }
-    return {
-      columns,
-      rows,
-    };
   }
+
+  return { columns, rows };
+}
+
 
   private _handleAction(ev: ActionHandlerEvent) {
     handleAction(this, this.hass!, this._config!, ev.detail.action!);
