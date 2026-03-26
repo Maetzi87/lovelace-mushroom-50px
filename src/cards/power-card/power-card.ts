@@ -54,16 +54,27 @@ type TemplateResults = Partial<
 >;
 
 const TEMPLATE_KEYS = [
+  // Icon
   "icon",
-  "color",
-  "primary",
-  "secondary",
   "picture",
-
-  // Sizes
+  "color",
   "shape_size",
+  "shape_color",
   "icon_size",
-  "card_height",
+
+  // Text
+  "primary",
+  "primary_text_size",
+  "primary_text_weight",
+  "primary_text_color",
+  "primary_line_height",
+  "primary_letter_spacing",
+  "secondary",
+  "secondary_text_size",
+  "secondary_text_weight",
+  "secondary_text_color",
+  "secondary_line_height",
+  "secondary_letter_spacing",
   
   // Badge
   "badge_icon",
@@ -73,19 +84,11 @@ const TEMPLATE_KEYS = [
   "badge_icon_size",
   "badge_icon_color",
 
-  // Primary text
-  "primary_text_size",
-  "primary_text_weight",
-  "primary_text_color",
-  "primary_line_height",
-  "primary_letter_spacing",
-
-  // Secondary text
-  "secondary_text_size",
-  "secondary_text_weight",
-  "secondary_text_color",
-  "secondary_line_height",
-  "secondary_letter_spacing",
+  // Card-Styling
+  "card_height",
+  "card_bg_color",
+  "border"
+  
 ] as const;
 
 
@@ -398,41 +401,52 @@ public getGridOptions(): LovelaceGridOptions {
       return nothing;
     }
 
+    // --- ICON ---
     const icon = this.getValue("icon");
+    const picture = this.getValue("picture");
     const color = this.getValue("color");
     const cssColor = color ? computeCssColor(color) : undefined;
-    const primary = this.getValue("primary");
-    const secondary = this.getValue("secondary");
-    const picture = this.getValue("picture");
-    const badgeIcon = this.getValue("badge_icon");
-    const badgeColor = this.getValue("badge_color");
-    const badgeText = this.getValue("badge_text");
-    const badgeCssColor = badgeColor ? computeCssColor(badgeColor) : undefined;
-    const badgeIconColor = this.getValue("badge_icon_color");
-
+    
+    const shapeSize = this.getValue("shape_size");
+    const shapeColor = this.getValue("shape_color");
+    const iconSize = this.getValue("icon_size");
+    
     const weatherSvg = getWeatherSvgIcon(icon);
     
-// --- Template variables (template-capable) ---
-    const shapeSize = this.getValue("shape_size");
-    const iconSize = this.getValue("icon_size");
-    const badgeSize = this.getValue("badge_size");
-    const badgeIconSize = this.getValue("badge_icon_size");
-    const cardHeight = this.getValue("card_height");
+    // --- TEXT ---
+    const primary = this.getValue("primary");
+    const secondary = this.getValue("secondary");
     
-// --- Automatic fallback scaling ---
-    const finalShapeSize = shapeSize || "50px";
-    const finalIconSize = iconSize || `calc(${finalShapeSize} * 0.66)`;
-    const finalBadgeSize = badgeSize || `calc(${finalShapeSize} * 0.32)`;
-    const finalBadgeIconSize = badgeIconSize || `calc(${finalBadgeSize} * 0.75)`;
-
-    const shape = parseInt(finalShapeSize);
-
     const primarySize = parseInt(this.getValue("primary_text_size") || "16");
     const primaryLH = parseFloat(this.getValue("primary_line_height") || "1.6");
     
     const secondarySize = parseInt(this.getValue("secondary_text_size") || "14");
     const secondaryLH = parseFloat(this.getValue("secondary_line_height") || "1.2");
     
+    // --- BADGE ---
+    const badgeIcon = this.getValue("badge_icon");
+    const badgeColor = this.getValue("badge_color");
+    const badgeText = this.getValue("badge_text");
+    const badgeCssColor = badgeColor ? computeCssColor(badgeColor) : undefined;
+    
+    const badgeSize = this.getValue("badge_size");
+    const badgeIconSize = this.getValue("badge_icon_size");
+    const badgeIconColor = this.getValue("badge_icon_color");
+    
+    // --- CARD STYLING ---
+    const cardHeight = this.getValue("card_height");
+    const cardBgColor = this.getValue("card_bg_color");
+    const border = this.getValue("border");
+    
+    // --- Automatic fallback scaling ---
+    const finalShapeSize = shapeSize || "50px";
+    const finalIconSize = iconSize || `calc(${finalShapeSize} * 0.66)`;
+    const finalBadgeSize = badgeSize || `calc(${finalShapeSize} * 0.32)`;
+    const finalBadgeIconSize = badgeIconSize || `calc(${finalBadgeSize} * 0.75)`;
+    
+    const shape = parseInt(finalShapeSize);
+    
+    // --- Vertical height calculation ---
     const verticalHeight = `${
       shape +
       primarySize * primaryLH +
@@ -445,22 +459,38 @@ public getGridOptions(): LovelaceGridOptions {
       (this._config?.vertical
         ? verticalHeight
         : `calc(${finalShapeSize} + 20px)`);
+
     
     const style = {
+      // --- ICON ---
       "--tile-color": cssColor,
-      "--mushic-card-height": finalCardHeight,
+      "--mushic-shape-color": shapeColor,
+      "--tile-icon-size": finalShapeSize,
+      "--tile-mdc-icon-size": finalIconSize,
     
+      // --- TEXT ---
       "--ha-tile-info-primary-font-size": this.getValue("primary_text_size"),
       "--ha-tile-info-primary-font-weight": this.getValue("primary_text_weight"),
       "--ha-tile-info-primary-color": this.getValue("primary_text_color"),
       "--ha-tile-info-primary-line-height": this.getValue("primary_line_height"),
       "--ha-tile-info-primary-letter-spacing": this.getValue("primary_letter_spacing"),
-
+    
       "--ha-tile-info-secondary-font-size": this.getValue("secondary_text_size"),
       "--ha-tile-info-secondary-font-weight": this.getValue("secondary_text_weight"),
       "--ha-tile-info-secondary-color": this.getValue("secondary_text_color"),
       "--ha-tile-info-secondary-line-height": this.getValue("secondary_line_height"),
       "--ha-tile-info-secondary-letter-spacing": this.getValue("secondary_letter_spacing"),
+    
+      // --- BADGE ---
+      "--mushic-badge-size": finalBadgeSize,
+      "--mushic-badge-icon-size": finalBadgeIconSize,
+      "--mushic-badge-color": badgeCssColor,
+      "--mushic-badge-icon-color": badgeIconColor,
+    
+      // --- CARD STYLING ---
+      "--mushic-card-height": finalCardHeight,
+      "--mushic-card-bg-color": cardBgColor,
+      "--mushic-card-border": border,
     };
 
     const featurePosition = this._featurePosition(this._config);
@@ -592,7 +622,6 @@ public getGridOptions(): LovelaceGridOptions {
       ha-card:has(.background:focus-visible) {
         --shadow-default: var(--ha-card-box-shadow, 0 0 0 0 transparent);
         --shadow-focus: 0 0 0 1px var(--tile-color);
-        border-color: var(--tile-color);
         box-shadow: var(--shadow-default), var(--shadow-focus);
       }
       :host > ha-card {
@@ -607,6 +636,8 @@ public getGridOptions(): LovelaceGridOptions {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        background: var(--mushic-card-bg-color, var(--ha-card-background, var(--card-background-color)));
+        border: var(--mushic-card-border, var(--ha-card-border-width, 1px) solid var(--ha-card-border-color, var(--divider-color)));
       }
 
       [role="button"] {
@@ -660,7 +691,7 @@ public getGridOptions(): LovelaceGridOptions {
       }
 
       ha-tile-icon {
-        --tile-icon-color: var(--tile-color);
+        --tile-icon-color: var(--mushic-shape-color, var(--tile-color));
         position: relative;
         margin: -6px;
         padding: 6px;
