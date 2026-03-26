@@ -1,6 +1,6 @@
 import { version } from "../package.json";
 
-import "./cards/template-card/mushroomic-template-card";
+import "./cards/power-card/power-card";
 
 import "./badges/template/template-badge";
 
