@@ -127,7 +127,7 @@ export class MushroomicTemplateCardEditor
           flatten: true,
           icon: "mdi:template",
           schema: [
-            { name: "tile_size", selector: { template: {} } },
+            { name: "shape_size", selector: { template: {} } },
             { name: "icon_size", selector: { template: {} } },
             { name: "badge_size", selector: { template: {} } },
             { name: "badge_icon_size", selector: { template: {} } },
