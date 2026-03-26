@@ -24,11 +24,11 @@ import {
   EditDetailElementEvent,
   EditSubElementEvent,
 } from "../../utils/lovelace/editor/types";
-import { getEntityDefaultTileIconAction } from "./template-card";
+import { getEntityDefaultTileIconAction } from "./power-card";
 import {
   TemplateCardConfig,
   templateCardConfigStruct,
-} from "./template-card-config";
+} from "./power-card-config";
 
 export const RESIZE_CARD_LABELS = [
   "area",
@@ -37,7 +37,6 @@ export const RESIZE_CARD_LABELS = [
   "badge_text",
   "primary",
   "secondary",
-  "multiline_secondary",
 ];
 
 export const TILE_LABELS = [
@@ -53,11 +52,10 @@ export const RESIZE_CARD_HELPERS = [
   "area",
   "entity",
   "badge_text",
-  "multiline_secondary",
 ];
 
-@customElement("mushroomic-template-card-editor")
-export class MushroomicTemplateCardEditor
+@customElement("mushroomic-power-card-editor")
+export class MushroomicPowerCardEditor
   extends LitElement
   implements LovelaceCardEditor
 {
@@ -129,7 +127,7 @@ export class MushroomicTemplateCardEditor
           flatten: true,
           icon: "mdi:template",
           schema: [
-            { name: "tile_size", selector: { template: {} } },
+            { name: "shape_size", selector: { template: {} } },
             { name: "icon_size", selector: { template: {} } },
             { name: "badge_size", selector: { template: {} } },
             { name: "badge_icon_size", selector: { template: {} } },
@@ -160,10 +158,6 @@ export class MushroomicTemplateCardEditor
                   })),
                 },
               },
-            },
-            {
-              name: "multiline_secondary",
-              selector: { boolean: {} },
             },
           ],
         },
@@ -467,6 +461,6 @@ export class MushroomicTemplateCardEditor
 
 declare global {
   interface HTMLElementTagNameMap {
-    "mushroomic-template-card-editor": MushroomicTemplateCardEditor;
+    "mushroomic-power-card-editor": MushroomicPowerCardEditor;
   }
 }
