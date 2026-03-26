@@ -24,11 +24,11 @@ import {
   EditDetailElementEvent,
   EditSubElementEvent,
 } from "../../utils/lovelace/editor/types";
-import { getEntityDefaultTileIconAction } from "./mushic-template-card";
+import { getEntityDefaultTileIconAction } from "./mushroomic-template-card";
 import {
   TemplateCardConfig,
   templateCardConfigStruct,
-} from "./mushic-template-card-config";
+} from "./mushroomic-template-card-config";
 
 export const RESIZE_CARD_LABELS = [
   "area",
@@ -54,7 +54,7 @@ export const RESIZE_CARD_HELPERS = [
   "badge_text",
 ];
 
-@customElement("mushic-template-card-editor")
+@customElement("mushroomic-template-card-editor")
 export class MushroomicTemplateCardEditor
   extends LitElement
   implements LovelaceCardEditor
@@ -461,6 +461,6 @@ export class MushroomicTemplateCardEditor
 
 declare global {
   interface HTMLElementTagNameMap {
-    "mushic-template-card-editor": MushroomicTemplateCardEditor;
+    "mushroomic-template-card-editor": MushroomicTemplateCardEditor;
   }
 }
