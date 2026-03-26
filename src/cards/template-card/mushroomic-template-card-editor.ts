@@ -24,11 +24,11 @@ import {
   EditDetailElementEvent,
   EditSubElementEvent,
 } from "../../utils/lovelace/editor/types";
-import { getEntityDefaultTileIconAction } from "./template-card";
+import { getEntityDefaultTileIconAction } from "./mushroomic-template-card";
 import {
   TemplateCardConfig,
   templateCardConfigStruct,
-} from "./template-card-config";
+} from "./mushroomic-template-card-config";
 
 export const RESIZE_CARD_LABELS = [
   "area",
