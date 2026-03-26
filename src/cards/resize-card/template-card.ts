@@ -26,7 +26,7 @@ import { computeCssColor } from "../../ha/common/color/compute-color";
 import { isTemplate } from "../../ha/common/string/has-template";
 import { CacheManager } from "../../utils/cache-manager";
 import { registerCustomCard } from "../../utils/custom-cards";
-import { ResizeCardConfig } from "./resize-card-config";
+import { TemplateCardConfig } from "./template-card-config";
 import { getWeatherSvgIcon } from "../../utils/icons/weather-icon";
 import { weatherSVGStyles } from "../../utils/weather";
 import { mushroomKeyframes } from "../../utils/keyframes";
@@ -41,8 +41,8 @@ export const getEntityDefaultTileIconAction = (entityId: string) => {
 };
 
 registerCustomCard({
-  type: "mushroomic-resize-card",
-  name: "Mushroomic Resize",
+  type: "mushroomic-template-card",
+  name: "Mushroomic Template",
   description: "Build your own Mushroom card with templates, including size and styling options",
 });
 
@@ -92,18 +92,18 @@ export interface LovelaceCardFeatureContext {
   area_id?: string;
 }
 
-@customElement("mushroomic-resize-card")
-export class MushroomicResizeCard extends LitElement implements LovelaceCard {
+@customElement("mushroomic-template-card")
+export class MushroomicTemplateCard extends LitElement implements LovelaceCard {
   public static async getConfigElement(): Promise<LovelaceCardEditor> {
-    await import("./resize-card-editor");
+    await import("./template-card-editor");
     return document.createElement(
-      "mushroomic-resize-card-editor"
+      "mushroomic-template-card-editor"
     ) as LovelaceCardEditor;
   }
 
-  public static getStubConfig(): ResizeCardConfig {
+  public static getStubConfig(): TemplateCardConfig {
     return {
-      type: `custom:mushroomic-resize-card`,
+      type: `custom:mushroomic-template-card`,
       primary: "Hello, {{user}}",
       secondary: "How are you?",
       icon: "mdi:mushroom",
@@ -112,7 +112,7 @@ export class MushroomicResizeCard extends LitElement implements LovelaceCard {
 
   @property({ attribute: false }) public hass?: HomeAssistant;
 
-  @state() private _config?: ResizeCardConfig;
+  @state() private _config?: TemplateCardConfig;
 
   @state() private _templateResults?: TemplateResults;
 
@@ -256,7 +256,7 @@ export class MushroomicResizeCard extends LitElement implements LovelaceCard {
     }
   }
 
-  public setConfig(config: ResizeCardConfig): void {
+  public setConfig(config: TemplateCardConfig): void {
     this._config = {...config};
 
     if (this._config.entity) {
@@ -272,7 +272,7 @@ export class MushroomicResizeCard extends LitElement implements LovelaceCard {
   }
 
   private _featureContext = memoizeOne(
-    (config: ResizeCardConfig): LovelaceCardFeatureContext => {
+    (config: TemplateCardConfig): LovelaceCardFeatureContext => {
       return {
         entity_id: config.entity,
         area_id: config.area,
@@ -378,14 +378,14 @@ export class MushroomicResizeCard extends LitElement implements LovelaceCard {
     );
   }
 
-  private _featurePosition = memoizeOne((config: ResizeCardConfig) => {
+  private _featurePosition = memoizeOne((config: TemplateCardConfig) => {
     if (config.vertical) {
       return "bottom";
     }
     return config.features_position || "bottom";
   });
 
-  private _displayedFeatures = memoizeOne((config: ResizeCardConfig) => {
+  private _displayedFeatures = memoizeOne((config: TemplateCardConfig) => {
     const features = config.features || [];
     const featurePosition = this._featurePosition(config);
 
@@ -414,7 +414,7 @@ export class MushroomicResizeCard extends LitElement implements LovelaceCard {
 
     const weatherSvg = getWeatherSvgIcon(icon);
     
-// --- Resize variables (template-capable) ---
+// --- Template variables (template-capable) ---
     const tileSize = this.getValue("tile_size");
     const iconSize = this.getValue("icon_size");
     const badgeSize = this.getValue("badge_size");
@@ -739,6 +739,6 @@ export class MushroomicResizeCard extends LitElement implements LovelaceCard {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "mushroomic-resize-card": MushroomicResizeCard;
+    "mushroomic-template-card": MushroomicTemplateCard;
   }
 }
