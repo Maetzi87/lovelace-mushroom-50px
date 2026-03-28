@@ -87,7 +87,12 @@ const TEMPLATE_KEYS = [
   // Card-Styling
   "card_height",
   "card_bg_color",
-  "border"
+  "border",
+
+  // Animation
+  "icon_animation",
+  "shape_animation",
+  "overlay_animation"
   
 ] as const;
 
@@ -493,6 +498,11 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-card-height": finalCardHeight,
       "--mushic-card-bg-color": cardBgColor,
       "--mushic-card-border": border,
+
+      // --- ANIMATIONS ---
+      "--mushic-icon-animation": this.getValue("icon_animation"),
+      "--mushic-shape-animation": this.getValue("shape_animation"),
+      "--mushic-overlay-animation": this.getValue("overlay_animation"),
     };
 
     const featurePosition = this._featurePosition(this._config);
@@ -701,6 +711,7 @@ public getGridOptions(): LovelaceGridOptions {
       ha-tile-icon .container {
         width: var(--tile-icon-size);
         height: var(--tile-icon-size);
+        animation: var(--mushic-shape-animation);
       }
       ha-tile-icon.weather svg {
         width: var(--tile-icon-size) !important;
@@ -714,6 +725,7 @@ public getGridOptions(): LovelaceGridOptions {
       }
       ha-state-icon {
         color: var(--mushic-icon-color, var(--tile-color));
+        animation: var(--mushic-icon-animation);
       }
       .mushic-badge {
         position: absolute;
