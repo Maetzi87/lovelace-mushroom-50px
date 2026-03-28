@@ -715,11 +715,12 @@ public getGridOptions(): LovelaceGridOptions {
         margin: -6px;
         padding: 6px;
         --mdc-icon-size: var(--tile-mdc-icon-size);
+        animation: var(--mushic-shape-animation);        
       }
       ha-tile-icon .container {
         width: var(--tile-icon-size);
         height: var(--tile-icon-size);
-        animation: var(--mushic-shape-animation);
+
       }
       ha-tile-icon.weather svg {
         width: var(--tile-icon-size) !important;
