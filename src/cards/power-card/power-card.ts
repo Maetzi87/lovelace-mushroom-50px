@@ -61,6 +61,7 @@ const TEMPLATE_KEYS = [
   "shape_size",
   "shape_color",
   "shape_opacity",
+  "shape_hover_opacity",
   "icon_size",
 
   // --- TEXT ---
@@ -70,6 +71,7 @@ const TEMPLATE_KEYS = [
   "primary_text_color",
   "primary_line_height",
   "primary_letter_spacing",
+  
   "secondary",
   "secondary_text_size",
   "secondary_text_weight",
@@ -90,6 +92,7 @@ const TEMPLATE_KEYS = [
   "card_height",
   "card_bg_color",
   "border",
+  "ripple_color",
 
   // --- OVERLAY ---
   "overlay_icon",
@@ -485,6 +488,7 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-icon-color": cssColor,
       "--mushic-shape-color": shapeColor,
       "--mushic-shape-opacity": this.getValue("shape_opacity"),
+      "--mushic-shape-hover-opacity": this.getValue("shape_hover_opacity"),
       "--tile-icon-size": finalShapeSize,
       "--tile-mdc-icon-size": finalIconSize,
     
@@ -512,6 +516,7 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-card-height": finalCardHeight,
       "--mushic-card-bg-color": cardBgColor,
       "--mushic-card-border": border,
+      "--mushic-ripple-color": this.getValue("ripple_color"),    
 
       // --- OVERLAY ---
       "--mushic-overlay-icon": this.getValue("overlay_icon"),
@@ -664,7 +669,7 @@ public getGridOptions(): LovelaceGridOptions {
         -webkit-tap-highlight-color: transparent;
       }     
       :host > ha-card {
-        --ha-ripple-color: var(--tile-color);
+        --ha-ripple-color: var(--mushic-ripple-color, var(--tile-color));
         --ha-ripple-hover-opacity: 0.04;
         --ha-ripple-pressed-opacity: 0.12;
         min-height: var(--mushic-card-height);
@@ -743,7 +748,6 @@ public getGridOptions(): LovelaceGridOptions {
         padding: 6px;
         --mdc-icon-size: var(--tile-mdc-icon-size);
         --tile-icon-opacity: 0;
-        --tile-icon-hover-opacity: 0.15;
       }
       ha-tile-icon .container {
         width: var(--tile-icon-size);
@@ -773,6 +777,9 @@ public getGridOptions(): LovelaceGridOptions {
         animation: var(--mushic-shape-animation);
         z-index: 0;
         pointer-events: none;
+      }
+      ha-card:hover ha-tile-icon .mushic-shape {
+        opacity: var(--mushic-shape-hover-opacity, 0.35);
       }
 
       ha-state-icon {
