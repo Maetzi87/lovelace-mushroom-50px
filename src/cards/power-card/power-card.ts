@@ -598,7 +598,9 @@ public getGridOptions(): LovelaceGridOptions {
                       .imageUrl=${picture ? this.hass.hassUrl(picture) : undefined}
                       class=${weatherSvg ? "weather" : ""}
                     >
-                      <div class="mushic-shape"></div>
+                      <div class="mushic-shape-wrapper">
+                        <div class="mushic-shape"></div>
+                      </div>
                       ${this.getValue("overlay_icon")
                         ? html`
                           <div class="mushic-overlay" slot="icon">
@@ -763,19 +765,28 @@ public getGridOptions(): LovelaceGridOptions {
         --tile-icon-border-radius: 0;
       }
       
+      .mushic-shape-wrapper {
+         position: absolute;
+         inset: 0;
+         margin: auto;
+         width: var(--tile-icon-size);
+         height: var(--tile-icon-size);
+         pointer-events: none;
+         z-index: 0;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+      }
       .mushic-shape {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: var(--tile-icon-size);
-        height: var(--tile-icon-size);
-        transform: translate(-50%, -50%);
-        border-radius: 50%;
-        background: var(--mushic-shape-color, var(--tile-color));
-        opacity: var(--mushic-shape-opacity, 0.2);
-        animation: var(--mushic-shape-animation);
-        z-index: 0;
-        pointer-events: none;
+         width: 100%;
+         height: 100%;
+         border-radius: 50%;
+         background: var(--mushic-shape-color, var(--tile-color));
+         opacity: var(--mushic-shape-opacity, 0.2);
+         animation: var(--mushic-shape-animation);
+         transform-origin: 50% 50%;
+         transform-style: preserve-3d;
+         backface-visibility: hidden;
       }
       ha-tile-icon:hover .mushic-shape {
         opacity: var(--mushic-shape-hover-opacity, 0.35);
