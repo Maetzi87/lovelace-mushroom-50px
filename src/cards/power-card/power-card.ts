@@ -601,10 +601,9 @@ public getGridOptions(): LovelaceGridOptions {
                       <div class="mushic-shape"></div>
                       ${this.getValue("overlay_icon")
                         ? html`
-                            <ha-icon
-                              class="mushic-overlay"
-                              .icon=${this.getValue("overlay_icon")}
-                            ></ha-icon>
+                            <div class="mushic-overlay-wrapper">
+                              <ha-icon class="mushic-overlay" .icon=${...}></ha-icon>
+                            </div>
                           `
                         : nothing}
                       ${picture
@@ -791,16 +790,29 @@ public getGridOptions(): LovelaceGridOptions {
         position: relative;
         z-index: 2;
       }
-
-      .mushic-overlay {
+      
+      .mushic-overlay-wrapper {
         position: absolute;
         top: 50%;
         left: 50%;
+        width: var(--tile-icon-size);
+        height: var(--tile-icon-size);
         transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 3;
+      }
+      .mushic-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         color: var(--mushic-overlay-color, var(--tile-color));
         opacity: var(--mushic-overlay-opacity, 1);
         --mdc-icon-size: var(--mushic-overlay-size, var(--tile-mdc-icon-size));
         margin: var(--mushic-overlay-margin, 0px);
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
         animation: var(--mushic-overlay-animation);
         z-index: 3;
         pointer-events: none;
