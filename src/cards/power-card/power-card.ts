@@ -804,8 +804,8 @@ public getGridOptions(): LovelaceGridOptions {
       
       .mushic-overlay {
          position: absolute;
-         inset: 0;
-         margin: auto;
+         top: 50%;
+         left: 50%;
          width: var(--mushic-overlay-size, var(--tile-mdc-icon-size));
          height: var(--mushic-overlay-size, var(--tile-mdc-icon-size));
          pointer-events: none;
@@ -813,6 +813,7 @@ public getGridOptions(): LovelaceGridOptions {
          display: flex;
          align-items: center;
          justify-content: center;
+         transform: translate(-50%, -52%);
       }
       .mushic-overlay-svg {
          width: 100%;
