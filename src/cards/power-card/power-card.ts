@@ -793,11 +793,10 @@ public getGridOptions(): LovelaceGridOptions {
       
       .mushic-overlay-wrapper {
         position: absolute;
-        top: 50%;
-        left: 50%;
+        inset: 0;
+        margin: auto;
         width: var(--tile-icon-size);
         height: var(--tile-icon-size);
-        transform: translate(-50%, -50%);
         pointer-events: none;
         z-index: 3;
       }
