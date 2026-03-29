@@ -484,10 +484,13 @@ public getGridOptions(): LovelaceGridOptions {
           : `calc(36px + 20px)`);
     
     // --- SHAPE ---
+    const shapeColorValue = this.getValue("shape_color")?.trim();
+    const shapeOpacityValue = this.getValue("shape_opacity")?.trim();
+    
     const showShape =
       this._hasIconAction ||
-      (shapeColor !== "") ||
-      (shapeOpacity !== "");
+      (shapeColorValue && shapeColorValue !== "0") ||
+      (shapeOpacityValue && shapeOpacityValue !== "0");
 
     const style = {
       // --- ICON ---
@@ -860,6 +863,8 @@ public getGridOptions(): LovelaceGridOptions {
         width: 100%;
         height: 100%;
         color: inherit;
+        fill: currentColor;
+        stroke: currentColor;
       }
 
 /* --- OVERLAY-ICON for dual animations --- */
@@ -874,7 +879,7 @@ public getGridOptions(): LovelaceGridOptions {
          display: flex;
          align-items: center;
          justify-content: center;
-         transform: translate(-50%, -51%);
+         transform: translate(-50%, -50%);
       }
       .mushic-overlay-svg {
          width: 100%;
