@@ -93,6 +93,9 @@ const TEMPLATE_KEYS = [
   // Overlay
   "overlay_icon",
   "overlay_color",
+  "overlay_opacity",
+  "overlay_size",
+  "overlay_margin",
 
   // Animation
   "icon_animation",
@@ -511,6 +514,9 @@ public getGridOptions(): LovelaceGridOptions {
       // --- OVERLAY ---
       "--mushic-overlay-icon": this.getValue("overlay_icon"),
       "--mushic-overlay-color": this.getValue("overlay_color"),
+      "--mushic-overlay-opacity": this.getValue("overlay_opacity"),
+      "--mushic-overlay-size": this.getValue("overlay_size"),
+      "--mushic-overlay-margin": this.getValue("overlay_margin"),
 
       // --- ANIMATIONS ---
       "--mushic-icon-animation": this.getValue("icon_animation"),
@@ -585,6 +591,15 @@ public getGridOptions(): LovelaceGridOptions {
                       .imageUrl=${picture ? this.hass.hassUrl(picture) : undefined}
                       class=${weatherSvg ? "weather" : ""}
                     >
+                      <div class="mushic-shape"></div>
+                      ${this.getValue("overlay_icon")
+                        ? html`
+                            <ha-icon
+                              class="mushic-overlay"
+                              .icon=${this.getValue("overlay_icon")}
+                            ></ha-icon>
+                          `
+                        : nothing}
                       ${picture
                         ? nothing
                         : weatherSvg
@@ -724,15 +739,14 @@ public getGridOptions(): LovelaceGridOptions {
         position: relative;
         margin: -6px;
         padding: 6px;
-        --mdc-icon-size: var(--tile-mdc-icon-size);    
+        --mdc-icon-size: var(--tile-mdc-icon-size);
+        --tile-icon-opacity: 0;
+        --tile-icon-hover-opacity: 0.15;
       }
       ha-tile-icon .container {
         width: var(--tile-icon-size);
         height: var(--tile-icon-size);
       }
-      ha-tile-icon .container.background::before {
-        animation: var(--mushic-shape-animation);
-      }   
       ha-tile-icon.weather svg {
         width: var(--tile-icon-size) !important;
         height: var(--tile-icon-size) !important;
@@ -743,10 +757,40 @@ public getGridOptions(): LovelaceGridOptions {
         --tile-icon-hover-opacity: 0;
         --tile-icon-border-radius: 0;
       }
+      
+      .mushic-shape {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: var(--tile-icon-size);
+        height: var(--tile-icon-size);
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: var(--mushic-shape-color, var(--tile-color));
+        animation: var(--mushic-shape-animation);
+        z-index: 0;
+        pointer-events: none;
+      }
 
       ha-state-icon {
         color: var(--mushic-icon-color, var(--tile-color));
         animation: var(--mushic-icon-animation);
+        position: relative;
+        z-index: 2;
+      }
+
+      .mushic-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--mushic-overlay-color, var(--tile-color));
+        opacity: var(--mushic-overlay-opacity, 1);
+        --mdc-icon-size: var(--mushic-overlay-size, var(--tile-mdc-icon-size));
+        margin: var(--mushic-overlay-margin, 0px);
+        animation: var(--mushic-overlay-animation);
+        z-index: 3;
+        pointer-events: none;
       }
       
       .mushic-badge {
@@ -762,6 +806,7 @@ public getGridOptions(): LovelaceGridOptions {
         justify-content: center;
         pointer-events: none;
         animation: var(--mushic-badge-animation);
+        z-index: 4;
       }
       .mushic-badge ha-icon {
         --mdc-icon-size: var(--mushic-badge-icon-size);
