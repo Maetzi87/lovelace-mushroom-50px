@@ -827,8 +827,9 @@ public getGridOptions(): LovelaceGridOptions {
          display: flex;
          align-items: center;
          justify-content: center;
+         color: var(--mushic-icon-color, var(--tile-color));
       }
-      /* --- ...COLORABLE SHAPE... --- */
+      /* --- ... COLORABLE SHAPE ... --- */
       .mushic-shape {
          width: 100%;
          height: 100%;
@@ -859,8 +860,6 @@ public getGridOptions(): LovelaceGridOptions {
         position: absolute;
         width: 100%;
         height: 100%;
-        fill: currentColor;
-        stroke: currentColor;
         color: inherit;
         z-index: 1;
         border-radius: 50%;
