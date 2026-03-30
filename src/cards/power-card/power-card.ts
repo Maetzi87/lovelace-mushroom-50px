@@ -586,7 +586,7 @@ public getGridOptions(): LovelaceGridOptions {
     
     if (picture) {
       const lower = picture.trim().toLowerCase();
-      isSvg = lower.endsWith(".svg");
+      isSvg = lower.includes(".svg");
     
       if (isSvg) {
         try {
@@ -864,12 +864,6 @@ public getGridOptions(): LovelaceGridOptions {
         color: inherit;
         z-index: 1;
         border-radius: 50%;
-      }
-      .mushic-shape-wrapper svg {
-        --svg-bg-opacity: var(--mushic-shape-opacity, 0.2);
-      }
-      ha-tile-icon:hover .mushic-shape-wrapper svg {
-        --svg-bg-opacity: var(--mushic-shape-hover-opacity, 0.35);
       }
 
 /* --- ICON --- */
