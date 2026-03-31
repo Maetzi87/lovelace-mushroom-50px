@@ -472,6 +472,7 @@ public getGridOptions(): LovelaceGridOptions {
     
     const badgeSize = this.getValue("badge_size");
     const badgeIconSize = this.getValue("badge_icon_size");
+    const badgeTextSize = this.getValue("badge_text_size");
     const badgeIconColor = this.getValue("badge_icon_color");
     const badgeTextColor = this.getValue("badge_text_color");
     
@@ -483,6 +484,7 @@ public getGridOptions(): LovelaceGridOptions {
     const finalIconSize = iconSize || `calc(${finalShapeSize} * 0.666)`;
     const finalBadgeSize = badgeSize || `calc(${finalShapeSize} * 0.444)`;
     const finalBadgeIconSize = badgeIconSize || `calc(${finalBadgeSize} * 0.75)`;
+    const finalBadgeTextSize = badgeTextSize || `calc(${finalBadgeSize} * 0.5)`;
     
     const shape = parseInt(finalShapeSize);
     
@@ -539,6 +541,7 @@ public getGridOptions(): LovelaceGridOptions {
       // --- BADGE ---
       "--mushic-badge-size": finalBadgeSize,
       "--mushic-badge-icon-size": finalBadgeIconSize,
+      "--mushic-badge-text-size": finalBadgeTextSize,     
       "--mushic-badge-color": badgeCssColor,
       "--mushic-badge-icon-color": badgeIconColor,
       "--mushic-badge-text-color": badgeTextColor,
@@ -967,7 +970,7 @@ public getGridOptions(): LovelaceGridOptions {
         animation: var(--mushic-badge-icon-animation);
       }
       .mushic-badge span {
-        font-size: calc(var(--mushic-badge-size) * 0.5);
+        font-size: var(--mushic-badge-text-size);
         font-weight: bold;
         color: var(--mushic-badge-text-color, white);
         line-height: 1;
