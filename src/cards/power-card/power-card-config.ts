@@ -49,11 +49,22 @@ export type TemplateCardConfig = LovelaceCardConfig & {
   badge_size?: string;
   badge_icon_size?: string;
   badge_icon_color?: string;
+  badge_text_size?: string;     
   badge_text_color?: string;
+  badge_margin_top?: string;    
+  badge_margin_right?: string;   
 
   // --- CARD STYLING ---
   card_height?: string;
   card_bg_color?: string;
+  border_color?: string;     
+  border_width?: string;    
+  border_radius?: string;   
+  border_style?: string;     
+  card_padding?: string;     
+  content_gap?: string;      
+  feature_padding?: string;  
+  feature_height?: string;   
   border?: string;
   vertical?: boolean;
   ripple_color?: string;
@@ -128,11 +139,22 @@ export const templateCardConfigStruct = assign(
     badge_size: optional(string()),
     badge_icon_size: optional(string()),
     badge_icon_color: optional(string()),
+    badge_text_size: optional(string()),     
     badge_text_color: optional(string()),
+    badge_margin_top: optional(string()),    
+    badge_margin_right: optional(string()), 
 
     // --- CARD STYLING ---
     card_height: optional(string()),
     card_bg_color: optional(string()),
+    border_color: optional(string()),      
+    border_width: optional(string()),      
+    border_radius: optional(string()),     
+    border_style: optional(string()),      
+    card_padding: optional(string()),      
+    content_gap: optional(string()),       
+    feature_padding: optional(string()),   
+    feature_height: optional(string()),    
     border: optional(string()),
     vertical: optional(boolean()),
     ripple_color: optional(string()),
