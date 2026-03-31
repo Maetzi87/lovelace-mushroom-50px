@@ -88,12 +88,21 @@ const TEMPLATE_KEYS = [
   "badge_icon_size",
   "badge_icon_color",
   "badge_text_color",
+  "badge_margin_top",
+  "badge_margin_right",
 
   // --- CARD STYLING ---
   "card_height",
   "card_bg_color",
-  "border",
+  "border_color",
+  "border_width",
+  "border_radius",
+  "border_style",
   "ripple_color",
+  "card_padding",
+  "content_gap",
+  "feature_padding",
+  "feature_height",
 
   // --- OVERLAY ---
   "overlay_icon",
@@ -468,14 +477,12 @@ public getGridOptions(): LovelaceGridOptions {
     
     // --- CARD STYLING ---
     const cardHeight = this.getValue("card_height");
-    const cardBgColor = this.getValue("card_bg_color");
-    const border = this.getValue("border");
     
     // --- Automatic fallback scaling ---
-    const finalShapeSize = shapeSize || "50px";
-    const finalIconSize = iconSize || `calc(${finalShapeSize} * 0.66)`;
-    const finalBadgeSize = badgeSize || `calc(${finalShapeSize} * 0.32)`;
-    const finalBadgeIconSize = badgeIconSize || `calc(${finalBadgeSize} * 0.75)`;
+    const finalShapeSize = shapeSize || `var(--mushic-shape-size, 36px)`;
+    const finalIconSize = iconSize || `var(--mushic-icon-size, calc(${finalShapeSize} * 0.666))`;
+    const finalBadgeSize = badgeSize || `var(--mushic-badge-size, calc(${finalShapeSize} * 0.444))`;
+    const finalBadgeIconSize = badgeIconSize || `var(--mushic-badge-icon-size, calc(${finalBadgeSize} * 0.75))`;
     
     const shape = parseInt(finalShapeSize);
     
@@ -505,9 +512,9 @@ public getGridOptions(): LovelaceGridOptions {
       (shapeOpacityValue && shapeOpacityValue !== "0");
 
     const style = {
-      // --- ICON ---
-      "--tile-color": cssColor,
-      "--mushic-icon-color": cssColor ?? "var(--tile-color)",
+      // --- ICON ---  
+      "--mushic-icon-color": cssColor ?? "var(--tile-color, var(--state-inactive-color))",
+      "--tile-color": "var(--mushic-icon-color)",
       "--mushic-shape-color": shapeColor ? shapeColor : undefined,
       "--mushic-shape-opacity": shapeOpacity ? shapeOpacity : undefined,
       "--mushic-shape-hover-opacity": this.getValue("shape_hover_opacity"),
@@ -533,13 +540,22 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-badge-color": badgeCssColor,
       "--mushic-badge-icon-color": badgeIconColor,
       "--mushic-badge-text-color": badgeTextColor,
+      "--mushic-badge-margin-top": this.getValue("badge_margin_top"),
+      "--mushic-badge-margin-right": this.getValue("badge_margin_right"),      
     
       // --- CARD STYLING ---
       "--mushic-card-height": finalCardHeight,
-      "--mushic-card-bg-color": cardBgColor,
-      "--mushic-card-border": border,
-      "--mushic-ripple-color": this.getValue("ripple_color"),    
-
+      "--mushic-card-bg-color": this.getValue("card_bg_color"),
+      "--mushic-card-border-color": this.getValue("border_color"),
+      "--mushic-card-border-width": this.getValue("border_width"),
+      "--mushic-card-border-radius": this.getValue("border_radius"),
+      "--mushic-card-border-style": this.getValue("border_style"),
+      "--mushic-ripple-color": this.getValue("ripple_color"),
+      "--mushic-card-padding": this.getValue("card_padding"),
+      "--mushic-content-gap": this.getValue("content_gap"),
+      "--mushic-feature-padding": this.getValue("feature_padding"),
+      "--mushic-feature-height": this.getValue("feature_height"),
+      
       // --- OVERLAY ---
       "--mushic-overlay-icon": this.getValue("overlay_icon"),
       "--mushic-overlay-color": this.getValue("overlay_color"),
@@ -733,7 +749,10 @@ public getGridOptions(): LovelaceGridOptions {
         flex-direction: column;
         justify-content: space-between;
         background: var(--mushic-card-bg-color, var(--ha-card-background, var(--card-background-color)));
-        border: var(--mushic-card-border, var(--ha-card-border-width, 1px) solid var(--ha-card-border-color, var(--divider-color)));
+        border-radius: var(--mushic-card-border-radius, var(--ha-card-border-radius, 12px));
+        border-width: var(--mushic-card-border-width, var(--ha-card-border-width, 1px));
+        border-style: var(--mushic-card-border-style, solid);
+        border-color: var(--mushic-card-border-color, var(--ha-card-border-color, var(--divider-color)));
       }
       ha-card:has(.background:focus-visible) {
         --shadow-default: var(--ha-card-box-shadow, 0 0 0 0 transparent);
@@ -755,8 +774,8 @@ public getGridOptions(): LovelaceGridOptions {
         left: 0;
         bottom: 0;
         right: 0;
-        border-radius: var(--ha-card-border-radius, 12px);
-        margin: calc(-1 * var(--ha-card-border-width, 1px));
+        border-radius: var(--mushic-card-border-radius, var(--ha-card-border-radius, 12px));
+        margin: calc(-1 * var(--mushic-card-border-width, var(--ha-card-border-width, 1px)));
         overflow: hidden;
       }
       
@@ -775,12 +794,12 @@ public getGridOptions(): LovelaceGridOptions {
         display: flex;
         flex-direction: row;
         align-items: center;
-        padding: 10px;
+        padding: var(--mushic-card-padding, 10px);
         flex: 1;
         min-width: 0;
         box-sizing: border-box;
         pointer-events: none;
-        gap: 10px;
+        gap: var(--mushic-content-gap, 10px);
       }
 
       .vertical {
@@ -924,8 +943,8 @@ public getGridOptions(): LovelaceGridOptions {
 /* --- BADGE --- */
       .mushic-badge {
         position: absolute;
-        top: 3px;
-        right: 3px;
+        top: var(--mushic-badge-margin-top, 3px);
+        right: var(--mushic-badge-margin-right, 3px);
         width: var(--mushic-badge-size);
         height: var(--mushic-badge-size);
         background: var(--mushic-badge-color, var(--secondary-text-color));;
@@ -963,12 +982,12 @@ public getGridOptions(): LovelaceGridOptions {
 /* --- FEATURES --- */
       hui-card-features {
         --feature-color: var(--tile-color);
-        padding: 0 12px 12px 12px;
+        padding: var(--mushic-feature-padding, 0 12px 12px 12px);
       }
       .container.horizontal hui-card-features {
         width: calc(50% - var(--column-gap, 0px) / 2 - 12px);
         flex: none;
-        --feature-height: 36px;
+        --feature-height: var(--mushic-feature-height, 36px);
         padding: 0 12px;
         padding-inline-start: 0;
       }
