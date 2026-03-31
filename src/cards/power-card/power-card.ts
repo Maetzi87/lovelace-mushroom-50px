@@ -87,6 +87,7 @@ const TEMPLATE_KEYS = [
   "badge_size",
   "badge_icon_size",
   "badge_icon_color",
+  "badge_text_size",
   "badge_text_color",
   "badge_margin_top",
   "badge_margin_right",
