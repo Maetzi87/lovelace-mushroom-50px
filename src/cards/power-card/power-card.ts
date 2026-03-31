@@ -718,6 +718,7 @@ public getGridOptions(): LovelaceGridOptions {
       :host {
         --tile-color: var(--state-inactive-color);
         -webkit-tap-highlight-color: transparent;
+        z-index: 0;
       }     
       :host > ha-card {
         --ha-ripple-color: var(--mushic-ripple-color, var(--tile-color));
