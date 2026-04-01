@@ -1,4 +1,4 @@
-private testing repo, do not download
+private upstream repo, do not download
 
 for working versions see
 
