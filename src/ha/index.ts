@@ -6,6 +6,5 @@ export * from "./panels/lovelace/card-features/types";
 export * from "./panels/lovelace/common/directives/action-handler-directive";
 export * from "./panels/lovelace/common/handle-actions";
 export * from "./panels/lovelace/common/has-action";
-export * from "./panels/lovelace/types";
 export * from "./types";
 export * from "./util";
