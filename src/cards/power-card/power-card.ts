@@ -517,7 +517,7 @@ public getGridOptions(): LovelaceGridOptions {
 
     const style = {
       // --- ICON ---  
-      "--mushic-icon-color": cssColor ?? "var(--tile-color, var(--state-inactive-color))",
+      "--mushic-icon-color": cssColor || "var(--state-inactive-color)",
       "--tile-color": "var(--mushic-icon-color)",
       "--mushic-shape-color": shapeColor ? shapeColor : undefined,
       "--mushic-shape-opacity": shapeOpacity ? shapeOpacity : undefined,
