@@ -9,3 +9,4 @@ export * from "./panels/lovelace/common/has-action";
 export * from "./panels/lovelace/editor/structs/action-struct";
 export * from "./types";
 export * from "./util";
+export { customIconset } from "./common/dom/custom-iconset";
