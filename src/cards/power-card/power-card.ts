@@ -732,15 +732,20 @@ public getGridOptions(): LovelaceGridOptions {
                   : nothing}
               </div> `
             : nothing}
+            
           ${features.length > 0
             ? html`
-                <hui-card-features
-                  .hass=${this.hass}
-                  .context=${featureContext}
-                  .color=${cssColor}
-                  .features=${features}
-                  .position=${featurePosition}
-                ></hui-card-features>
+              <hui-card-features
+                .hass=${this.hass}
+                .context=${featureContext}
+                .position=${featurePosition}
+                .features=${features.map((f) => ({
+                  ...f,
+                  color:
+                    f.feature_color ||
+                    this.getValue("feature_color") ||
+                    undefined
+                }))}
               `
             : nothing}
         </div>
