@@ -119,12 +119,9 @@ const TEMPLATE_KEYS = [
   "overlay_animation",
 
   // --- FEATURES ---
-  "feature_color",
-  "feature1_color",
-  "feature2_color",
-  "feature3_color",
-  "feature_height",
-  "feature_padding",
+  "features_color",
+  "features_height",
+  "features_padding",
   
 ] as const;
 
@@ -209,18 +206,20 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
   
     // --- FEATURE COLORS ---
     const featuresHost = this.shadowRoot?.querySelector("hui-card-features");
-    const featureElements = featuresHost?.shadowRoot?.querySelectorAll("hui-card-feature");
-    if (!featureElements) return;
+    const featureWrappers = featuresHost?.shadowRoot?.querySelectorAll("hui-card-feature");
+    if (!featureWrappers) return;
     const displayed = this._displayedFeatures(this._config);
-    featureElements.forEach((el, i) => {
+    featureWrappers.forEach((wrapper: any, i: number) => {
       const f = displayed[i];
       if (!f) return;
       const color =
-        f.feature_color ||               
-        this.getValue("feature_color") ||
-        undefined;                        
-      if (color) {
-        el.color = color; 
+        f.feature_color ||
+        this.getValue("features_color") ||
+        undefined;
+      if (!color) return;
+      const inner = wrapper.shadowRoot?.querySelector("*");
+      if (inner && "color" in inner) {
+        inner.color = color;
       }
     });
   }
@@ -582,8 +581,6 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-ripple-color": this.getValue("ripple_color"),
       "--mushic-card-padding": this.getValue("card_padding"),
       "--mushic-content-gap": this.getValue("content_gap"),
-      "--mushic-feature-padding": this.getValue("feature_padding"),
-      "--mushic-feature-height": this.getValue("feature_height"),
       
       // --- OVERLAY ---
       "--mushic-overlay-icon": this.getValue("overlay_icon"),
@@ -600,12 +597,9 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-overlay-animation": this.getValue("overlay_animation"),
 
       // --- FEATURES ---
-      "--mushic-feature-color": this.getValue("feature_color"),
-      "--mushic-feature1-color": this.getValue("feature1_color"),
-      "--mushic-feature2-color": this.getValue("feature2_color"),      
-      "--mushic-feature3-color": this.getValue("feature3_color"),
-      "--mushic-feature-height": this.getValue("feature_height"),
-      "--mushic-feature-padding": this.getValue("feature_padding"),
+      "--mushic-features-color": this.getValue("features_color"),
+      "--mushic-features-height": this.getValue("features_height"),
+      "--mushic-features-padding": this.getValue("features_padding"),
     };
 
     const featurePosition = this._featurePosition(this._config);
