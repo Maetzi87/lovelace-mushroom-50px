@@ -206,9 +206,16 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
   
     // --- FEATURE COLORS ---
     const featuresHost = this.shadowRoot?.querySelector("hui-card-features");
-    const featureWrappers = featuresHost?.shadowRoot?.querySelectorAll("hui-card-feature");
-    if (!featureWrappers) return;
+    if (!featuresHost) return;
+    
+    const featureWrappers =
+      (featuresHost as any).shadowRoot?.querySelectorAll("hui-card-feature") ??
+      featuresHost.querySelectorAll("hui-card-feature");
+    
+    if (!featureWrappers || featureWrappers.length === 0) return;
+    
     const displayed = this._displayedFeatures(this._config);
+    
     featureWrappers.forEach((wrapper: any, i: number) => {
       const f = displayed[i];
       if (!f) return;
@@ -217,7 +224,8 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
         this.getValue("features_color") ||
         undefined;
       if (!color) return;
-      const inner = wrapper.shadowRoot?.querySelector("*");
+      const root: ParentNode = wrapper.shadowRoot ?? wrapper;
+      const inner = root.querySelector("*") as any;
       if (inner && "color" in inner) {
         inner.color = color;
       }
