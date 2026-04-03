@@ -256,8 +256,17 @@ export const powerCardStyles = [
 
 /* --- FEATURES --- */
       hui-card-features {
-        --feature-color: var(--tile-color);
+        --feature-color: var(--feature-color, var(--mushic-feature-color, var( --tile-color, var(--state-inactive-color))));
         padding: var(--mushic-feature-padding, 0 12px 12px 12px);
+      }
+      hui-card-feature:nth-child(1) {
+        --feature-color: red;
+      }
+      hui-card-feature:nth-child(2) {
+        --feature-color: blue;
+      }
+      hui-card-feature:nth-child(2) {
+        --feature-color: blue;
       }
       .container.horizontal hui-card-features {
         width: calc(50% - var(--column-gap, 0px) / 2 - 12px);
