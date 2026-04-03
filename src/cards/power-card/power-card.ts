@@ -195,7 +195,6 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
       }
     }
   }
-
   protected updated(changedProps: PropertyValues): void {
     super.updated(changedProps);
   
@@ -203,43 +202,6 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
   
     this._tryConnect();
     this.dispatchEvent(new Event("iron-resize", { bubbles: true, composed: true }));
-  
-    // --- FEATURE COLORS ---
-    const featuresHost = this.shadowRoot?.querySelector("hui-card-features");
-    if (!featuresHost) return;
-    
-    const featureWrappers =
-      (featuresHost as any).shadowRoot?.querySelectorAll("hui-card-feature") ??
-      featuresHost.querySelectorAll("hui-card-feature");
-    
-    if (!featureWrappers || featureWrappers.length === 0) return;
-    
-    const displayed = this._displayedFeatures(this._config);
-    
-    featureWrappers.forEach((wrapper: any, i: number) => {
-      const f = displayed[i];
-      if (!f) return;
-    
-      const color =
-        f.feature_color ||
-        this.getValue("features_color") ||
-        undefined;
-    
-      if (!color) return;
-    
-      const root: ParentNode = wrapper.shadowRoot ?? wrapper;
-    
-      const all = root.querySelectorAll("*");
-    
-      for (const el of Array.from(all)) {
-        if ("color" in el) {
-          el.color = color;
-          break;
-        }
-      }
-    });
-
-
   }
   
   private _getTemplateKeyValue(key: TemplateKey): string {
