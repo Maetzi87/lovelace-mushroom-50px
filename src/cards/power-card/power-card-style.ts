@@ -255,43 +255,33 @@ export const powerCardStyles = [
       }
 
 /* --- FEATURES --- */
-      .mushic-features {
+      hui-card-features {
+        --feature-color: var(--tile-color);
         padding: var(--mushic-feature-padding, 0 12px 12px 12px);
-        display: flex;
-        flex-direction: column;
-        gap: var(--mushic-feature-gap, 6px);
       }
-      hui-card-feature {
-        --feature-color: var(--feature-color, var(--mushic-feature-color, var( --tile-color, var(--state-inactive-color))));
-        --feature-height: var(--mushic-feature-height, 36px);
-      }
-
-      .container.horizontal .mushic-features {
+      .container.horizontal hui-card-features {
         width: calc(50% - var(--column-gap, 0px) / 2 - 12px);
         flex: none;
-        padding-inline-start: 0;
+        --feature-height: var(--mushic-feature-height, 36px);
         padding: var(--mushic-feature-padding, 0 12px);
-        display: flex;
-        flex-direction: row;
-        gap: var(--mushic-feature-gap, 12px);
-        align-items: center;
+        padding-inline-start: 0;
       }
       
       .container.feature-only {
         justify-content: flex-end;
       }
-      .container.feature-only .mushic-features {
+      .container.feature-only hui-card-features {
         flex: 1;
         width: 100%;
-        padding: var(--mushic-feature-padding, 12px);
+        padding: var(--mushic-feature-padding, 12px 12px 12px 12px);
       }
-      .container.feature-only.horizontal .mushic-features {
+      .container.feature-only.horizontal hui-card-features {
         padding: var(--mushic-feature-padding, 0 12px);
       }
       .container.horizontal .content:not(:has(ha-tile-info)) {
         flex: none;
       }
-      .container.horizontal:not(:has(ha-tile-info)) .mushic-features {
+      .container.horizontal:not(:has(ha-tile-info)) hui-card-features {
         width: auto;
         flex: 1;
       }
