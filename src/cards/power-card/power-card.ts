@@ -208,7 +208,8 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
     this.dispatchEvent(new Event("iron-resize", { bubbles: true, composed: true }));
   
     // --- FEATURE COLORS ---
-    const featureElements = this.shadowRoot?.querySelectorAll("hui-card-feature");
+    const featuresHost = this.shadowRoot?.querySelector("hui-card-features");
+    const featureElements = featuresHost?.shadowRoot?.querySelectorAll("hui-card-feature");
     if (!featureElements) return;
     const displayed = this._displayedFeatures(this._config);
     featureElements.forEach((el, i) => {
