@@ -119,10 +119,11 @@ const TEMPLATE_KEYS = [
   "overlay_animation",
 
   // --- FEATURES ---
-  "feature_color",
+  "feature1_color",
+  "feature2_color",
+  "feature3_color",
   "feature_height",
   "feature_padding",
-  "feature_gap",
   
   
   
@@ -584,10 +585,11 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-overlay-animation": this.getValue("overlay_animation"),
 
       // --- FEATURES ---
-      "--mushic-feature-color": this.getValue("feature_color"),
+      "--mushic-feature1-color": this.getValue("feature1_color"),
+      "--mushic-feature2-color": this.getValue("feature2_color"),      
+      "--mushic-feature3-color": this.getValue("feature3_color"),
       "--mushic-feature-height": this.getValue("feature_height"),
       "--mushic-feature-padding": this.getValue("feature_padding"),
-      "--mushic-feature-gap": this.getValue("feature_gap"),
     };
 
     const featurePosition = this._featurePosition(this._config);
@@ -732,17 +734,13 @@ public getGridOptions(): LovelaceGridOptions {
             : nothing}
           ${features.length > 0
             ? html`
-                <div class="mushic-features">
-                    ${features.map((f) => html`
-                      <hui-card-feature
-                        .hass=${this.hass}
-                        .config=${f}
-                        style=${styleMap({
-                          "--feature-color": f.color || cssColor,
-                        })}
-                      ></hui-card-feature>
-                  `)}            
-                </div>
+                <hui-card-features
+                  .hass=${this.hass}
+                  .context=${featureContext}
+                  .color=${cssColor}
+                  .features=${features}
+                  .position=${featurePosition}
+                ></hui-card-features>
               `
             : nothing}
         </div>
