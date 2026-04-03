@@ -201,14 +201,29 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
 
   protected updated(changedProps: PropertyValues): void {
     super.updated(changedProps);
-    if (!this._config || !this.hass) {
-      return;
-    }
-
+  
+    if (!this._config || !this.hass) return;
+  
     this._tryConnect();
     this.dispatchEvent(new Event("iron-resize", { bubbles: true, composed: true }));
+  
+    // --- FEATURE COLORS ---
+    const featureElements = this.shadowRoot?.querySelectorAll("hui-card-feature");
+    if (!featureElements) return;
+    const displayed = this._displayedFeatures(this._config);
+    featureElements.forEach((el, i) => {
+      const f = displayed[i];
+      if (!f) return;
+      const color =
+        f.feature_color ||               
+        this.getValue("feature_color") ||
+        undefined;                        
+      if (color) {
+        el.color = color; 
+      }
+    });
   }
-
+  
   private _getTemplateKeyValue(key: TemplateKey): string {
     if (!this._config) {
       return "";
@@ -739,13 +754,8 @@ public getGridOptions(): LovelaceGridOptions {
                 .hass=${this.hass}
                 .context=${featureContext}
                 .position=${featurePosition}
-                .features=${features.map((f) => ({
-                  ...f,
-                  color:
-                    f.feature_color ||
-                    this.getValue("feature_color") ||
-                    undefined
-                }))}
+                .features=${features}
+              ></hui-card-features>
               `
             : nothing}
         </div>
