@@ -119,13 +119,12 @@ const TEMPLATE_KEYS = [
   "overlay_animation",
 
   // --- FEATURES ---
+  "feature_color",
   "feature1_color",
   "feature2_color",
   "feature3_color",
   "feature_height",
   "feature_padding",
-  
-  
   
 ] as const;
 
@@ -585,6 +584,7 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-overlay-animation": this.getValue("overlay_animation"),
 
       // --- FEATURES ---
+      "--mushic-feature-color": this.getValue("feature_color"),
       "--mushic-feature1-color": this.getValue("feature1_color"),
       "--mushic-feature2-color": this.getValue("feature2_color"),      
       "--mushic-feature3-color": this.getValue("feature3_color"),
