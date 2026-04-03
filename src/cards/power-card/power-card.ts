@@ -740,9 +740,3 @@ public getGridOptions(): LovelaceGridOptions {
   }
   
 static styles = powerCardStyles;
-  
-declare global {
-  interface HTMLElementTagNameMap {
-    "mushroomic-power-card": MushroomicPowerCard;
-  }
-}
