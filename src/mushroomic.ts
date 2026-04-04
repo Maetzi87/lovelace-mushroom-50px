@@ -1,4 +1,3 @@
-import "./utils/icons/mushic-icons";
 import { version } from "../package.json";
 
 import "./cards/power-card/power-card";
