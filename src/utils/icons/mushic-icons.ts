@@ -1,3 +1,5 @@
+export const __mushic_side_effect__ = true;
+
 console.log("Mushic Icon Registry LOADED");
 
 import { customIconset } from "../../ha";
