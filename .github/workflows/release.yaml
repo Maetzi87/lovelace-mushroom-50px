@@ -20,13 +20,13 @@ jobs:
 
       - name: Create ZIP with folder structure
         run: |
-          mkdir package
-          cp -r dist package/dist
-          cp -r icons package/icons
-          cd package
+          mkdir release
+          cp -r dist release/dist
+          cp -r icons release/icons
+          cd release
           zip -r ../mushroomic.zip .
 
-      - name: Upload ZIP as release asset
+      - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
