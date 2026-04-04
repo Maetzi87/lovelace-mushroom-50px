@@ -25,6 +25,8 @@ for (const [name, file] of Object.entries(iconList)) {
 
 console.log("Mushic icons loaded:", mushicIcons);
 
+(window as any).customIcons = (window as any).customIcons || {};
+
 customIconset("mushic", {
   async getIcon(name: string) {
     const path = mushicIcons[name];
