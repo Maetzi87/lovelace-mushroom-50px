@@ -29,7 +29,7 @@ console.log("Mushic icons loaded:", mushicIcons);
 
 (window as any).customIcons = (window as any).customIcons || {};
 
-customIconset("mushic", {
+(window as any).customIcons["mushic"] = {
   async getIcon(name: string) {
     const path = mushicIcons[name];
     if (!path) return undefined;
@@ -46,4 +46,4 @@ customIconset("mushic", {
   getIconList() {
     return Object.keys(mushicIcons);
   }
-});
+};
