@@ -552,7 +552,8 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-badge-margin-right": this.getValue("badge_margin_right"),      
     
       // --- CARD STYLING ---
-      "--mushic-card-height": finalCardHeight,
+      "--mushic-card-min-height": finalCardHeight,
+      "--mushic-card-height": this.getValue("card_height"),
       "--mushic-card-bg-color": this.getValue("card_bg_color"),
       "--mushic-card-border-color": this.getValue("border_color"),
       "--mushic-card-border-width": this.getValue("border_width"),
