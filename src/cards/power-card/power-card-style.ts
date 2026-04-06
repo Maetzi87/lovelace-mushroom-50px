@@ -15,8 +15,8 @@ export const powerCardStyles = [
         --ha-ripple-color: var(--mushic-ripple-color, var(--tile-color));
         --ha-ripple-hover-opacity: 0.04;
         --ha-ripple-pressed-opacity: 0.12;
-        min-height: var(--mushic-card-min-height);
-        height: var(--mushic-card-height, 100%);
+        min-height: var(--mushic-card-min-height, auto);
+        height: var(--mushic-card-height, auto);
         transition:
           box-shadow 180ms ease-in-out,
           border-color 180ms ease-in-out;
@@ -258,12 +258,12 @@ export const powerCardStyles = [
       hui-card-features {
         --feature-color: var(--mushic-features-color, var(--tile-color, var(--state-inactive-color)));
         padding: var(--mushic-features-padding, 0 12px 12px 12px);
-        --feature-height: var(--mushic-features-height, 42px);
+        --feature-height: var(--mushic-features-height, 42px) !important;
       }
       .container.horizontal hui-card-features {
         width: calc(50% - var(--column-gap, 0px) / 2 - 12px);
         flex: none;
-        --feature-height: var(--mushic-features-height, var(--mushic-shape-size, 36px));
+        --feature-height: var(--mushic-features-height, var(--mushic-shape-size, 36px)) !important;
         padding: var(--mushic-features-padding, 0 12px);
         padding-inline-start: 0;
       }
