@@ -11,7 +11,7 @@ export const powerCardStyles = [
         -webkit-tap-highlight-color: transparent;
         z-index: 0;
       }     
-      :host > ha-card {
+      ha-card {
         --ha-ripple-color: var(--mushic-ripple-color, var(--tile-color));
         --ha-ripple-hover-opacity: 0.04;
         --ha-ripple-pressed-opacity: 0.12;
