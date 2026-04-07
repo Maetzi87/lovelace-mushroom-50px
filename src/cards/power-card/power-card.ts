@@ -32,6 +32,11 @@ import { TemplateCardConfig } from "./power-card-config";
 import { getWeatherSvgIcon } from "../../utils/icons/weather-icon";
 import { weatherSVGStyles } from "../../utils/weather";
 import { mushroomicKeyframes } from "../../utils/animations/keyframes";
+import {
+  getAutoOverlay,
+  getAutoAnimations,
+  getAutoBadgeAnimation
+} from "../../utils/animations/automatic";
 import { powerCardStyles } from "./power-card-style";
 
 export const getEntityDefaultTileIconAction = (entityId: string) => {
@@ -446,6 +451,7 @@ public getGridOptions(): LovelaceGridOptions {
 
     // --- ICON ---
     const icon = this.getValue("icon");
+    let overlayIcon = this.getValue("overlay_icon") || getAutoOverlay(icon);
     const picture = this.getValue("picture");
     const color = this.getValue("color");
     const cssColor = color ? computeCssColor(color) : undefined;
@@ -516,6 +522,10 @@ public getGridOptions(): LovelaceGridOptions {
       (shapeColorValue && shapeColorValue !== "0") ||
       (shapeOpacityValue && shapeOpacityValue !== "0");
 
+    // --- AUTO_ANIMATION
+    const autoAnim = getAutoAnimations(icon);
+    const autoBadgeAnim = getAutoBadgeAnimation(badgeIcon);
+    
     const style = {
       // --- ICON ---  
       "--mushic-icon-color": cssColor || "var(--state-inactive-color)",
@@ -564,17 +574,17 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-content-gap": this.getValue("content_gap"),
       
       // --- OVERLAY ---
-      "--mushic-overlay-icon": this.getValue("overlay_icon"),
+      "--mushic-overlay-icon": overlayIcon,
       "--mushic-overlay-color": this.getValue("overlay_color"),
       "--mushic-overlay-opacity": this.getValue("overlay_opacity"),
       "--mushic-overlay-size": this.getValue("overlay_size"),
       "--mushic-overlay-margin": this.getValue("overlay_margin"),
 
       // --- ANIMATIONS ---
-      "--mushic-icon-animation": this.getValue("icon_animation"),
-      "--mushic-shape-animation": this.getValue("shape_animation"),
+      "--mushic-icon-animation": this.getValue("icon_animation") || autoAnim.icon,
+      "--mushic-shape-animation": this.getValue("shape_animation") || autoAnim.shape,
       "--mushic-badge-animation": this.getValue("badge_animation"),
-      "--mushic-badge-icon-animation": this.getValue("badge_icon_animation"),
+      "--mushic-badge-icon-animation": this.getValue("badge_icon_animation") || autoBadgeAnim,
       "--mushic-overlay-animation": this.getValue("overlay_animation"),
       "--mushic-card-keyframes": this.getValue("keyframes"),
 
