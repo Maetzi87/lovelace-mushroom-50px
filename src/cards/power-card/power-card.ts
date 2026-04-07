@@ -489,11 +489,11 @@ public getGridOptions(): LovelaceGridOptions {
     const cardHeight = this.getValue("card_height");
     
     // --- Automatic fallback scaling ---
-    const finalShapeSize = shapeSize || "var(--mushic-shape-size, 36px)";
-    const finalIconSize = iconSize || "var(--mushic-icon-size, calc(var(--mushic-shape-size, 36px) * 0.666))";
-    const finalBadgeSize = badgeSize || "var(--mushic-badge-size, calc(var(--mushic-shape-size, 36px) * 0.444))";
-    const finalBadgeIconSize = badgeIconSize || "var(--mushic-badge-icon-size, calc(var(--mushic-shape-size, 36px) * 0.444 * 0.75))";
-    const finalBadgeTextSize = badgeTextSize || "var(--mushic-badge-text-size, calc(var(--mushic-shape-size, 36px) * 0.444 * 0.5))";
+   // const finalShapeSize = shapeSize || "var(--mushic-shape-size, 36px)";
+ //   const finalIconSize = iconSize || "var(--mushic-icon-size, calc(var(--mushic-shape-size, 36px) * 0.666))";
+//    const finalBadgeSize = badgeSize || "var(--mushic-badge-size, calc(var(--mushic-shape-size, 36px) * 0.444))";
+//    const finalBadgeIconSize = badgeIconSize || "var(--mushic-badge-icon-size, calc(var(--mushic-shape-size, 36px) * 0.444 * 0.75))";
+//    const finalBadgeTextSize = badgeTextSize || "var(--mushic-badge-text-size, calc(var(--mushic-shape-size, 36px) * 0.444 * 0.5))";
     
     const shape = parseInt(finalShapeSize);
     
@@ -533,9 +533,9 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-shape-color": shapeColor ? shapeColor : undefined,
       "--mushic-shape-opacity": shapeOpacity ? shapeOpacity : undefined,
       "--mushic-shape-hover-opacity": this.getValue("shape_hover_opacity"),
-      "--mushic-shape-size": finalShapeSize,
+      "--mushic-shape-size": shapeSize || undefined,
       "--tile-icon-size": "var(--mushic-shape-size)",
-      "--mushic-icon-size": finalIconSize,
+      "--mushic-icon-size": iconSize || undefined,
       "--tile-mdc-icon-size": "var(--mushic-icon-size)",
     
       // --- TEXT ---
@@ -552,9 +552,9 @@ public getGridOptions(): LovelaceGridOptions {
       "--ha-tile-info-secondary-letter-spacing": this.getValue("secondary_letter_spacing") || "var(--mushic-secondary-letter-spacing)",
     
       // --- BADGE ---
-      "--mushic-badge-size": finalBadgeSize,
-      "--mushic-badge-icon-size": finalBadgeIconSize,
-      "--mushic-badge-text-size": finalBadgeTextSize,     
+      "--mushic-badge-size": badgeSize || undefined,
+      "--mushic-badge-icon-size": badgeIconSize || undefined,
+      "--mushic-badge-text-size": badgeTextSize || undefined,  
       "--mushic-badge-color": badgeCssColor,
       "--mushic-badge-icon-color": badgeIconColor,
       "--mushic-badge-text-color": badgeTextColor,
