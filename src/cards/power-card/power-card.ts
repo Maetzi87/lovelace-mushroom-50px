@@ -467,10 +467,10 @@ public getGridOptions(): LovelaceGridOptions {
     const primary = this.getValue("primary");
     const secondary = this.getValue("secondary");
     
-    const primarySize = parseInt(this.getValue("primary_text_size") || "16");
+    const primarySize = parseInt(this.getValue("primary_text_size") || "14px");
     const primaryLH = parseFloat(this.getValue("primary_line_height") || "1.6");
     
-    const secondarySize = parseInt(this.getValue("secondary_text_size") || "14");
+    const secondarySize = parseInt(this.getValue("secondary_text_size") || "12px");
     const secondaryLH = parseFloat(this.getValue("secondary_line_height") || "1.2");
     
     // --- BADGE ---
@@ -489,11 +489,11 @@ public getGridOptions(): LovelaceGridOptions {
     const cardHeight = this.getValue("card_height");
     
     // --- Automatic fallback scaling ---
-    const finalShapeSize = shapeSize || `36px`;
-    const finalIconSize = iconSize || `calc(${finalShapeSize} * 0.666)`;
-    const finalBadgeSize = badgeSize || `calc(${finalShapeSize} * 0.444)`;
-    const finalBadgeIconSize = badgeIconSize || `calc(${finalBadgeSize} * 0.75)`;
-    const finalBadgeTextSize = badgeTextSize || `calc(${finalBadgeSize} * 0.5)`;
+    const finalShapeSize = shapeSize || "var(--mushic-shape-size, 36px)";
+    const finalIconSize = iconSize || "var(--mushic-icon-size, calc(var(--mushic-shape-size, 36px) * 0.666))";
+    const finalBadgeSize = badgeSize || "var(--mushic-badge-size, calc(var(--mushic-shape-size, 36px) * 0.444))";
+    const finalBadgeIconSize = badgeIconSize || "var(--mushic-badge-icon-size, calc(var(--mushic-shape-size, 36px) * 0.444 * 0.75))";
+    const finalBadgeTextSize = badgeTextSize || "var(--mushic-badge-text-size, calc(var(--mushic-shape-size, 36px) * 0.444 * 0.5))";
     
     const shape = parseInt(finalShapeSize);
     
@@ -535,21 +535,21 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-shape-hover-opacity": this.getValue("shape_hover_opacity"),
       "--mushic-shape-size": finalShapeSize,
       "--tile-icon-size": "var(--mushic-shape-size)",
-      "--mushic-icon-size": finalShapeSize,
+      "--mushic-icon-size": finalIconSize,
       "--tile-mdc-icon-size": "var(--mushic-icon-size)",
     
       // --- TEXT ---
-      "--ha-tile-info-primary-font-size": this.getValue("primary_text_size"),
-      "--ha-tile-info-primary-font-weight": this.getValue("primary_text_weight"),
-      "--ha-tile-info-primary-color": this.getValue("primary_text_color"),
-      "--ha-tile-info-primary-line-height": this.getValue("primary_line_height"),
-      "--ha-tile-info-primary-letter-spacing": this.getValue("primary_letter_spacing"),
+      "--ha-tile-info-primary-font-size": this.getValue("primary_text_size") || "var(--mushic-primary-text-size)",
+      "--ha-tile-info-primary-font-weight": this.getValue("primary_text_weight") || "var(--mushic-primary-text-weight)",
+      "--ha-tile-info-primary-color": this.getValue("primary_text_color") || "var(--mushic-primary-text-color)",
+      "--ha-tile-info-primary-line-height": this.getValue("primary_line_height") || "var(--mushic-primary-line-height)",
+      "--ha-tile-info-primary-letter-spacing": this.getValue("primary_letter_spacing") || "var(--mushic-primary-letter-spacing)",
     
-      "--ha-tile-info-secondary-font-size": this.getValue("secondary_text_size"),
-      "--ha-tile-info-secondary-font-weight": this.getValue("secondary_text_weight"),
-      "--ha-tile-info-secondary-color": this.getValue("secondary_text_color"),
-      "--ha-tile-info-secondary-line-height": this.getValue("secondary_line_height"),
-      "--ha-tile-info-secondary-letter-spacing": this.getValue("secondary_letter_spacing"),
+      "--ha-tile-info-secondary-font-size": this.getValue("secondary_text_size") || "var(--mushic-secondary-text-size)",
+      "--ha-tile-info-secondary-font-weight": this.getValue("secondary_text_weight") || "var(--mushic-secondary-text-weight)",
+      "--ha-tile-info-secondary-color": this.getValue("secondary_text_color") || "var(--mushic-secondary-text-color)",
+      "--ha-tile-info-secondary-line-height": this.getValue("secondary_line_height") || "var(--mushic-secondary-line-height)",
+      "--ha-tile-info-secondary-letter-spacing": this.getValue("secondary_letter_spacing") || "var(--mushic-secondary-letter-spacing)",
     
       // --- BADGE ---
       "--mushic-badge-size": finalBadgeSize,
