@@ -576,6 +576,7 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-badge-animation": this.getValue("badge_animation"),
       "--mushic-badge-icon-animation": this.getValue("badge_icon_animation"),
       "--mushic-overlay-animation": this.getValue("overlay_animation"),
+      "--mushic-card-keyframes": this.getValue("keyframes"),
 
       // --- FEATURES ---
       "--mushic-features-color": this.getValue("features_color"),
