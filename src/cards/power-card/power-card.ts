@@ -495,7 +495,7 @@ public getGridOptions(): LovelaceGridOptions {
     const scaledBadgeIconSize = badgeIconSize || `calc(${scaledBadgeSize} * 0.75)`;
     const scaledBadgeTextSize = badgeTextSize || `calc(${scaledBadgeSize} * 0.5)`;
     
-    const shape = parseInt(shapeSize);
+    const shape = parseInt(finalshapeSize);
     
    //  --- Vertical height calculation ---
     const verticalHeight = `${
@@ -535,7 +535,7 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-shape-hover-opacity": this.getValue("shape_hover_opacity"),
       "--mushic-final-shape-size": shapeSize || "var(--mushic-shape-size, 36px)",
       "--tile-icon-size": "var(--mushic-final-shape-size)",
-      "--mushic-icon-size": iconSize, || "var(--mushic-icon-size, " + scaledIconSize + ")",
+      "--mushic-icon-size": iconSize || "var(--mushic-icon-size, " + scaledIconSize + ")",
       "--tile-mdc-icon-size": "var(--mushic-icon-size)",
     
       // --- TEXT ---
@@ -552,9 +552,9 @@ public getGridOptions(): LovelaceGridOptions {
       "--ha-tile-info-secondary-letter-spacing": this.getValue("secondary_letter_spacing") || "var(--mushic-secondary-letter-spacing)",
     
       // --- BADGE ---
-      "--mushic-badge-size": finalBadgeSize,
-      "--mushic-badge-icon-size": finalBadgeIconSize,
-      "--mushic-badge-text-size": finalBadgeTextSize,  
+      "--mushic-final-badge-size": badgeSize || "var(--mushic-badge-size, " + scaledBadgeSize + ")",
+      "--mushic-final-badge-icon-size": badgeIconSize || "var(--mushic-badge-icon-size, calc(var(--mushic-badge-size, ${scaledBadgeSize}) * 0.75))", 
+      "--mushic-final-badge-text-size": badgeTextSize || "var(--mushic-badge-text-size, calc(var(--mushic-badge-size, ${scaledBadgeSize}) * 0.5))", 
       "--mushic-badge-color": badgeCssColor,
       "--mushic-badge-icon-color": badgeIconColor,
       "--mushic-badge-text-color": badgeTextColor,
