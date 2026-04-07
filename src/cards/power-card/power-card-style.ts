@@ -11,6 +11,11 @@ export const powerCardStyles = [
         z-index: 0;
         var(--mushic-card-keyframes);
         var(--mushic-keyframes);
+        --mushic-shape-size: var(--mushic-shape-size, 36px);
+        --mushic-icon-size: var(--mushic-icon-size, calc(var(--mushic-shape-size) * 0.666));
+        --mushic-badge-size: var(--mushic-badge-size, calc(var(--mushic-shape-size) * 0.444));
+        --mushic-badge-icon-size: var(--mushic-badge-icon-size, calc(var(--mushic-badge-size) * 0.75));
+        --mushic-badge-text-size: var(--mushic-badge-text-size, calc(var(--mushic-badge-size) * 0.5));
       }
   `,
   mushroomicKeyframes,
@@ -90,13 +95,14 @@ export const powerCardStyles = [
         width: 100%;
         flex: none;
       }
+
 /* --- ICON CONTAINER --- */      
       ha-tile-icon {
         --tile-icon-color: var(--mushic-shape-color, var(--tile-color));
         position: relative;
         margin: -6px;
         padding: 6px;
-        --mdc-icon-size: var(--tile-mdc-icon-size);
+        --mdc-icon-size: var(--mushic-icon-size);
         --tile-icon-opacity: 0;
       }
       ha-tile-icon .container {
