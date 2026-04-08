@@ -449,7 +449,7 @@ public getGridOptions(): LovelaceGridOptions {
       return nothing;
     }
 
-    // --- ICON ---
+    // --- ICON & SHAPE ---
     const icon = this.getValue("icon");
     let overlayIcon = this.getValue("overlay_icon") || getAutoOverlay(icon);
     const picture = this.getValue("picture");
@@ -458,14 +458,25 @@ public getGridOptions(): LovelaceGridOptions {
     
     const shapeSize = this.getValue("shape_size");
     const shapeColor = this.getValue("shape_color");
+    const shapeCssColor = shapeColor ? computeCssColor(shapeColor) : undefined;
     const shapeOpacity = this.getValue("shape_opacity");
     const iconSize = this.getValue("icon_size");
     
     const weatherSvg = getWeatherSvgIcon(icon);
+
+    // --- OVERLAY ---
+    const overlayColor = this.getValue("overlay_color");
+    const overlayCssColor = overlayColor ? computeCssColor(overlayColor) : undefined;
     
     // --- TEXT ---
     const primary = this.getValue("primary");
     const secondary = this.getValue("secondary");
+
+    const primaryTextColor = this.getValue("primary_text_color");
+    const primaryTextCssColor = primaryTextColor ? computeCssColor(primaryTextColor) : undefined;
+
+    const secondaryTextColor = this.getValue("secondary_text_color");
+    const secondaryTextCssColor = secondaryTextColor ? computeCssColor(secondaryTextColor) : undefined;
     
     const primarySize = parseInt(this.getValue("primary_text_size") || "14px");
     const primaryLH = parseFloat(this.getValue("primary_line_height") || "1.6");
@@ -483,10 +494,22 @@ public getGridOptions(): LovelaceGridOptions {
     const badgeIconSize = this.getValue("badge_icon_size");
     const badgeTextSize = this.getValue("badge_text_size");
     const badgeIconColor = this.getValue("badge_icon_color");
+    const badgeIconCssColor = badgeIconColor ? computeCssColor(badgeIconColor) : undefined;
     const badgeTextColor = this.getValue("badge_text_color");
+    const badgeTextCssColor = badgeTextColor ? computeCssColor(badgeTextColor) : undefined;
     
     // --- CARD STYLING ---
     const cardHeight = this.getValue("card_height");
+    const cardBgColor = this.getValue("card_bg_color");
+    const cardBgCssColor = cardBgColor ? computeCssColor(cardBgColor) : undefined;
+    const borderColor = this.getValue("border_color");
+    const borderCssColor = borderColor ? computeCssColor(borderColor) : undefined;
+    const rippleColor = this.getValue("ripple_color");
+    const rippleCssColor = rippleColor ? computeCssColor(rippleColor) : undefined;
+
+    // --- FEATURES ---
+    const featuresColor = this.getValue("features_color");
+    const featuresCssColor = featuresColor ? computeCssColor(featuresColor) : undefined;
     
     // --- Automatic fallback scaling ---
     const finalShapeSize = shapeSize || `36px`;
@@ -513,7 +536,7 @@ public getGridOptions(): LovelaceGridOptions {
           ? `calc(${finalShapeSize} + 20px)`
           : `calc(36px + 20px)`);
     
-    // --- SHAPE ---
+    // --- SHOW SHAPE? ---
     const shapeColorValue = this.getValue("shape_color")?.trim();
     const shapeOpacityValue = this.getValue("shape_opacity")?.trim();
     
@@ -530,7 +553,7 @@ public getGridOptions(): LovelaceGridOptions {
       // --- ICON ---  
       "--mushic-icon-color": cssColor || "var(--state-inactive-color)",
       "--tile-color": "var(--mushic-icon-color)",
-      "--mushic-shape-color": shapeColor ? shapeColor : undefined,
+      "--final-mushic-shape-color": shapeCssColor || "var(--mushic-shape-color, var(--mushic-icon-color))",
       "--mushic-shape-opacity": shapeOpacity ? shapeOpacity : undefined,
       "--mushic-shape-hover-opacity": this.getValue("shape_hover_opacity"),
       "--mushic-final-shape-size": shapeSize || "var(--mushic-shape-size, 36px)",
@@ -541,13 +564,13 @@ public getGridOptions(): LovelaceGridOptions {
       // --- TEXT ---
       "--ha-tile-info-primary-font-size": this.getValue("primary_text_size") || "var(--mushic-primary-text-size)",
       "--ha-tile-info-primary-font-weight": this.getValue("primary_text_weight") || "var(--mushic-primary-text-weight)",
-      "--ha-tile-info-primary-color": this.getValue("primary_text_color") || "var(--mushic-primary-text-color)",
+      "--ha-tile-info-primary-color": primaryTextCssColor || "var(--mushic-primary-text-color)",
       "--ha-tile-info-primary-line-height": this.getValue("primary_line_height") || "var(--mushic-primary-line-height)",
       "--ha-tile-info-primary-letter-spacing": this.getValue("primary_letter_spacing") || "var(--mushic-primary-letter-spacing)",
     
       "--ha-tile-info-secondary-font-size": this.getValue("secondary_text_size") || "var(--mushic-secondary-text-size)",
       "--ha-tile-info-secondary-font-weight": this.getValue("secondary_text_weight") || "var(--mushic-secondary-text-weight)",
-      "--ha-tile-info-secondary-color": this.getValue("secondary_text_color") || "var(--mushic-secondary-text-color)",
+      "--ha-tile-info-secondary-color": secondaryTextCssColor || "var(--mushic-secondary-text-color)",
       "--ha-tile-info-secondary-line-height": this.getValue("secondary_line_height") || "var(--mushic-secondary-line-height)",
       "--ha-tile-info-secondary-letter-spacing": this.getValue("secondary_letter_spacing") || "var(--mushic-secondary-letter-spacing)",
     
@@ -556,26 +579,26 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-final-badge-icon-size": badgeIconSize || `var(--mushic-badge-icon-size, calc(var(--mushic-badge-size, ${scaledBadgeSize}) * 0.75))`, 
       "--mushic-final-badge-text-size": badgeTextSize || `var(--mushic-badge-text-size, calc(var(--mushic-badge-size, ${scaledBadgeSize}) * 0.5))`, 
       "--mushic-final-badge-color": badgeCssColor || "var(--mushic-badge-color, var(--state-inactive-color))",
-      "--mushic-badge-icon-color": badgeIconColor,
-      "--mushic-badge-text-color": badgeTextColor,
+      "--mushic-final-badge-icon-color": badgeIconCssColor || "var(--mushic-badge-icon-color)",
+      "--mushic-final-badge-text-color": badgeTextCssColor || "var(--mushic-badge-text-color)",
       "--mushic-badge-margin-top": this.getValue("badge_margin_top"),
       "--mushic-badge-margin-right": this.getValue("badge_margin_right"),      
     
       // --- CARD STYLING ---
       "--mushic-card-min-height": finalCardHeight,
       "--mushic-card-height": this.getValue("card_height"),
-      "--mushic-card-bg-color": this.getValue("card_bg_color"),
-      "--mushic-card-border-color": this.getValue("border_color"),
+      "--final-mushic-card-bg-color": cardBgCssColor || "var(--mushic-card-bg-color)",
+      "--final-mushic-card-border-color": borderCssColor || "var(--mushic-border-color)",
       "--mushic-card-border-width": this.getValue("border_width"),
       "--mushic-card-border-radius": this.getValue("border_radius"),
       "--mushic-card-border-style": this.getValue("border_style"),
-      "--mushic-ripple-color": this.getValue("ripple_color"),
+      "--final-mushic-ripple-color": rippleCssColor || "var(--mushic-ripple-color)",
       "--mushic-card-padding": this.getValue("card_padding"),
       "--mushic-content-gap": this.getValue("content_gap"),
       
       // --- OVERLAY ---
       "--mushic-overlay-icon": overlayIcon,
-      "--mushic-overlay-color": this.getValue("overlay_color"),
+      "--final-mushic-overlay-color": overlayCssColor || "var(--mushic-overlay-color, var(--mushic-icon-color))",
       "--mushic-overlay-opacity": this.getValue("overlay_opacity"),
       "--mushic-overlay-size": this.getValue("overlay_size"),
       "--mushic-overlay-margin": this.getValue("overlay_margin"),
@@ -589,7 +612,7 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-card-keyframes": this.getValue("keyframes"),
 
       // --- FEATURES ---
-      "--mushic-features-color": this.getValue("features_color"),
+      "--final-mushic-features-color": featuresCssColor || "var(--mushic-features-color, var(--mushic-icon-color))",
       "--mushic-features-height": this.getValue("features_height"),
       "--mushic-features-padding": this.getValue("features_padding"),
     };
