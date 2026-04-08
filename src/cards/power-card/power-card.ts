@@ -459,7 +459,6 @@ public getGridOptions(): LovelaceGridOptions {
     const shapeSize = this.getValue("shape_size");
     const shapeColor = this.getValue("shape_color");
     const shapeCssColor = shapeColor ? computeCssColor(shapeColor) : undefined;
-    const shapeOpacity = this.getValue("shape_opacity");
     const iconSize = this.getValue("icon_size");
     
     const weatherSvg = getWeatherSvgIcon(icon);
@@ -551,15 +550,15 @@ public getGridOptions(): LovelaceGridOptions {
     
     const style = {
       // --- ICON ---  
-      "--mushic-icon-color": cssColor || "var(--state-inactive-color)",
-      "--tile-color": "var(--mushic-icon-color)",
-      "--final-mushic-shape-color": shapeCssColor || "var(--mushic-shape-color, var(--mushic-icon-color))",
-      "--mushic-shape-opacity": shapeOpacity ? shapeOpacity : undefined,
-      "--mushic-shape-hover-opacity": this.getValue("shape_hover_opacity"),
-      "--mushic-final-shape-size": shapeSize || "var(--mushic-shape-size, 36px)",
-      "--tile-icon-size": "var(--mushic-final-shape-size)",
+      "--mushic-final-icon-color": cssColor || "var(--mushic-icon-color, var(--state-inactive-color))",
+      "--mushic-final-shape-color": shapeCssColor || "var(--mushic-shape-color, var(--mushic-icon-color))",
+      "--mushic-final-shape-opacity": this.getValue("shape_opacity") || "var(--mushic-shape-opacity)",
+      "--mushic-final-shape-hover-opacity": this.getValue("shape_hover_opacity") || "var(--mushic-shape-hover-opacity)",
+      "--mushic-final-shape-size": shapeSize || "var(--mushic-shape-size, 36px)", 
       "--mushic-final-icon-size": iconSize || "var(--mushic-icon-size, " + scaledIconSize + ")",
+      "--tile-color": "var(--mushic-final-icon-color)",
       "--tile-mdc-icon-size": "var(--mushic-final-icon-size)",
+      "--tile-icon-size": "var(--mushic-final-shape-size)",
     
       // --- TEXT ---
       "--ha-tile-info-primary-font-size": this.getValue("primary_text_size") || "var(--mushic-primary-text-size)",
@@ -581,27 +580,27 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-final-badge-color": badgeCssColor || "var(--mushic-badge-color, var(--state-inactive-color))",
       "--mushic-final-badge-icon-color": badgeIconCssColor || "var(--mushic-badge-icon-color)",
       "--mushic-final-badge-text-color": badgeTextCssColor || "var(--mushic-badge-text-color)",
-      "--mushic-badge-margin-top": this.getValue("badge_margin_top"),
-      "--mushic-badge-margin-right": this.getValue("badge_margin_right"),      
+      "--mushic-final-badge-margin-top": this.getValue("badge_margin_top") || "var(--mushic-badge-margin-top)",
+      "--mushic-final-badge-margin-right": this.getValue("badge_margin_right") || "var(--mushic-badge-margin-right)",  
     
       // --- CARD STYLING ---
       "--mushic-card-min-height": finalCardHeight,
       "--mushic-card-height": this.getValue("card_height"),
-      "--final-mushic-card-bg-color": cardBgCssColor || "var(--mushic-card-bg-color)",
-      "--final-mushic-card-border-color": borderCssColor || "var(--mushic-border-color)",
-      "--mushic-card-border-width": this.getValue("border_width"),
-      "--mushic-card-border-radius": this.getValue("border_radius"),
-      "--mushic-card-border-style": this.getValue("border_style"),
-      "--final-mushic-ripple-color": rippleCssColor || "var(--mushic-ripple-color)",
-      "--mushic-card-padding": this.getValue("card_padding"),
-      "--mushic-content-gap": this.getValue("content_gap"),
+      "--mushic final-card-bg-color": cardBgCssColor || "var(--mushic-card-bg-color)",
+      "--mushic-final-card-border-color": borderCssColor || "var(--mushic-border-color)",
+      "--mushic-final-card-border-width": this.getValue("border_width") || "var(--mushic-card-border-width)",
+      "--mushic-final-card-border-radius": this.getValue("border_radius") || "var(--mushic-card-border-radius)",
+      "--mushic-final-card-border-style": this.getValue("border_style") || "var(--mushic-card-border-style"),
+      "--mushic-final-ripple-color": rippleCssColor || "var(--mushic-ripple-color)",
+      "--mushic-final-card-padding": this.getValue("card_padding") || "var(--mushic-card-padding"),
+      "--mushic-final-content-gap": this.getValue("content_gap") || "var(--mushic-content-gap"),
       
       // --- OVERLAY ---
       "--mushic-overlay-icon": overlayIcon,
-      "--final-mushic-overlay-color": overlayCssColor || "var(--mushic-overlay-color, var(--mushic-icon-color))",
-      "--mushic-overlay-opacity": this.getValue("overlay_opacity"),
-      "--mushic-overlay-size": this.getValue("overlay_size"),
-      "--mushic-overlay-margin": this.getValue("overlay_margin"),
+      "--mushic-final-overlay-color": overlayCssColor || "var(--mushic-overlay-color, var(--mushic-icon-color))",
+      "--mushic-final-overlay-opacity": this.getValue("overlay_opacity") || "var(--mushic-overlay-opacity)",
+      "--mushic-final-overlay-size": this.getValue("overlay_size") || "var(--mushic-overlay-size)",
+      "--mushic-final-overlay-margin": this.getValue("overlay_margin") || "var(--mushic-overlay-margin)",
 
       // --- ANIMATIONS ---
       "--mushic-icon-animation": this.getValue("icon_animation") || autoAnim.icon,
@@ -612,9 +611,9 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-card-keyframes": this.getValue("keyframes"),
 
       // --- FEATURES ---
-      "--final-mushic-features-color": featuresCssColor || "var(--mushic-features-color, var(--mushic-icon-color))",
-      "--mushic-features-height": this.getValue("features_height"),
-      "--mushic-features-padding": this.getValue("features_padding"),
+      "--mushic-final-features-color": featuresCssColor || "var(--mushic-features-color, var(--mushic-icon-color))",
+      "--mushic-final-features-height": this.getValue("features_height") || "var(--mushic-features-height)",
+      "--mushic-final-features-padding": this.getValue("features_padding") || "var(--mushic-features-padding)",
     };
 
     const featurePosition = this._featurePosition(this._config);
