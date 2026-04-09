@@ -512,10 +512,10 @@ public getGridOptions(): LovelaceGridOptions {
     
     // --- Automatic fallback scaling ---
     const finalShapeSize = shapeSize || `36px`;
-    const scaledIconSize = `calc(${finalShapeSize} * 0.666)`;
-    const scaledBadgeSize = badgeSize || `calc(${finalShapeSize} * 0.444)`;
-    const scaledBadgeIconSize = badgeIconSize || `calc(${scaledBadgeSize} * 0.75)`;
-    const scaledBadgeTextSize = badgeTextSize || `calc(${scaledBadgeSize} * 0.5)`;
+    // const scaledIconSize = `calc(${finalShapeSize} * 0.666)`;
+    // const scaledBadgeSize = badgeSize || `calc(${finalShapeSize} * 0.444)`;
+    // const scaledBadgeIconSize = badgeIconSize || `calc(${scaledBadgeSize} * 0.75)`;
+    // const scaledBadgeTextSize = badgeTextSize || `calc(${scaledBadgeSize} * 0.5)`;
     
     const shape = parseInt(finalShapeSize);
     
@@ -555,7 +555,7 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-final-shape-opacity": this.getValue("shape_opacity") || "var(--mushic-shape-opacity)",
       "--mushic-final-shape-hover-opacity": this.getValue("shape_hover_opacity") || "var(--mushic-shape-hover-opacity)",
       "--mushic-final-shape-size": shapeSize || "var(--mushic-shape-size, 36px)", 
-      "--mushic-final-icon-size": iconSize || "var(--mushic-icon-size, " + scaledIconSize + ")",
+      "--mushic-final-icon-size": iconSize || `var(--mushic-icon-size, calc(var(--mushic-final-shape-size) * 0.666))`,
       "--tile-color": "var(--mushic-final-icon-color)",
       "--tile-mdc-icon-size": "var(--mushic-final-icon-size)",
       "--tile-icon-size": "var(--mushic-final-shape-size)",
@@ -574,9 +574,9 @@ public getGridOptions(): LovelaceGridOptions {
       "--ha-tile-info-secondary-letter-spacing": this.getValue("secondary_letter_spacing") || "var(--mushic-secondary-letter-spacing)",
     
       // --- BADGE ---
-      "--mushic-final-badge-size": badgeSize || "var(--mushic-badge-size, " + scaledBadgeSize + ")",
-      "--mushic-final-badge-icon-size": badgeIconSize || `var(--mushic-badge-icon-size, calc(var(--mushic-badge-size, ${scaledBadgeSize}) * 0.75))`, 
-      "--mushic-final-badge-text-size": badgeTextSize || `var(--mushic-badge-text-size, calc(var(--mushic-badge-size, ${scaledBadgeSize}) * 0.5))`, 
+      "--mushic-final-badge-size": badgeSize ||  `var(--mushic-badge-size, calc(var(--mushic-final-shape-size) * 0.444))`,
+      "--mushic-final-badge-icon-size": badgeIconSize || `var(--mushic-badge-icon-size, calc(var(--mushic-final-badge-size) * 0.75))`, 
+      "--mushic-final-badge-text-size": badgeTextSize || `var(--mushic-badge-text-size, calc(var(--mushic-final-badge-size) * 0.5))`, 
       "--mushic-final-badge-color": badgeCssColor || "var(--mushic-badge-color, var(--state-inactive-color))",
       "--mushic-final-badge-icon-color": badgeIconCssColor || "var(--mushic-badge-icon-color)",
       "--mushic-final-badge-text-color": badgeTextCssColor || "var(--mushic-badge-text-color)",
