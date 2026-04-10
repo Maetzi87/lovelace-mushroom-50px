@@ -100,7 +100,7 @@ const TEMPLATE_KEYS = [
 
   // --- CARD STYLING ---
   "card_height",
-  "card_min_height"
+  "card_min_height",
   "card_bg_color",
   "border_color",
   "border_width",
