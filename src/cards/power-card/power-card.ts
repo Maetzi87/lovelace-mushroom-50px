@@ -35,6 +35,7 @@ import { mushroomicKeyframes } from "../../utils/animations/keyframes";
 import {
   getAutoOverlay,
   getAutoAnimations,
+  getAutoOverlayAnimation, 
   getAutoBadgeAnimation
 } from "../../utils/animations/automatic";
 import { powerCardStyles } from "./power-card-style";
