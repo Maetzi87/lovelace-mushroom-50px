@@ -20,7 +20,7 @@ export const powerCardStyles = [
         --ha-ripple-color: var(--mushic-ripple-color, var(--tile-color));
         --ha-ripple-hover-opacity: 0.04;
         --ha-ripple-pressed-opacity: 0.12;
-        min-height: var(--mushic-final-card-min-height);
+        min-height: var(--mushic-card-auto-height, auto);
         height: var(--mushic-final-card-height, 100%);
         transition:
           box-shadow 180ms ease-in-out,
