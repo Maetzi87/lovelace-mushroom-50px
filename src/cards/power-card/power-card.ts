@@ -633,7 +633,6 @@ public getGridOptions(): LovelaceGridOptions {
              : "calc(var(--mushic-final-shape-size) + calc(var(--mushic-final-card-padding, 10px) * 2) - 0.5px )" 
            )
          : "auto",
-      "--mushic-final-card-min-height": this.getValue("card_min_height") ||  "var(--mushic-min-card-height, var(--mushic-card-auto-height))",
     };
     
     const features = this._displayedFeatures(this._config);
