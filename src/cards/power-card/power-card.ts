@@ -560,7 +560,7 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-final-shape-opacity": this.getValue("shape_opacity") || "var(--mushic-shape-opacity)",
       "--mushic-final-shape-hover-opacity": this.getValue("shape_hover_opacity") || "var(--mushic-shape-hover-opacity)",
       "--mushic-final-shape-size": shapeSize || "var(--mushic-shape-size, 36px)", 
-      "--mushic-final-icon-size": iconSize || `var(--mushic-icon-size, calc(var(--mushic-final-shape-size) * 0.666))`,
+      "--mushic-final-icon-size": iconSize || "var(--mushic-icon-size, calc(var(--mushic-final-shape-size) * 0.666))",
       "--tile-color": "var(--mushic-final-icon-color)",
       "--tile-mdc-icon-size": "var(--mushic-final-icon-size)",
       "--tile-icon-size": "var(--mushic-final-shape-size)",
@@ -579,9 +579,9 @@ public getGridOptions(): LovelaceGridOptions {
       "--ha-tile-info-secondary-letter-spacing": this.getValue("secondary_letter_spacing") || "var(--mushic-secondary-letter-spacing)",
     
       // --- BADGE ---
-      "--mushic-final-badge-size": badgeSize ||  `var(--mushic-badge-size, calc(var(--mushic-final-shape-size) * 0.444))`,
-      "--mushic-final-badge-icon-size": badgeIconSize || `var(--mushic-badge-icon-size, calc(var(--mushic-final-badge-size) * 0.75))`, 
-      "--mushic-final-badge-text-size": badgeTextSize || `var(--mushic-badge-text-size, calc(var(--mushic-final-badge-size) * 0.5))`, 
+      "--mushic-final-badge-size": badgeSize ||  "var(--mushic-badge-size, calc(var(--mushic-final-shape-size) * 0.444))",
+      "--mushic-final-badge-icon-size": badgeIconSize || "var(--mushic-badge-icon-size, calc(var(--mushic-final-badge-size) * 0.75))", 
+      "--mushic-final-badge-text-size": badgeTextSize || "var(--mushic-badge-text-size, calc(var(--mushic-final-badge-size) * 0.5))", 
       "--mushic-final-badge-color": badgeCssColor || "var(--mushic-badge-color, var(--state-inactive-color))",
       "--mushic-final-badge-icon-color": badgeIconCssColor || "var(--mushic-badge-icon-color)",
       "--mushic-final-badge-text-color": badgeTextCssColor || "var(--mushic-badge-text-color)",
@@ -615,6 +615,7 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-card-keyframes": this.getValue("keyframes"),
 
       // --- FEATURES ---
+      "--mushic-features-count": featuresCount,
       "--mushic-final-features-color": featuresCssColor || "var(--mushic-features-color, var(--mushic-icon-color))",
       "--mushic-final-features-height": this.getValue("features_height") || "var(--mushic-features-height)",
       "--mushic-final-features-padding": this.getValue("features_padding") || "var(--mushic-features-padding)",
@@ -635,34 +636,14 @@ public getGridOptions(): LovelaceGridOptions {
     
     // --- Dynamic height ---
     if (this._config.vertical) {
-      style["--mushic-card-auto-height"] = `
-        calc(
-          var(--mushic-final-shape-size)
-          + calc(var(--ha-tile-info-primary-font-size) * var(--ha-tile-info-primary-line-height))
-          + calc(var(--ha-tile-info-secondary-font-size) * var(--ha-tile-info-secondary-line-height))
-          + calc(var(--mushic-final-features-height) * ${featuresCount})
-          + calc(var(--mushic-final-features-gap) * max(0, ${featuresCount} - 1))
-          + calc(var(--mushic-final-card-padding, 10px) * 2)
-          - 0.5px
-        )
-      `;
+      style["--mushic-card-auto-height"] = 
+        "calc( var(--mushic-final-shape-size) + calc(var(--ha-tile-info-primary-font-size) * var(--ha-tile-info-primary-line-height)) + calc(var(--ha-tile-info-secondary-font-size) * var(--ha-tile-info-secondary-line-height)) + calc(var(--mushic-final-features-height) * var(--mushic-features-count)) + calc(var(--mushic-final-features-gap) * max(0, var(--mushic-features-count) - 1)) + calc(var(--mushic-final-card-padding, 10px) * 2) - 0.5px )";
     } else if (featurePosition === "inline") {
-      style["--mushic-card-auto-height"] = `
-        calc(
-        var(--mushic-final-shape-size) 
-        + calc(var(--mushic-final-card-padding, 10px) * 2)
-        - 0.5px
-        )
-      `;
+      style["--mushic-card-auto-height"] =
+        "calc(var(--mushic-final-shape-size) + calc(var(--mushic-final-card-padding, 10px) * 2) - 0.5px )";
     } else {
-      style["--mushic-card-auto-height"] = `
-        calc(
-          var(--mushic-final-shape-size)
-          + calc(var(--mushic-final-card-padding, 10px) * 2)
-          + calc(var(--mushic-final-features-height) * ${featuresCount})
-          - 0.5px
-        )
-      `;
+      style["--mushic-card-auto-height"] = 
+        "calc(var(--mushic-final-shape-size) + calc(var(--mushic-final-card-padding, 10px) * 2) + calc(var(--mushic-final-features-height) * var(--mushic-features-count))- 0.5px)";
     }
     
     style["--mushic-final-card-min-height"] = this.getValue("card_min_height") ||  "var(--mushic-min-card-height, var(--mushic-card-auto-height))";
