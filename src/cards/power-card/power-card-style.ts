@@ -17,7 +17,7 @@ export const powerCardStyles = [
       ha-card {
         position: relative;
         z-index: 0;
-        --ha-ripple-color: var(--mushic-ripple-color, var(--tile-color));
+        --ha-ripple-color: var(--mushic-ripple-color, var(--mushic-icon-color, var(--state-inactive-color)));
         --ha-ripple-hover-opacity: 0.04;
         --ha-ripple-pressed-opacity: 0.12;
         min-height: var(--mushic-card-auto-height, auto);
@@ -36,7 +36,7 @@ export const powerCardStyles = [
       }
       ha-card:has(.background:focus-visible) {
         --shadow-default: var(--ha-card-box-shadow, 0 0 0 0 transparent);
-        --shadow-focus: 0 0 0 1px var(--tile-color);
+        --shadow-focus: 0 0 0 1px var(--mushic-icon-color, var(--state-inactive-color));
         box-shadow: var(--shadow-default), var(--shadow-focus);
       }
 
@@ -94,7 +94,7 @@ export const powerCardStyles = [
 
 /* --- ICON CONTAINER --- */      
       ha-tile-icon {
-        --tile-icon-color: var(--mushic-shape-color, var(--tile-color));
+        --tile-icon-color: var(--mushic-shape-color, var(--mushic-icon-color, var(--state-inactive-color)));
         position: relative;
         margin: -6px;
         padding: 6px;
@@ -128,14 +128,14 @@ export const powerCardStyles = [
          display: flex;
          align-items: center;
          justify-content: center;
-         color: var(--mushic-icon-color, var(--tile-color));
+         color: var(--mushic-icon-color, var(--state-inactive-color));
       }
       /* --- ... COLORABLE SHAPE ... --- */
       .mushic-shape {
          width: 100%;
          height: 100%;
          border-radius: 50%;
-         background: var(--mushic-shape-color, var(--tile-color));
+         background: var(--mushic-shape-color, var(--mushic-icon-color, var(--state-inactive-color)));
          opacity: var(--mushic-shape-opacity, 0.2);
          animation: var(--mushic-shape-animation);
          transform-origin: 50% 50%;
@@ -168,7 +168,7 @@ export const powerCardStyles = [
 
 /* --- ICON --- */
       ha-state-icon {
-        color: var(--mushic-icon-color, var(--tile-color));
+        color: var(--mushic-icon-color, var(--state-inactive-color));
         animation: var(--mushic-icon-animation);
         position: relative;
         z-index: 2;
@@ -184,7 +184,7 @@ export const powerCardStyles = [
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--mushic-icon-color);
+        color: var(--mushic-icon-color, var(--state-inactive-color));
         z-index: 1;
       }
       .mushic-picture svg {
@@ -212,9 +212,9 @@ export const powerCardStyles = [
       .mushic-overlay-svg {
          width: 100%;
          height: 100%;
-         color: var(--mushic-overlay-color, var(--tile-color));
+         color: var(--mushic-overlay-color, var(--mushic-icon-color, var(--state-inactive-color)));
          opacity: var(--mushic-overlay-opacity, 1);
-         --mdc-icon-size: var(--mushic-overlay-size, var(--mushic-icon-size, var(--tile-mdc-icon-size)));
+         --mdc-icon-size: var(--mushic-overlay-size, var(--mushic-final-icon-size, var(--tile-mdc-icon-size)));
          animation: var(--mushic-overlay-animation);
          transform-origin: 50% 50%;
          transform-style: preserve-3d;
@@ -262,7 +262,7 @@ export const powerCardStyles = [
 
 /* --- FEATURES --- */
       hui-card-features {
-        --feature-color: var(--mushic-features-color, var(--tile-color, var(--state-inactive-color)));
+        --feature-color: var(--mushic-features-color, var(--mushic-icon-color, var(--state-inactive-color)));
         padding: var(--mushic-features-padding, 0 12px 12px 12px);
         --feature-height: var(--mushic-features-height, 42px) !important;
       }
