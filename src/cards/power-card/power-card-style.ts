@@ -21,18 +21,18 @@ export const powerCardStyles = [
         --ha-ripple-hover-opacity: 0.04;
         --ha-ripple-pressed-opacity: 0.12;
         min-height: var(--mushic-card-auto-height, auto);
-        height: var(--mushic-final-card-height, 100%);
+        height: var(--mushic-card-height, 100%);
         transition:
           box-shadow 180ms ease-in-out,
           border-color 180ms ease-in-out;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        background: var(--mushic-final-card-bg-color, var(--ha-card-background, var(--card-background-color)));
-        border-radius: var(--mushic-final-border-radius, var(--ha-card-border-radius, 12px));
-        border-width: var(--mushic-final-border-width, var(--ha-card-border-width, 1px));
-        border-style: var(--mushic-final-border-style, solid);
-        border-color: var(--mushic-final-border-color, var(--ha-card-border-color, var(--divider-color)));
+        background: var(--mushic-card-bg-color, var(--ha-card-background, var(--card-background-color)));
+        border-radius: var(--mushic-border-radius, var(--ha-card-border-radius, 12px));
+        border-width: var(--mushic-border-width, var(--ha-card-border-width, 1px));
+        border-style: var(--mushic-border-style, solid);
+        border-color: var(--mushic-border-color, var(--ha-card-border-color, var(--divider-color)));
       }
       ha-card:has(.background:focus-visible) {
         --shadow-default: var(--ha-card-box-shadow, 0 0 0 0 transparent);
@@ -54,8 +54,8 @@ export const powerCardStyles = [
         left: 0;
         bottom: 0;
         right: 0;
-        border-radius: var(--mushic-final-border-radius, var(--ha-card-border-radius, 12px));
-        margin: calc(-1 * var(--mushic-final-border-width, var(--ha-card-border-width, 1px)));
+        border-radius: var(--mushic-border-radius, var(--ha-card-border-radius, 12px));
+        margin: calc(-1 * var(--mushic-border-width, var(--ha-card-border-width, 1px)));
         overflow: hidden;
       }
       
@@ -74,12 +74,12 @@ export const powerCardStyles = [
         display: flex;
         flex-direction: row;
         align-items: center;
-        padding: var(--mushic-final-card-padding, 10px);
+        padding: var(--mushic-card-padding, 10px);
         flex: 1;
         min-width: 0;
         box-sizing: border-box;
         pointer-events: none;
-        gap: var(--mushic-final-content-gap, 10px);
+        gap: var(--mushic-content-gap, 10px);
       }
 
       .vertical {
@@ -94,7 +94,7 @@ export const powerCardStyles = [
 
 /* --- ICON CONTAINER --- */      
       ha-tile-icon {
-        --tile-icon-color: var(--mushic-final-shape-color, var(--tile-color));
+        --tile-icon-color: var(--mushic-shape-color, var(--tile-color));
         position: relative;
         margin: -6px;
         padding: 6px;
@@ -135,8 +135,8 @@ export const powerCardStyles = [
          width: 100%;
          height: 100%;
          border-radius: 50%;
-         background: var(--mushic-final-shape-color, var(--tile-color));
-         opacity: var(--mushic-final-shape-opacity, 0.2);
+         background: var(--mushic-shape-color, var(--tile-color));
+         opacity: var(--mushic-shape-opacity, 0.2);
          animation: var(--mushic-shape-animation);
          transform-origin: 50% 50%;
          transform-style: preserve-3d;
@@ -147,10 +147,10 @@ export const powerCardStyles = [
         opacity: 0 !important;
       }
       ha-tile-icon:hover .mushic-shape {
-        opacity: var(--mushic-final-shape-hover-opacity, 0.35);
+        opacity: var(--mushic-shape-hover-opacity, 0.35);
       }
       ha-tile-icon.weather:hover .mushic-shape {
-        opacity: var(--mushic-final-shape-hover-opacity, 0.35);
+        opacity: var(--mushic-shape-hover-opacity, 0.35);
       }
       ha-tile-icon.no-shape:hover .mushic-shape {
         opacity: 0 !important;
@@ -168,7 +168,7 @@ export const powerCardStyles = [
 
 /* --- ICON --- */
       ha-state-icon {
-        color: var(--mushic-final-icon-color, var(--tile-color));
+        color: var(--mushic-icon-color, var(--tile-color));
         animation: var(--mushic-icon-animation);
         position: relative;
         z-index: 2;
@@ -184,7 +184,7 @@ export const powerCardStyles = [
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--mushic-final-icon-color);
+        color: var(--mushic-icon-color);
         z-index: 1;
       }
       .mushic-picture svg {
@@ -200,8 +200,8 @@ export const powerCardStyles = [
          position: absolute;
          top: 50%;
          left: 50%;
-         width: var(--mushic-final-overlay-size, var(--tile-mdc-icon-size));
-         height: var(--mushic-final-overlay-size, var(--tile-mdc-icon-size));
+         width: var(--mushic-overlay-size, var(--mushic-icon-size, var(--tile-mdc-icon-size)));
+         height: var(--mushic-overlay-size, var(--mushic-icon-size, var(--tile-mdc-icon-size)));
          pointer-events: none;
          z-index: 3;
          display: flex;
@@ -212,9 +212,9 @@ export const powerCardStyles = [
       .mushic-overlay-svg {
          width: 100%;
          height: 100%;
-         color: var(--mushic-final-overlay-color, var(--tile-color));
-         opacity: var(--mushic-final-overlay-opacity, 1);
-         --mdc-icon-size: var(--mushic-final-overlay-size, var(--tile-mdc-icon-size));
+         color: var(--mushic-overlay-color, var(--tile-color));
+         opacity: var(--mushic-overlay-opacity, 1);
+         --mdc-icon-size: var(--mushic-overlay-size, var(--mushic-icon-size, var(--tile-mdc-icon-size)));
          animation: var(--mushic-overlay-animation);
          transform-origin: 50% 50%;
          transform-style: preserve-3d;
@@ -224,11 +224,11 @@ export const powerCardStyles = [
 /* --- BADGE --- */
       .mushic-badge {
         position: absolute;
-        top: var(--mushic-final-badge-margin-top, 3px);
-        right: var(--mushic-final-badge-margin-right, 3px);
+        top: var(--mushic-badge-margin-top, 3px);
+        right: var(--mushic-badge-margin-right, 3px);
         width: var(--mushic-final-badge-size);
         height: var(--mushic-final-badge-size);
-        background: var(--mushic-final-badge-color, var(--secondary-text-color));
+        background: var(--mushic-badge-color, var(--secondary-text-color));
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -239,7 +239,7 @@ export const powerCardStyles = [
       }
       .mushic-badge ha-icon {
         --mdc-icon-size: var(--mushic-final-badge-icon-size);
-        color: var(--mushic-final-badge-icon-color, white);
+        color: var(--mushic-badge-icon-color, var(--primary-text-color));
         display: flex;
         align-items: center;
         justify-content: center;
@@ -248,7 +248,7 @@ export const powerCardStyles = [
       .mushic-badge span {
         font-size: var(--mushic-final-badge-text-size);
         font-weight: bold;
-        color: var(--mushic-final-badge-text-color, white);
+        color: var(--mushic-badge-text-color, var(--primary-text-color));
         line-height: 1;
       }
       
@@ -262,15 +262,15 @@ export const powerCardStyles = [
 
 /* --- FEATURES --- */
       hui-card-features {
-        --feature-color: var(--mushic-final-features-color, var(--tile-color, var(--state-inactive-color)));
-        padding: var(--mushic-final-features-padding, 0 12px 12px 12px);
-        --feature-height: var(--mushic-final-features-height, 42px) !important;
+        --feature-color: var(--mushic-features-color, var(--tile-color, var(--state-inactive-color)));
+        padding: var(--mushic-features-padding, 0 12px 12px 12px);
+        --feature-height: var(--mushic-features-height, 42px) !important;
       }
       .container.horizontal hui-card-features {
         width: calc(50% - var(--column-gap, 0px) / 2 - 12px);
         flex: none;
-        --feature-height: var(--mushic-final-features-height, var(--mushic-final-shape-size, 36px)) !important;
-        padding: var(--mushic-final-features-padding, 0 12px);
+        --feature-height: var(--mushic-features-height, var(--mushic-final-shape-size, 36px)) !important;
+        padding: var(--mushic-features-padding, 0 12px);
         padding-inline-start: 0;
       }
       
@@ -280,10 +280,10 @@ export const powerCardStyles = [
       .container.feature-only hui-card-features {
         flex: 1;
         width: 100%;
-        padding: var(--mushic-final-features-padding, 12px 12px 12px 12px);
+        padding: var(--mushic-features-padding, 12px 12px 12px 12px);
       }
       .container.feature-only.horizontal hui-card-features {
-        padding: var(--mushic-final-features-padding, 0 12px);
+        padding: var(--mushic-features-padding, 0 12px);
       }
       .container.horizontal .content:not(:has(ha-tile-info)) {
         flex: none;
