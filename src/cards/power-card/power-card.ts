@@ -644,11 +644,16 @@ public getGridOptions(): LovelaceGridOptions {
           + calc(var(--mushic-final-features-height) * ${featuresCount})
           + calc(var(--mushic-final-features-gap) * max(0, ${featuresCount} - 1))
           + calc(var(--mushic-final-card-padding, 10px) * 2)
+          - 0.5px
         )
       `;
     } else if (featurePosition === "inline") {
       style["--mushic-card-auto-height"] = `
-        calc(var(--mushic-final-shape-size) + calc(var(--mushic-final-card-padding, 10px) * 2))
+        calc(
+        var(--mushic-final-shape-size) 
+        + calc(var(--mushic-final-card-padding, 10px) * 2)
+        - 0.5px
+        )
       `;
     } else {
       style["--mushic-card-auto-height"] = `
@@ -656,6 +661,7 @@ public getGridOptions(): LovelaceGridOptions {
           var(--mushic-final-shape-size)
           + calc(var(--mushic-final-card-padding, 10px) * 2)
           + calc(var(--mushic-final-features-height) * ${featuresCount})
+          - 0.5px
         )
       `;
     }
