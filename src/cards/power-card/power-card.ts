@@ -100,6 +100,7 @@ const TEMPLATE_KEYS = [
 
   // --- CARD STYLING ---
   "card_height",
+  "card_min_height"
   "card_bg_color",
   "border_color",
   "border_width",
@@ -658,7 +659,8 @@ public getGridOptions(): LovelaceGridOptions {
         )
       `;
     }
-
+    
+    style["--mushic-final-card-min-height"] = this.getValue("card_min_height") ||  "var(--mushic-min-card-height, var(--mushic-card-auto-height))";
 
     const contentClasses = classMap({
       vertical: Boolean(this._config.vertical),
