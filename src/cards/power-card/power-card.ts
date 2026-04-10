@@ -520,20 +520,22 @@ public getGridOptions(): LovelaceGridOptions {
     const shape = parseInt(finalShapeSize);
     
    //  --- Vertical height calculation ---
-    const verticalHeight = `${
-      shape +
-      primarySize * primaryLH +
-      secondarySize * secondaryLH +
-      41.6
-    }px`;
+  //  const verticalHeight = `${
+  //    shape +
+ //     primarySize * primaryLH +
+  //    secondarySize * secondaryLH +
+  //    41.6
+ //   }px`;
     
-    const finalCardHeight =
-      cardHeight ||
-      (this._config?.vertical
-        ? verticalHeight
-        : icon || picture
-          ? `calc(${finalShapeSize} + 20px)`
-          : `calc(36px + 20px)`);
+ //   const finalCardHeight =
+  //    cardHeight ||
+  //    (this._config?.vertical
+  //      ? verticalHeight
+  //      : icon || picture
+  //        ? `calc(${finalShapeSize} + 20px)`
+  //        : `calc(36px + 20px)`);
+
+
     
     // --- SHOW SHAPE? ---
     const shapeColorValue = this.getValue("shape_color")?.trim();
@@ -547,6 +549,7 @@ public getGridOptions(): LovelaceGridOptions {
     // --- AUTO_ANIMATION
     const autoAnim = getAutoAnimations(icon);
     const autoBadgeAnim = getAutoBadgeAnimation(badgeIcon);
+    const autoOverlayAnim = getAutoOverlayAnimation(overlayIcon);
     
     const style = {
       // --- ICON ---  
@@ -607,27 +610,54 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-shape-animation": this.getValue("shape_animation") || autoAnim.shape,
       "--mushic-badge-animation": this.getValue("badge_animation"),
       "--mushic-badge-icon-animation": this.getValue("badge_icon_animation") || autoBadgeAnim,
-      "--mushic-overlay-animation": this.getValue("overlay_animation"),
+      "--mushic-overlay-animation": this.getValue("overlay_animation") || autoOverlayAnim,
       "--mushic-card-keyframes": this.getValue("keyframes"),
 
       // --- FEATURES ---
       "--mushic-final-features-color": featuresCssColor || "var(--mushic-features-color, var(--mushic-icon-color))",
       "--mushic-final-features-height": this.getValue("features_height") || "var(--mushic-features-height)",
       "--mushic-final-features-padding": this.getValue("features_padding") || "var(--mushic-features-padding)",
+      "--mushic-final-features-gap": this.getValue("features_gap") || "var(--mushic-features-gap, 12px)",
+      "--ha-card-feature-gap": "var(--mushic-final-features-gap)",
     };
 
     const featurePosition = this._featurePosition(this._config);
+    const featuresCount = this._config?.features?.length || 0;
     const features = this._displayedFeatures(this._config);
-
     const featureContext = this._featureContext(this._config);
-
     const featureOnly =
       features.length > 0 && !icon && !picture && !primary && !secondary;
-
     const containerClasses = classMap({
       horizontal: featurePosition === "inline",
       "feature-only": featureOnly,
     });
+    
+    // --- Dynamic height ---
+    if (this._config.vertical) {
+      style["--mushic-card-auto-height"] = `
+        calc(
+          var(--mushic-final-shape-size)
+          + calc(var(--ha-tile-info-primary-font-size) * var(--ha-tile-info-primary-line-height))
+          + calc(var(--ha-tile-info-secondary-font-size) * var(--ha-tile-info-secondary-line-height))
+          + calc(var(--mushic-final-features-height) * ${featuresCount})
+          + calc(var(--mushic-final-features-gap) * max(0, ${featuresCount} - 1))
+          + calc(var(--mushic-final-card-padding, 10px) * 2)
+        )
+      `;
+    } else if (featurePosition === "inline") {
+      style["--mushic-card-auto-height"] = `
+        calc(var(--mushic-final-shape-size) + calc(var(--mushic-final-card-padding, 10px) * 2))
+      `;
+    } else {
+      style["--mushic-card-auto-height"] = `
+        calc(
+          var(--mushic-final-shape-size)
+          + calc(var(--mushic-final-card-padding, 10px) * 2)
+          + calc(var(--mushic-final-features-height) * ${featuresCount})
+        )
+      `;
+    }
+
 
     const contentClasses = classMap({
       vertical: Boolean(this._config.vertical),
