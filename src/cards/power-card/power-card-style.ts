@@ -228,7 +228,7 @@ export const powerCardStyles = [
         right: var(--mushic-badge-margin-right, 3px);
         width: var(--mushic-final-badge-size);
         height: var(--mushic-final-badge-size);
-        background: var(--mushic-badge-color, var(--secondary-text-color));
+        background: var(--mushic-badge-color, var(--state-inactive-color));
         border-radius: 50%;
         display: flex;
         align-items: center;
