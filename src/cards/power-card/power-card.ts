@@ -207,7 +207,7 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
     super.updated(changedProps);
   
     if (!this._config || !this.hass) return;
-  
+    this.style.setProperty("--mushic-force-update", Date.now().toString());
     this._tryConnect();
     this.dispatchEvent(new Event("iron-resize", { bubbles: true, composed: true }));
   }
@@ -342,63 +342,48 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
       ? this._templateResults?.[key]?.result?.toString()
       : value;
   }
+
+  // --- CARD HEIGHT ---
+  private _computeAutoHeightPx(): number {
+    const h = getComputedStyle(this).getPropertyValue("--mushic-card-auto-height");
+    const px = parseFloat(h);
+    return isNaN(px) ? 56 : px;
+  }
+  
+  private _heightToRows(h: number): number {
+    if (h <= 56) return 1;
+    return 1 + Math.ceil((h - 56) / 64);
+  }
   
   public getCardSize(): number {
-    const card = this.shadowRoot?.querySelector("ha-card");
-    if (!card) return 3;
+    const px = this._computeAutoHeightPx();
+    return Math.max(1, Math.ceil(px / 60));
+  }
   
-    const height = card.getBoundingClientRect().height;
+  public getGridOptions(): LovelaceGridOptions {
+    let columns = 6;
+    let rows = 1;
   
-    return Math.ceil(height / 60);
-  }
-
-public getGridOptions(): LovelaceGridOptions {
-  const card = this.shadowRoot?.querySelector("ha-card");
-  let measuredRows: number | undefined;
-
-  if (card) {
-    const height = card.getBoundingClientRect().height;
-    measuredRows = Math.max(1, Math.ceil(height / 60)); 
-  }
-
-  let columns: number | undefined = 6;
-  let rows: number | undefined = measuredRows;
-
-  const hasContent = Boolean(
-    this._config?.icon ||
-      this._config?.picture ||
-      this._config?.primary ||
-      this._config?.secondary
-  );
-
-  const featurePosition = this._config && this._featurePosition(this._config);
-  const featuresCount = this._config?.features?.length || 0;
-
-  if (featuresCount && featurePosition === "inline") {
-    columns = 12;
-  }
-
-  if (!rows) {
-    rows = hasContent ? 1 : 0;
-
-    if (featuresCount && featurePosition !== "inline") {
-      rows += featuresCount;
+    const featurePosition = this._config && this._featurePosition(this._config);
+    const featuresCount = this._config?.features?.length || 0;
+  
+    // Inline Features → 12 columns
+    if (featuresCount && featurePosition === "inline") {
+      columns = 12;
     }
-
-    if (this._config?.vertical) {
-      if (
-        this._config.primary ||
-        (this._config.secondary && !this._config.icon)
-      ) {
-        rows++;
-      }
+  
+    // Sections Dashboard → Height Snapping
+    if (this.closest("ha-sections-dashboard")) {
+      const px = this._computeAutoHeightPx();
+      rows = this._heightToRows(px);
+      return { columns, rows };
     }
+  
+    // Andere Layouts ignorieren rows
+    return { columns };
   }
 
-  return { columns, rows };
-}
-
-
+  
   private _handleAction(ev: ActionHandlerEvent) {
     handleAction(this, this.hass!, this._config!, ev.detail.action!);
   }
@@ -599,6 +584,7 @@ public getGridOptions(): LovelaceGridOptions {
       "--ha-card-feature-gap": "var(--mushic-features-gap, 12px)",
     };
 
+  // --- CALCULATE CARD HEIGHT ---
     const card = this.shadowRoot?.querySelector("ha-card");
     let padTop = "0px";
     let padBottom = "0px";
@@ -610,29 +596,30 @@ public getGridOptions(): LovelaceGridOptions {
       padTop = padding[0] || "0px";
       padBottom = padding[2] || padding[0] || "0px";
     }
-  
+    
+    // -- Shape --
     const shapeHeight = this._config.vertical && !icon && !picture
         ? "0px"
         : "var(--mushic-final-shape-size)";
     
+    // -- Text --
     const primaryTextHeight = this._config.vertical && primary
       ? "calc(var(--ha-tile-info-primary-font-size, var(--ha-font-size-m, 14px)) * var(--ha-tile-info-primary-line-height, var(--ha-line-height-normal, 1.6)))"
       : "0px";
-    
     const secondaryTextHeight = this._config.vertical && secondary
       ? "calc(var(--ha-tile-info-secondary-font-size, var(--ha-font-size-s, 12px)) * var(--ha-tile-info-secondary-line-height, var(--ha-line-height-condensed, 1.2)))"
       : "0px";
-
     const gapHeight = this._config.vertical && primary && secondary
       ? "var(--mushic-content-gap, 10px)"
       : "0px";
-    
+
+    // -- Content = Shape + Text --
     const contentHeight = 
       `calc(
           ${shapeHeight} + ${primaryTextHeight} + ${secondaryTextHeight} + ${gapHeight}
           + calc(var(--mushic-card-padding, 10px) * 2)
       )`;
-
+    // -- Card Heigt = Content + Features
     const finalHeight =
       featuresCount > 0 && featurePosition === "bottom"
         ? `calc(
@@ -642,9 +629,10 @@ public getGridOptions(): LovelaceGridOptions {
              + calc(${padTop} + ${padBottom})
            )`
         : contentHeight;
-
-    style["--mushic-card-auto-height"] = finalHeight;
     
+    // -- set variable for CSS
+    style["--mushic-card-auto-height"] = finalHeight;
+
     const features = this._displayedFeatures(this._config);
     const featureContext = this._featureContext(this._config);
     const featureOnly =
