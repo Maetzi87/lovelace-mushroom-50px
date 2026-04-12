@@ -514,34 +514,6 @@ public getGridOptions(): LovelaceGridOptions {
     const featuresCssColor = featuresColor ? computeCssColor(featuresColor) : undefined;
     const featurePosition = this._config && this._featurePosition(this._config);
     const featuresCount = this._config?.features?.length || 0;
-//    const useAutoHeight = featuresCount === 0 || featurePosition === "inline";
-    
-    // --- Automatic fallback scaling ---
-    const finalShapeSize = shapeSize || `36px`;
-    // const scaledIconSize = `calc(${finalShapeSize} * 0.666)`;
-    // const scaledBadgeSize = badgeSize || `calc(${finalShapeSize} * 0.444)`;
-    // const scaledBadgeIconSize = badgeIconSize || `calc(${scaledBadgeSize} * 0.75)`;
-    // const scaledBadgeTextSize = badgeTextSize || `calc(${scaledBadgeSize} * 0.5)`;
-    
-    const shape = parseInt(finalShapeSize);
-    
-   //  --- Vertical height calculation ---
-  //  const verticalHeight = `${
-  //    shape +
- //     primarySize * primaryLH +
-  //    secondarySize * secondaryLH +
-  //    41.6
- //   }px`;
-    
- //   const finalCardHeight =
-  //    cardHeight ||
-  //    (this._config?.vertical
-  //      ? verticalHeight
-  //      : icon || picture
-  //        ? `calc(${finalShapeSize} + 20px)`
-  //        : `calc(36px + 20px)`);
-
-
     
     // --- SHOW SHAPE? ---
     const shapeColorValue = this.getValue("shape_color")?.trim();
@@ -644,11 +616,11 @@ public getGridOptions(): LovelaceGridOptions {
         : "var(--mushic-final-shape-size)";
     
     const primaryTextHeight = this._config.vertical && primary
-      ? "calc(var(--ha-tile-info-primary-font-size) * var(--ha-tile-info-primary-line-height))"
+      ? "calc(var(--ha-tile-info-primary-font-size, var(--ha-font-size-m, 14px)) * var(--ha-tile-info-primary-line-height, var(--ha-line-height-normal, 1.6)))"
       : "0px";
     
     const secondaryTextHeight = this._config.vertical && secondary
-      ? "calc(var(--ha-tile-info-secondary-font-size) * var(--ha-tile-info-secondary-line-height))"
+      ? "calc(var(--ha-tile-info-secondary-font-size, var(--ha-font-size-s, 12px)) * var(--ha-tile-info-secondary-line-height, var(--ha-line-height-condensed, 1.2)))"
       : "0px";
 
     const gapHeight = this._config.vertical && primary && secondary
@@ -681,20 +653,6 @@ public getGridOptions(): LovelaceGridOptions {
       horizontal: featurePosition === "inline",
       "feature-only": featureOnly,
     });
-    
-    // --- Dynamic height ---
-//    if (this._config.vertical) {
-  //    style["--mushic-card-auto-height"] = 
-    //    "calc(var(--mushic-final-shape-size) + calc(var(--ha-tile-info-primary-font-size) * var(--ha-tile-info-primary-line-height)) + calc(var(--ha-tile-info-secondary-font-size) * var(--ha-tile-info-secondary-line-height)) + calc(var(--mushic-card-padding, 10px) * 2) - 0.5px)"
-//    } else if (featurePosition === "inline") {
-//      style["--mushic-card-auto-height"] =
-//        "calc(var(--mushic-final-shape-size) + calc(var(--mushic-final-card-padding, 10px) * 2) - 0.5px )";
-//    } else {
-//      style["--mushic-card-auto-height"] = 
-//        "calc(var(--mushic-final-shape-size) + calc(var(--mushic-final-card-padding, 10px) * 2) - 0.5px)";
-//    }
-    
-//    style["--mushic-final-card-min-height"] = this.getValue("card_min_height") ||  "var(--mushic-min-card-height, var(--mushic-card-auto-height))";
 
     const contentClasses = classMap({
       vertical: Boolean(this._config.vertical),
