@@ -514,7 +514,7 @@ public getGridOptions(): LovelaceGridOptions {
     const featuresCssColor = featuresColor ? computeCssColor(featuresColor) : undefined;
     const featurePosition = this._config && this._featurePosition(this._config);
     const featuresCount = this._config?.features?.length || 0;
-    const useAutoHeight = featuresCount === 0 || featurePosition === "inline";
+//    const useAutoHeight = featuresCount === 0 || featurePosition === "inline";
     
     // --- Automatic fallback scaling ---
     const finalShapeSize = shapeSize || `36px`;
@@ -593,6 +593,7 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-badge-margin-right": this.getValue("badge_margin_right"),  
     
       // --- CARD STYLING ---
+      "--mushic-card-height": this.getValue("card_height"),
       "--mushic-card-bg-color": cardBgCssColor,
       "--mushic-ripple-color": rippleCssColor,
       "--mushic-border-color": borderCssColor,
@@ -624,16 +625,53 @@ public getGridOptions(): LovelaceGridOptions {
       "--mushic-features-padding": this.getValue("features_padding"),
       "--mushic-features-gap": this.getValue("features_gap"),
       "--ha-card-feature-gap": "var(--mushic-features-gap, 12px)",
-
-      // --- CARD HEIGHT ---
-      "--mushic-card-height": this.getValue("card_height"),
-      "--mushic-card-auto-height": useAutoHeight
-         ? (this._config.vertical
-             ? "calc(var(--mushic-final-shape-size) + calc(var(--ha-tile-info-primary-font-size) * var(--ha-tile-info-primary-line-height)) + calc(var(--ha-tile-info-secondary-font-size) * var(--ha-tile-info-secondary-line-height)) + calc(var(--mushic-card-padding, 10px) * 2) - 0.5px)"
-             : "calc(var(--mushic-final-shape-size) + calc(var(--mushic-card-padding, 10px) * 2) - 0.5px )" 
-           )
-         : undefined,
     };
+
+    const card = this.shadowRoot?.querySelector("ha-card");
+    let padTop = "0px";
+    let padBottom = "0px";
+    if (card) {
+      const padding = getComputedStyle(card)
+        .getPropertyValue("--mushic-features-padding")
+        .trim()
+        .split(/\s+/);
+      padTop = padding[0] || "0px";
+      padBottom = padding[2] || padding[0] || "0px";
+    }
+  
+    const shapeHeight = this._config.vertical && !icon && !picture
+        ? "0px"
+        : "var(--mushic-final-shape-size)";
+    
+    const primaryTextHeight = this._config.vertical && primary
+      ? "calc(var(--ha-tile-info-primary-font-size) * var(--ha-tile-info-primary-line-height))"
+      : "0px";
+    
+    const secondaryTextHeight = this._config.vertical && secondary
+      ? "calc(var(--ha-tile-info-secondary-font-size) * var(--ha-tile-info-secondary-line-height))"
+      : "0px";
+
+    const gapHeight = this._config.vertical && primary && secondary
+      ? "var(--mushic-content-gap, 10px)"
+      : "0px";
+    
+    const contentHeight = 
+      `calc(
+          ${shapeHeight} + ${primaryTextHeight} + ${secondaryTextHeight} + ${gapHeight}
+          + calc(var(--mushic-card-padding, 10px) * 2)
+      )`;
+
+    const finalHeight =
+      featuresCount > 0 && featurePosition === "bottom"
+        ? `calc(
+             ${contentHeight}
+             + calc(${featuresCount} * var(--mushic-features-height, 42px))
+             + calc(${Math.max(0, featuresCount - 1)} * var(--mushic-features-gap, 12px))
+             + calc(${padTop} + ${padBottom})
+           )`
+        : contentHeight;
+
+    style["--mushic-card-auto-height"] = finalHeight;
     
     const features = this._displayedFeatures(this._config);
     const featureContext = this._featureContext(this._config);
