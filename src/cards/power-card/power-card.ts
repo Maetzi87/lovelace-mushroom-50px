@@ -350,9 +350,9 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
     if (isNaN(px)) return 56;
     return Math.floor(px);
   }
-  
+
   private _heightToRows(h: number): number {
-    if (h <= 56) return 1;
+    if (h < 57) return 1;
     return 1 + Math.ceil((h - 56) / 64);
   }
   
