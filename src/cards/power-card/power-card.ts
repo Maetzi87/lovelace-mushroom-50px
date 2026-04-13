@@ -19,7 +19,7 @@ import {
   HomeAssistant,
   LovelaceCard,
   LovelaceCardEditor,
-  LovelaceGridOptions,
+  LovelaceGridOptions, 
   RenderTemplateResult,
   subscribeRenderTemplate,
   ActionHandlerOptions,
