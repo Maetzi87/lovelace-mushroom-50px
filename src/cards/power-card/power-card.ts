@@ -347,7 +347,8 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
   private _computeAutoHeightPx(): number {
     const h = getComputedStyle(this).getPropertyValue("--mushic-card-auto-height");
     const px = parseFloat(h);
-    return isNaN(px) ? 56 : px;
+    if (isNaN(px)) return 56;
+    return Math.floor(px);
   }
   
   private _heightToRows(h: number): number {
@@ -585,16 +586,14 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
     };
 
   // --- CALCULATE CARD HEIGHT ---
-    const card = this.shadowRoot?.querySelector("ha-card");
-    let padTop = "0px";
-    let padBottom = "0px";
-    if (card) {
-      const padding = getComputedStyle(card)
-        .getPropertyValue("--mushic-features-padding")
-        .trim()
-        .split(/\s+/);
-      padTop = padding[0] || "0px";
-      padBottom = padding[2] || padding[0] || "0px";
+    // -- Feature-Padding
+    const features = this.shadowRoot?.querySelector("hui-card-features");
+    let padTop = 0;
+    let padBottom = 0;
+    if (features) {
+      const style = getComputedStyle(features);
+      padTop = parseFloat(style.paddingTop);
+      padBottom = parseFloat(style.paddingBottom);
     }
     
     // -- Shape --
