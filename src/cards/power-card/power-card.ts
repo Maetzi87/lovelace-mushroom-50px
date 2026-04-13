@@ -586,12 +586,12 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
     };
 
   // --- CALCULATE CARD HEIGHT ---
-    // -- Feature-Padding
-    const features = this.shadowRoot?.querySelector("hui-card-features");
+    // -- Features-Padding
+    const featuresPad = this.shadowRoot?.querySelector("hui-card-features");
     let padTop = 0;
     let padBottom = 0;
-    if (features) {
-      const style = getComputedStyle(features);
+    if (featuresPad) {
+      const style = getComputedStyle(featuresPad);
       padTop = parseFloat(style.paddingTop);
       padBottom = parseFloat(style.paddingBottom);
     }
