@@ -22,11 +22,11 @@ const alertAnimation = {
 /* --- AUTO ANIMATIONS --- */
 
 /* ICON */
-
 export const AUTO_ANIMATIONS: Record<
   string,
   Partial<{
     icon: string;
+    icon_origin: string;
     shape: string;
     screen: string;
     screenMask: {
@@ -78,16 +78,27 @@ export const AUTO_ANIMATIONS: Record<
 };
 
 /* OVERLAY */
-
-export const AUTO_OVERLAY_ANIMATIONS: Record<string, string> = {
-  "mushic:ceiling-fan-blades": "mushic-blade-rotation 0.3s linear infinite",
+export const AUTO_OVERLAY_ANIMATIONS: Record<
+  string,
+  Partial<{
+    icon: string;
+    icon_origin: string;
+    };
+  }>
+> = {
+  "mushic:ceiling-fan-blades": { icon: "mushic-blade-rotation 0.3s linear infinite", } ,
 };  
 
 /* BADGE */
-
-export const AUTO_BADGE_ANIMATIONS: Record<string, string> = {
-  "mdi:battery-high": "mushic-charge 3s steps(1) infinite",
-  // beliebig erweiterbar
+export const AUTO_BADGE_ANIMATIONS: Record<
+  string,
+  Partial<{
+    icon: string;
+    icon_origin: string;
+    };
+  }>
+> = {
+  "mdi:battery-high": { icon: "mushic-charge 3s steps(1) infinite", } ,
 };
 
 /* --- HELPER --- */
@@ -105,13 +116,13 @@ export function getAutoAnimations(icon?: string) {
 }
 
 /* Overlay-Animation */
-export function getAutoOverlayAnimation(overlayIcon?: string): string | undefined {
-  if (!overlayIcon) return undefined;
-  return AUTO_OVERLAY_ANIMATIONS[overlayIcon];
+export function getAutoOverlayAnimation(overlayIcon?: string) {
+  if (!overlayIcon) return {};
+  return AUTO_OVERLAY_ANIMATIONS[overlayIcon] || {};
 }
 
 /* Badge-Animation */
-export function getAutoBadgeAnimation(badgeIcon?: string): string | undefined {
-  if (!badgeIcon) return undefined;
-  return AUTO_BADGE_ANIMATIONS[badgeIcon];
+export function getAutoBadgeAnimation(badgeIcon?: string) {
+  if (!badgeIcon) return {};
+  return AUTO_BADGE_ANIMATIONS[badgeIcon] || {};
 }
