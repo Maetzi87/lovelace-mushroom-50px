@@ -1,15 +1,15 @@
 /* --- AUTO OVERLAY ICONS --- */
 
 export const AUTO_OVERLAY_MAP: Record<string, string> = {
-  "mdi:cellphone": "mushic:blank",
-  "mdi:laptop": "mushic:blank",
-  "mdi:monitor": "mushic:blank",
-  "mdi:tablet": "mushic:blank",
-  "mdi:television": "mushic:blank",
+  "mdi:cellphone":          "mushic:blank",
+  "mdi:laptop":             "mushic:blank",
+  "mdi:monitor":            "mushic:blank",
+  "mdi:tablet":             "mushic:blank",
+  "mdi:television":         "mushic:blank",
   "mdi:television-classic": "mushic:blank",
 
   "mushic:ceiling-fan-center": "mushic:ceiling-fan-blades",
-  "mushic:ceiling-fan-wind": "mushic:ceiling-fan-blades",
+  "mushic:ceiling-fan-wind":   "mushic:ceiling-fan-blades",
   
   "mushic:printer": "mushic:paper",
 };
