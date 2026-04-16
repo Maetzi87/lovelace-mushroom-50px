@@ -200,6 +200,18 @@ export const powerCardStyles = [
         stroke: currentColor;
       }
 
+/* --- OVERLAY-BG for screen animations --- */
+      .mushic-overlay::before {
+        content: "";
+        position: absolute;
+        width: var(--mushic-screen-width, 0);
+        height: var(--mushic-screen-height, 0);
+        top: var(--mushic-screen-top, 0);
+        left: var(--mushic-screen-left, 0);
+        animation: var(--mushic-screen-animation);
+        pointer-events: none;
+      }
+      
 /* --- OVERLAY-ICON for dual animations --- */
       .mushic-overlay {
          position: absolute;
