@@ -1,10 +1,17 @@
 /* --- AUTO OVERLAY ICONS --- */
 
 export const AUTO_OVERLAY_MAP: Record<string, string> = {
-  "mushic:ceiling-fan-wind": "mushic:ceiling-fan-blades",
-  "mushic:ceiling-fan-center": "mushic:ceiling-fan-blades",
-  "mushic:printer": "mushic:paper",
+  "mdi:cellphone": "mushic:blank",
+  "mdi:laptop": "mushic:blank",
+  "mdi:monitor": "mushic:blank",
+  "mdi:tablet": "mushic:blank",
   "mdi:television": "mushic:blank",
+  "mdi:television-classic": "mushic:blank",
+
+  "mushic:ceiling-fan-center": "mushic:ceiling-fan-blades",
+  "mushic:ceiling-fan-wind": "mushic:ceiling-fan-blades",
+  
+  "mushic:printer": "mushic:paper",
 };
 
 const alertAnimation = {
@@ -30,26 +37,48 @@ export const AUTO_ANIMATIONS: Record<
     };
   }>
 > = {
+  /* Screen flicker */
+  "mdi:cellphone": {
+    screen:     "mushic-flicker 500ms linear infinite",
+    screenMask: { width: "41.666%", height: "58.333%", top: "20.833%", left: "29.166%" }
+  },
+  "mdi:laptop": {
+    screen:     "mushic-flicker 500ms linear infinite",
+    screenMask: { width: "66.666%", height: "41.666%", top: "25%", left: "16.666%" }
+  },
+  "mdi:monitor": {
+    screen:     "mushic-flicker 500ms linear infinite",
+    screenMask: { width: "75%", height: "50%", top: "16.666%", left: "12.5%" }
+  },
+  "mdi:tablet": {
+    screen:     "mushic-flicker 500ms linear infinite",
+    screenMask: { width: "58.333%", height: "50%", top: "25%", left: "20.833%" }
+  },
+  "mdi:television": {
+    screen:     "mushic-flicker 500ms linear infinite",
+    screenMask: { width: "75%", height: "50%", top: "20.833%", left: "12.5%" }
+  },
+  "mdi:television-classic": {
+    screen:     "mushic-flicker 500ms linear infinite",
+    screenMask: { width: "54.166%", height: "41.666%", top: "37.5%", left: "16.666%" }
+  },
+
+  /* Alert */
   "mdi:fire":  alertAnimation,
   "mdi:water": alertAnimation,
-  "mushic:air-freshener":    { icon: "mushic-air 3s ease-in-out infinite", },  
+
+  /* Misc */
+  "mushic:air-freshener":    { icon: "mushic-air 3s ease-in-out infinite", }, 
+
+  /* Fan */
   "mushic:fan":              { icon: "mushic-rotate 1.5s linear infinite", },
-  "mushic:ceiling-fan-wind": { icon: "mushic-wind-forward 1.1s ease-in-out infinite", },
-  "mdi:television": {
-    screen: "mushic-flicker 500ms linear infinite",
-    screenMask: {
-      width: "75%",
-      height: "50%",
-      top: "20.833%",
-      left: "12.5%"
-    }
-  },
+  "mushic:ceiling-fan-wind": { icon: "mushic-wind-forward 1s ease-in-out infinite", },
 };
 
 /* OVERLAY */
 
 export const AUTO_OVERLAY_ANIMATIONS: Record<string, string> = {
-  "mushic:ceiling-fan-blades": "mushic-blade-rotation 0.5s linear infinite",
+  "mushic:ceiling-fan-blades": "mushic-blade-rotation 0.3s linear infinite",
 };  
 
 /* BADGE */
