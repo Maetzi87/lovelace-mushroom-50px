@@ -119,15 +119,18 @@ const TEMPLATE_KEYS = [
   "overlay_margin",
 
   // --- ANIMATIONS ---
+  "animation_color",
   "icon_animation",
+  "icon_origin",
+  "icon_clip_path",
   "shape_animation",
   "badge_animation",
   "badge_icon_animation",
+  "badge_icon_origin",  
+  "badge_icon_clip_path",
   "overlay_animation",
-  "animation_color",
-  "icon_origin",
-  "badge_icon_origin",
   "overlay_origin",
+  "overlay_clip_path",
 
   // --- FEATURES ---
   "features_color",
@@ -575,13 +578,16 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
       // --- ANIMATIONS ---
       "--mushic-icon-animation": this._resolveAnim(this.getValue("icon_animation"), autoAnim.icon),
       "--mushic-icon-origin": this.getValue("icon_origin") || autoAnim.icon_origin,
+      "--mushic-icon-clip-path": this.getValue("icon_clip_path"),
       "--mushic-shape-animation": this._resolveAnim(this.getValue("shape_animation"), autoAnim.shape),
       "--mushic-screen-animation": screenAnimation,
-      "--mushic-badge-animation": this.getValue("badge_animation"),
+      "--mushic-badge-animation": this._resolveAnim(this.getValue("badge_animation"), autoBadgeAnim.shape),
       "--mushic-badge-icon-animation": this._resolveAnim(this.getValue("badge_icon_animation"), autoBadgeAnim.icon),
       "--mushic-badge-icon-origin": this.getValue("badge_icon_origin") || autoBadgeAnim.icon_origin,
+      "--mushic-badge-icon-clip-path": this.getValue("badge_icon_clip_path"),
       "--mushic-overlay-animation": this._resolveAnim(this.getValue("overlay_animation"), autoOverlayAnim),
       "--mushic-overlay-origin": this.getValue("overlay_origin") || autoOverlayAnim.icon_origin,
+      "--mushic-overlay-clip-path": this.getValue("overlay_clip_path"),
       "--mushic-card-keyframes": this.getValue("keyframes"),
       "--mushic-animation-color": this.getValue("animation_color"),
 
