@@ -4,6 +4,7 @@ export const AUTO_OVERLAY_MAP: Record<string, string> = {
   "mushic:ceiling-fan-wind": "mushic:ceiling-fan-blades",
   "mushic:ceiling-fan-center": "mushic:ceiling-fan-blades",
   "mushic:printer": "mushic:paper",
+  "mdi:television": "mushic:blank",
 };
 
 const alertAnimation = {
