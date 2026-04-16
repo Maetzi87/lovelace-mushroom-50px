@@ -100,6 +100,8 @@ export const powerCardStyles = [
         padding: 6px;
         --mdc-icon-size: var(--mushic-final-icon-size);
         --tile-icon-opacity: 0;
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
       }
       ha-tile-icon .container {
         width: var(--tile-icon-size);
@@ -142,6 +144,7 @@ export const powerCardStyles = [
          transform-style: preserve-3d;
          backface-visibility: hidden;
          z-index: 0;
+         box-shadow: 0 0 0 0 rgba(var(--mushic-shape-color, var(--mushic-icon-color, var(--state-inactive-color))), 0.7);
       }
       ha-tile-icon.no-shape .mushic-shape {
         opacity: 0 !important;
@@ -172,6 +175,8 @@ export const powerCardStyles = [
         animation: var(--mushic-icon-animation);
         position: relative;
         z-index: 2;
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
       }
 
 /* --- COLORABLE PICTURE if svg --- */
@@ -244,6 +249,8 @@ export const powerCardStyles = [
         align-items: center;
         justify-content: center;
         animation: var(--mushic-badge-icon-animation);
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
       }
       .mushic-badge span {
         font-size: var(--mushic-final-badge-text-size);
