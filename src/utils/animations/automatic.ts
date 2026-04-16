@@ -66,16 +66,18 @@ export const AUTO_ANIMATIONS: Record<
   /* Alert */
   "mdi:fire":  alertAnimation,
   "mdi:water": alertAnimation,
-
-  /* Misc */
-  "mushic:air-freshener":    { icon: "mushic-air 3s ease-in-out infinite",  }, 
-  "mushic:robot-vacuum":     { icon: "mushic-vacuum 10s linear infinite",   },
-  "mushic:door":             { icon: "mushic-door 6s ease-in-out infinite", },
-  "mushic:dishwasher":       { icon: "bounce 1.5s ease-in-out infinite, wash 1s ease-in-out infinite", icon_origin: "50% 75%" },
   
   /* Fan */
-  "mushic:fan":              { icon: "mushic-rotate 1.5s linear infinite", },
-  "mushic:ceiling-fan-wind": { icon: "mushic-wind-forward 1s ease-in-out infinite", },
+  "mushic:ceiling-fan-wind": { icon: "mushic-wind-forward 1s ease-in-out infinite" },
+  "mushic:fan":              { icon: "mushic-rotate 1.5s linear infinite" },
+  
+  /* Misc */
+  "mushic:air-freshener":    { icon: "mushic-air 3s ease-in-out infinite"  }, 
+  "mushic:robot-vacuum":     { icon: "mushic-vacuum 10s linear infinite"   },
+  "mushic:door":             { icon: "mushic-door 6s ease-in-out infinite", icon_origin: "30%" },
+  "mushic:dishwasher":       { icon: "mushic-bounce 1.5s ease-in-out infinite, mushic-dishwash 1s ease-in-out infinite", icon_origin: "50% 75%" },
+  "mushic:printer":          { icon: "mushic-print 5s infinite" } ,
+
 };
 
 /* OVERLAY */
@@ -87,7 +89,8 @@ export const AUTO_OVERLAY_ANIMATIONS: Record<
     };
   }>
 > = {
-  "mushic:ceiling-fan-blades": { icon: "mushic-blade-rotation 0.3s linear infinite", } ,
+  "mushic:ceiling-fan-blades": { icon: "mushic-blade-rotation 0.3s linear infinite" } ,
+  "mushic:paper":              { icon: "mushic-paper 5s infinite" } ,
 };  
 
 /* BADGE */
