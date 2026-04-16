@@ -345,31 +345,28 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
 
   // -- CARD HEIGHT ---
   
-    private _computeFinalHeightPx(): number {
-    const h = getComputedStyle(this).getPropertyValue("--mushic-card-auto-height");
-    const px = parseFloat(h);
-    if (isNaN(px)) return 56;
-    return Math.round(px);
-  }
-  
   public getCardSize(): number {
-    const px = this._computeFinalHeightPx();
+    const card = this.shadowRoot?.querySelector("ha-card");
+    if (!card) return 1;
+  
+    const px = card.getBoundingClientRect().height;
     return px < 57 ? 1 : Math.ceil(px / 60);
   }
 
   public getGridOptions(): LovelaceGridOptions {
     let columns = 6;
-  
-    // Inline Features → 12 columns
     const featurePosition = this._config && this._featurePosition(this._config);
     const featuresCount = this._config?.features?.length || 0;
     if (featuresCount && featurePosition === "inline") {
       columns = 12;
     }
+    const card = this.shadowRoot?.querySelector("ha-card");
+    let rows = 1;
   
-    const px = this._computeFinalHeightPx();
-    const rows = px < 57 ? 1 : Math.ceil(px / 60);
-  
+    if (card) {
+      const px = card.getBoundingClientRect().height;
+      rows = px < 57 ? 1 : Math.ceil(px / 60);
+    }
     return { columns, rows };
   }
   
