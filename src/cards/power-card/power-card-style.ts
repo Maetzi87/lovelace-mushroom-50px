@@ -174,6 +174,7 @@ export const powerCardStyles = [
         color: var(--mushic-icon-color, var(--state-inactive-color));
         animation: var(--mushic-icon-animation);
         transform-origin: var(--mushic-icon-origin, 50% 50%);
+        clip-path: var(--mushic-icon-clip-path, none);
         position: relative;
         z-index: 2;
         backface-visibility: hidden;
@@ -235,6 +236,7 @@ export const powerCardStyles = [
          --mdc-icon-size: var(--mushic-overlay-size, var(--mushic-final-icon-size, var(--tile-mdc-icon-size)));
          animation: var(--mushic-overlay-animation);
          transform-origin: var(--mushic-overlay-origin, 50% 50%);
+         clip-path: var(--mushic-overlay-clip-path, none);
          transform-style: preserve-3d;
          backface-visibility: hidden;
        }
@@ -254,6 +256,7 @@ export const powerCardStyles = [
         pointer-events: none;
         animation: var(--mushic-badge-animation);
         transform-origin: var(--mushic-badge-icon-origin, 50% 50%);
+        clip-path: var(--mushic-badge-icon-clip-path, none);
         z-index: 4;
       }
       .mushic-badge ha-icon {
