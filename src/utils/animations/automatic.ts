@@ -8,7 +8,7 @@ export const AUTO_OVERLAY_MAP: Record<string, string> = {
 
 const alertAnimation = {
   icon: "mushic-blink 1.5s ease-in-out infinite",
-  shape: "mushic-ping 1.5s infinite, blink 1.5s ease-in-out infinite",
+  shape: "mushic-ping 1.5s infinite, mushic-blink 1.5s ease-in-out infinite",
 };
 
 /* --- AUTO ANIMATIONS --- */
