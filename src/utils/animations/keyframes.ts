@@ -144,8 +144,11 @@ export const mushroomicKeyframes = css`
     45%      { transform: translateX(10%);  clip-path: circle(21.7% at 40% 58%); }
     75%      { transform: translateX(-25%); clip-path: circle(21.7% at 75% 58%); }
   }
-  @keyframes mushic-rinse-dry {
-    50%  { clip-path:  inset(100% 0 0 0); }
+  @keyframes mushic-rinse {
+    50%  { clip-path: polygon(0 0, 0 100%, 35% 100%, 34% 68%, 60% 41%, 71% 56%, 65% 74%, 47% 79%, 32% 69%, 35% 100%, 100% 100%, 100% 0); }
+  }
+  @keyframes mushic-dry {
+    50%  { clip-path: polygon(0 0, 0 100%, 35% 100%, 34% 68%, 60% 41%, 71% 56%, 65% 74%, 47% 79%, 32% 69%, 35% 100%, 100% 100%, 100% 0); }
   }
   
   /* ANIMATED DISHWASHER - use with mdi:dishwasher */
@@ -155,7 +158,8 @@ export const mushroomicKeyframes = css`
     60%                     { transform: translateY(-1.1px) rotate(-4deg); } 
   } 
   @keyframes mushic-dishwash {
-    50%  { clip-path: polygon(0 0, 0 100%, 35% 100%, 36% 74%, 31% 43%, 61% 40%, 71% 69%, 62% 78%, 36% 73%, 35% 100%, 100% 100%, 100% 0); }
+    0%, 100% { clip-path: polygon(0% 0%, 0% 100%, 26.67% 100%, 26.67% 59.13%, 46.89% 36.62%, 26.67% 50.57%, 71% 69%, 63.38% 36.62%, 26.67% 59.13%, 26.67% 100%, 100% 100%, 100% 0%); }
+    50%      { clip-path: polygon(0 0, 0 100%, 35% 100%, 36% 74%, 31% 43%, 61% 40%, 71% 69%, 62% 78%, 36% 73%, 35% 100%, 100% 100%, 100% 0);                                         }
  }
 
  /* COURIOUS DOG - use with mushic:frenchie (or any other face-like icon) */
