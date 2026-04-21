@@ -131,6 +131,7 @@ const TEMPLATE_KEYS = [
   "overlay_animation",
   "overlay_origin",
   "overlay_clip_path",
+  "keyframes",
 
   // --- FEATURES ---
   "features_color",
