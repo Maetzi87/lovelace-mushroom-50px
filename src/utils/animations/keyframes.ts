@@ -115,8 +115,10 @@ export const mushroomicKeyframes = css`
 
   /* ANIMATED CEILING FAN 2 – ROTATION - use with mushic:blades */
   @keyframes mushic-blade-rotation {
-    0%   { transform: rotateY(0deg); }
-    100% { transform: rotateY(360deg); }
+    0%  { transform: rotateY(0deg);    }
+    25% { transform: rotateY(-90deg);  }
+    50% { transform: rotateY(-180deg); }
+    75% { transform: rotateY(-90deg);  }
   }
 
   /* ANIMATED FAN (or whatever) - makes icon rotate */
