@@ -589,7 +589,6 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
       "--mushic-overlay-animation": this._resolveAnim(this.getValue("overlay_animation"), autoOverlayAnim.icon),
       "--mushic-overlay-origin": this.getValue("overlay_origin") || autoOverlayAnim.icon_origin,
       "--mushic-overlay-clip-path": this.getValue("overlay_clip_path"),
-      "--mushic-card-keyframes": this.getValue("keyframes"),
       "--mushic-animation-color": this.getValue("animation_color"),
 
       // --- FEATURES ---
@@ -702,9 +701,10 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
         }
       }
     }
-
+    
     return html`
       <ha-card style=${styleMap(style)}>
+        ${this._injectKeyframes()}
         <div
           class="background"
           @action=${this._handleAction}
@@ -805,6 +805,12 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
       </ha-card>
     `;
   }
+private _injectKeyframes() {
+  const css = this.getValue("keyframes");
+  if (!css || typeof css !== "string") return nothing;
+  if (!css.trim().startsWith("@keyframes")) return nothing;
+  return html`<style>${css}</style>`;
+}
   
 static styles = powerCardStyles;
 }
