@@ -93,6 +93,9 @@ export const AUTO_ANIMATIONS: Record<
   "mushic:printer":      { icon: "mushic-print 5s infinite" } ,
   "mushic:robot-vacuum": { icon: "mushic-vacuum 10s linear infinite"   },
 
+  /* -- MISC -- */
+  "mushic:frenchie": { icon: "animation: huh 4s ease infinite", icon_origin: "40% 70%" },
+
   /* -- WATER -- */
   "mushic:water-boiler":           { shape: "mushic-glow 5s ease-in-out infinite" },
   "mushic:water-boiler-auto":      { shape: "mushic-glow 5s ease-in-out infinite" },
@@ -118,6 +121,7 @@ export const AUTO_OVERLAY_ANIMATIONS: Record<
   "mushic:washing-machine-drum":  { icon: "mushic-spin 0.5s linear infinite", icon_origin: "50% 58%" },
   "mushic:washing-machine-waves": { icon: "mushic-wash 5s ease-in-out infinite", icon_origin: "50% 58%" },
   "mushic:alert":                 { icon: "mushic-blink 1.5s ease-in-out infinite" },
+  "mushic:no-motion":             { icon: "mushic-blink 1s linear infinite" },
 };  
 
 /* BADGE */
