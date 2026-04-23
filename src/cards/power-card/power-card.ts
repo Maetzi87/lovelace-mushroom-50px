@@ -787,8 +787,8 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
                 ${primary || secondary
                   ? html`
                       <ha-tile-info id="info">
-                        <span slot="primary">${primary}</span>
-                        <span slot="secondary">${secondary}</span>
+                        <span slot="primary" class="mushic-primary">${primary}</span>
+                        <span slot="secondary" class="mushic-secondary">${secondary}</span>
                       </ha-tile-info>
                     `
                   : nothing}
