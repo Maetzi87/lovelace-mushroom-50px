@@ -297,7 +297,7 @@ export const powerCardStyles = [
       }
       ha-tile-info .mushic-secondary {
         text-shadow: var(--mushic-secondary-text-shadow, none);
-        overflow: visible !important;
+        overflow: visible !important; 
       }
 
 
