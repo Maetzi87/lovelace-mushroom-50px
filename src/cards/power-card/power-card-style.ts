@@ -290,13 +290,14 @@ export const powerCardStyles = [
         min-width: 0;
         transition: background-color 180ms ease-in-out;
         box-sizing: border-box;
-        overflow: visible !important;
       }
       ha-tile-info .mushic-primary {
         text-shadow: var(--mushic-primary-text-shadow, none);
+        overflow: visible !important;
       }
       ha-tile-info .mushic-secondary {
         text-shadow: var(--mushic-secondary-text-shadow, none);
+        overflow: visible !important;
       }
 
 
