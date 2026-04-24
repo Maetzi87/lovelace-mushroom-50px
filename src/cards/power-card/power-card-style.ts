@@ -83,7 +83,6 @@ export const powerCardStyles = [
 
       .vertical {
         flex-direction: column;
-        text-align: center;
         justify-content: center;
       }
       .vertical ha-tile-info {
@@ -294,14 +293,23 @@ export const powerCardStyles = [
       }
       
       ha-tile-info .mushic-primary {
+        text-align: var(--mushic-primary-text-align, left);
         text-shadow: var(--mushic-primary-text-shadow, none);
         font-variant: var(--mushic-primary-font-variant, normal);
         overflow: visible !important;
       }
       ha-tile-info .mushic-secondary {
+        text-align: var(--mushic-secondary-text-align, left);
         text-shadow: var(--mushic-secondary-text-shadow, none);
         font-variant: var(--mushic-secondary-font-variant, normal);
         overflow: visible !important; 
+      }
+
+      .vertical ha-tile-info .mushic-primary {
+        text-align: var(--mushic-primary-text-align, center);
+      }
+      .vertical ha-tile-info .mushic-secondary {
+        text-align: var(--mushic-secondary-text-align, center);
       }
 
 /* --- FEATURES --- */
