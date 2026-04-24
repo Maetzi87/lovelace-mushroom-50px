@@ -29,13 +29,11 @@ export const powerCardStyles = [
         border-width: var(--mushic-border-width, var(--ha-card-border-width, 1px));
         border-style: var(--mushic-border-style, solid);
         border-color: var(--mushic-border-color, var(--ha-card-border-color, var(--divider-color)));
-        overflow: visible !important;
-        box-shadow: var(--mushic-card-shadow);
       }
 
       ha-card:has(.background:focus-visible) {
         --shadow-default: var(--ha-card-box-shadow, 0 0 0 0 transparent);
-        --shadow-focus: 0 0 0 1px var(--mushic-icon-color, var(--state-inactive-color));
+        --shadow-focus: var(--mushic-focus-shadow, 0 0 0 1px var(--mushic-icon-color, var(--state-inactive-color)));
         box-shadow: var(--shadow-default), var(--shadow-focus);
       }
 
