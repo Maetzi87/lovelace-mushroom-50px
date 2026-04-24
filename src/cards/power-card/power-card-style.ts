@@ -78,7 +78,7 @@ export const powerCardStyles = [
         box-sizing: border-box;
         pointer-events: none;
         gap: var(--mushic-content-gap, 10px);
-        overflow: hidden !important;
+        overflow: visible !important;
       }
 
       .vertical {
@@ -292,6 +292,13 @@ export const powerCardStyles = [
         transition: background-color 180ms ease-in-out;
         box-sizing: border-box;
       }
+      ha-tile-info span {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: block;
+      }
+      
       ha-tile-info .mushic-primary {
         text-shadow: var(--mushic-primary-text-shadow, none);
         overflow: visible !important;
