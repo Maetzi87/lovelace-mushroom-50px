@@ -78,7 +78,7 @@ export const powerCardStyles = [
         box-sizing: border-box;
         pointer-events: none;
         gap: var(--mushic-content-gap, 10px);
-        overflow: visible !important;
+        overflow: hidden !important;
       }
 
       .vertical {
@@ -292,12 +292,6 @@ export const powerCardStyles = [
         transition: background-color 180ms ease-in-out;
         box-sizing: border-box;
       }
-      ha-tile-info span {
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        display: block;
-      }
       
       ha-tile-info .mushic-primary {
         text-shadow: var(--mushic-primary-text-shadow, none);
@@ -320,7 +314,7 @@ export const powerCardStyles = [
         width: calc(50% - var(--column-gap, 0px) / 2 - 12px);
         flex: none;
         --feature-height: var(--mushic-features-height, var(--mushic-final-shape-size, 36px)) !important;
-        padding: var(--mushic-features-padding, 0 12px);
+        padding: var(--mushic-features-padding, 0 12px) !important;
         padding-inline-start: 0;
       }
       
@@ -330,10 +324,10 @@ export const powerCardStyles = [
       .container.feature-only hui-card-features {
         flex: 1;
         width: 100%;
-        padding: var(--mushic-features-padding, 12px 12px 12px 12px);
+        padding: var(--mushic-features-padding, 12px 12px 12px 12px) !important;
       }
       .container.feature-only.horizontal hui-card-features {
-        padding: var(--mushic-features-padding, 0 12px);
+        padding: var(--mushic-features-padding, 0 12px) !important;
       }
       .container.horizontal .content:not(:has(ha-tile-info)) {
         flex: none;
