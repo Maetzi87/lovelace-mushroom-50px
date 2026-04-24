@@ -30,7 +30,7 @@ export const powerCardStyles = [
         border-style: var(--mushic-border-style, solid);
         border-color: var(--mushic-border-color, var(--ha-card-border-color, var(--divider-color)));
         overflow: visible !important;
-        box-shadow: var(--mushic-card-shadow, 0 0 20px red);
+        box-shadow: var(--mushic-card-shadow);
       }
 
       ha-card:has(.background:focus-visible) {
