@@ -78,20 +78,20 @@ const TEMPLATE_KEYS = [
   "primary_font_size",
   "primary_font_weight",
   "primary_font_variant",
-  "primary_text_shadow",
   "primary_line_height",
   "primary_letter_spacing",
   "primary_text_align",
+  "primary_text_shadow",
   
   "secondary",
   "secondary_color",
   "secondary_font_size",
   "secondary_font_weight",
   "secondary_font_variant",
-  "secondary_text_shadow",
   "secondary_line_height",
   "secondary_letter_spacing",
   "secondary_text_align",
+  "secondary_text_shadow",
   
   // --- BADGE ---
   "badge_icon",
@@ -544,24 +544,23 @@ export class MushroomicPowerCard extends LitElement implements LovelaceCard {
       "--tile-icon-size": "var(--mushic-final-shape-size)",
     
       // --- TEXT ---
+      "--ha-tile-info-primary-color": primaryTextCssColor || "var(--mushic-primary-color)",
       "--ha-tile-info-primary-font-size": this.getValue("primary_font_size") || "var(--mushic-primary-font-size)",
       "--ha-tile-info-primary-font-weight": this.getValue("primary_font_weight") || "var(--mushic-primary-font-weight)",
-      "--ha-tile-info-primary-color": primaryTextCssColor || "var(--mushic-primary-color)",
+      "--mushic-primary-font-variant": this.getValue("primary_font_variant"),      
       "--ha-tile-info-primary-line-height": this.getValue("primary_line_height") || "var(--mushic-primary-line-height)",
       "--ha-tile-info-primary-letter-spacing": this.getValue("primary_letter_spacing") || "var(--mushic-primary-letter-spacing)",
+      "--mushic-primary-text-align": this.getValue("primary_text_align"),  
       "--mushic-primary-text-shadow": this.getValue("primary_text_shadow"),
-      "--mushic-primary-font-variant": this.getValue("primary_font_variant"),
-      "--mushic-primary-text-align": this.getValue("primary_text_align"),   
     
+      "--ha-tile-info-secondary-color": secondaryTextCssColor || "var(--mushic-secondary-color)",
       "--ha-tile-info-secondary-font-size": this.getValue("secondary_font_size") || "var(--mushic-secondary-font-size)",
       "--ha-tile-info-secondary-font-weight": this.getValue("secondary_font_weight") || "var(--mushic-secondary-font-weight)",
-      "--ha-tile-info-secondary-color": secondaryTextCssColor || "var(--mushic-secondary-color)",
+      "--mushic-secondary-font-variant": this.getValue("secondary_font_variant"),      
       "--ha-tile-info-secondary-line-height": this.getValue("secondary_line_height") || "var(--mushic-secondary-line-height)",
       "--ha-tile-info-secondary-letter-spacing": this.getValue("secondary_letter_spacing") || "var(--mushic-secondary-letter-spacing)",
-      "--mushic-secondary-text-shadow": this.getValue("secondary_text_shadow"),
-      "--mushic-secondary-font-variant": this.getValue("secondary_font_variant"),
       "--mushic-secondary-text-align": this.getValue("secondary_text_align"),   
-
+      "--mushic-secondary-text-shadow": this.getValue("secondary_text_shadow"),
     
       // --- BADGE ---
       "--mushic-final-badge-size": badgeSize ||  "var(--mushic-badge-size, calc(var(--mushic-final-shape-size) * 0.444))",
