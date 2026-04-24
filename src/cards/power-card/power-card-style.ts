@@ -295,13 +295,14 @@ export const powerCardStyles = [
       
       ha-tile-info .mushic-primary {
         text-shadow: var(--mushic-primary-text-shadow, none);
+        font-variant: var(--mushic-primary-font-variant, normal);
         overflow: visible !important;
       }
       ha-tile-info .mushic-secondary {
         text-shadow: var(--mushic-secondary-text-shadow, none);
+        font-variant: var(--mushic-secondary-font-variant, normal);
         overflow: visible !important; 
       }
-
 
 /* --- FEATURES --- */
       hui-card-features {
