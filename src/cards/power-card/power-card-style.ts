@@ -14,6 +14,7 @@ export const powerCardStyles = [
       ha-card {
         position: relative;
         z-index: 0;
+        height: var(--mushic-card-height, var(--mushic-card-auto-height));
         --ha-ripple-color: var(--mushic-ripple-color, var(--mushic-icon-color, var(--state-inactive-color)));
         --ha-ripple-hover-opacity: 0.04;
         --ha-ripple-pressed-opacity: 0.12;
@@ -28,7 +29,8 @@ export const powerCardStyles = [
         border-width: var(--mushic-border-width, var(--ha-card-border-width, 1px));
         border-style: var(--mushic-border-style, solid);
         border-color: var(--mushic-border-color, var(--ha-card-border-color, var(--divider-color)));
-        height: var(--mushic-card-height, var(--mushic-card-auto-height));
+        overflow: visible !important;
+        box-shadow: var(--mushic-card-shadow, 0 0 20px red);
       }
 
       ha-card:has(.background:focus-visible) {
