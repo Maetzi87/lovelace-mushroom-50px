@@ -314,7 +314,7 @@ export const powerCardStyles = [
         width: calc(50% - var(--column-gap, 0px) / 2 - 12px);
         flex: none;
         --feature-height: var(--mushic-features-height, var(--mushic-final-shape-size, 36px)) !important;
-        padding: var(--mushic-features-padding, 0 12px) !important;
+        padding: var(--mushic-features-padding, 0 12px 0 0) !important;
         padding-inline-start: 0;
       }
       
